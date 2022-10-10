@@ -54,7 +54,7 @@ async function retrieveAllUsers() {
     const db = await dbPromise;
 
     const users = await db.all(SQL`
-        SELECT & FROM users`);
+        SELECT * FROM users`);
 
     return users;
 }

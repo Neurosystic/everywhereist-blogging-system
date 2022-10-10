@@ -58,7 +58,19 @@ router.post("/signUp", async function(req, res){
 
     await userDao.createUser(user);
 
-    res.redirect("/");
+    res.redirect("/user/:id");
+});
+
+router.get("/user/:id", async function(req, res){
+    const id = req.params.id;
+    const user = await userDao.retrieveUserById(id);
+
+    if(!user){
+        return res.redirect("/"); //Change this in the future
+    }
+
+    res.locals.user = user;
+    res.render("userProfile");
 });
 
 module.exports = router;
