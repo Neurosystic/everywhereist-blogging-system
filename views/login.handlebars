@@ -1,0 +1,27 @@
+<div class="container">
+    {{#if toastMessage}}
+    <p>{{toastMessage}}</p>
+    {{/if}}
+
+    <fieldset>
+        <legend>Login</legend>
+        <form action="./login" method="POST">
+            <div class="userDetail">
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username" required>
+            </div>
+
+            <div class="userDetail">
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" required>
+            </div>
+
+            <button type="submit">Log in</button>
+            
+        </form>
+        <br>
+        <a href="./signUp">
+            <button type="button">Create New Account!</button>
+        </a>
+    </fieldset>
+</div>

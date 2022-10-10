@@ -32,6 +32,7 @@ app.use(require("./middleware/toaster-middleware.js"));
 
 // Setup routes
 app.use(require("./routes/application-routes.js"));
+app.use(require("./routes/auth-routes.js"));
 
 // Start the server running.
 app.listen(port, function () {
