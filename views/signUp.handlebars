@@ -1,0 +1,59 @@
+<div class="container">
+    <fieldset>
+        <legend>Sign Up</legend>
+        <form method="POST" action="./registerUser">
+
+            <div class="userDetail">
+                <label for="fname">First name: </label>
+                <input type="text" name="fname" id="fname">
+            </div>
+
+            <div class="userDetail">
+                <label for="lname">Last name: </label>
+                <input type="text" name="lname" id="lname">
+            </div>
+
+            <div class="userDetail">
+                <label for="username">Username: </label>
+                <input type="text" name="username" id="username">
+            </div>
+
+            <div class="userDetail">
+                <label for="password">Password: </label>
+                <input type="password" name="password" id="password">
+            </div>
+
+            <div class="userDetail">
+                <label for="verify">Re-enter password: </label>
+                <input type="password" id="verify">
+            </div>
+
+            <div class="userDetail">
+                <label for="birthDate">Date of Birth: </label>
+                <input type="date" id="birthDate" name="birthDate">
+            </div>
+
+            <div class="userDetail">
+                <label for="email">E-mail: </label>
+                <input type="text" id="email" name="email">
+            </div>
+
+            <div class="userDetail">
+                <label for="description">Description: </label>
+                <textarea rows="4" cols="50" id="description" name="description">Enter a description about yourself
+                </textarea>
+            </div>
+            
+            <div class="userDetail">
+                <label for="avatarOne">
+                    <img src="" alt="">
+                    <input type="radio" id="avatarOne" value="avatarOne" name="avatar"> 
+                </label>
+            </div>
+        
+            <input type="submit" value="Create Account">
+            <input type="reset" value="Reset">
+
+        </form>
+    </fieldset>
+</div>
