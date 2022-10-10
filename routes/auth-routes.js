@@ -37,7 +37,7 @@ router.post("/login", async function(req, res){
 });
 
 router.get("/signUp", function(req, res){
-    res.render("signUp");
+    res.render("detailsForm");
 });
 
 router.post("/signUp", async function(req, res){
