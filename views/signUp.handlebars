@@ -27,6 +27,7 @@
             <div class="userDetail">
                 <label for="verify">Re-enter password: </label>
                 <input type="password" id="verify" required>
+                <span id="passwordWarning"></span>
             </div>
 
             <div class="userDetail">
@@ -84,11 +85,11 @@
                 </label>
             </div>
         
-            <input type="submit" value="Create Account">
+            <input type="submit" value="Create Account" id="submit">
             <input type="reset" value="Reset">
 
         </form>
     </fieldset>
 </div>
 
-<script src="./js/sign-up-fetch.js"></script>
+<script src="./js/sign-up-verification.js"></script>

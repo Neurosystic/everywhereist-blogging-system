@@ -30,10 +30,15 @@ app.use(express.static(path.join(__dirname, "public")));
 // Use the toaster middleware
 app.use(require("./middleware/toaster-middleware.js"));
 
+//Set up authentication middleware 
+const { addUserToLocals } = require("./middleware/auth-middleware.js");
+app.use(addUserToLocals);
+
 // Setup routes
 app.use(require("./routes/application-routes.js"));
 app.use(require("./routes/auth-routes.js"));
 app.use(require("./routes/api-routes.js"));
+app.use(require("./routes/blogging-routers"));
 
 // Start the server running.
 app.listen(port, function () {

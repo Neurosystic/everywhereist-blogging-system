@@ -28,7 +28,7 @@ router.post("/login", async function(req, res){
         await userDao.updateUser(user);
         res.cookie("authToken", authToken);
         res.locals.user = user;
-        res.redirect("/");
+        res.redirect("/profile");
     } else {
         res.locals.user = null;
         res.setToastMessage("Invalid password");
@@ -41,36 +41,29 @@ router.get("/signUp", function(req, res){
 });
 
 router.post("/signUp", async function(req, res){
-    const salt = await hashSalt.generateSalt();
-    const hash_password = await hashSalt.generateHash(req.body.password, salt);
+    const hash_password = await hashSalt.generateHash(req.body.password);
     const user = {
         fname : req.body.fname,
         lname : req.body.lname,
         username : req.body.username,
         hash_password : hash_password,
-        salt : salt,
         birth_date : req.body.birthDate,
         email : req.body.email,
         description : req.body.description,
         avatar : req.body.avatar,
         authToken : null
     }
-
     await userDao.createUser(user);
 
-    res.redirect("/user/:id");
+    res.redirect(`/profile`);
 });
 
-router.get("/user/:id", async function(req, res){
-    const id = req.params.id;
-    const user = await userDao.retrieveUserById(id);
-
-    if(!user){
-        return res.redirect("/"); //Change this in the future
-    }
-
-    res.locals.user = user;
-    res.render("userProfile");
+router.get("/logout", function(req, res){
+    res.clearCookie("authToken");
+    res.locals.user = null;
+    //do we want to have toastMessages to deliever some transient messages???
+    res.setToastMessage("Successfully logged out!");
+    res.redirect("/");
 });
 
 module.exports = router;

@@ -13,3 +13,8 @@ function verifyAuthenticated(req, res, next){
         res.redirect("./login");
     }
 }
+
+module.exports = {
+    addUserToLocals,
+    verifyAuthenticated
+}

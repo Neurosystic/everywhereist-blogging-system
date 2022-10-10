@@ -6,8 +6,8 @@ async function createUser(user){
     const db = await dbPromise;
 
     const result = await db.run(SQL`
-        INSERT INTO users (fname, lname, username, hash_password, salt, description, birth_date, email, avatar, authToken) VALUES 
-            (${user.fname}, ${user.lname}, ${user.username}, ${user.hash_password}, ${user.salt}, ${user.description}, ${user.birth_date}, ${user.email}, ${user.avatar}, ${user.authToken})`);
+        INSERT INTO users (fname, lname, username, hash_password, description, birth_date, email, avatar, authToken) VALUES 
+            (${user.fname}, ${user.lname}, ${user.username}, ${user.hash_password}, ${user.description}, ${user.birth_date}, ${user.email}, ${user.avatar}, ${user.authToken})`);
 
     user.id = result.lastID;        
 }
@@ -30,7 +30,7 @@ async function retreiveUserByUsername(username){
     return user;
 }
 
-//update SQL 
+//i dont seem to be using this function anywhere
 async function retrieveUserWithCredentials(username, hash_password){
     const db = await dbPromise;
 
@@ -69,7 +69,6 @@ async function updateUser(user) {
             lname = ${user.lname}, 
             username = ${user.username}, 
             hash_password = ${user.hash_password},
-            salt = ${user.salt},
             description = ${user.description},
             birth_date = ${user.birth_date},
             email = ${user.email},
