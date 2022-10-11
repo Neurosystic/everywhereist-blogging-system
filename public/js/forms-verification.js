@@ -1,4 +1,4 @@
-window.addEventListener("load", async function(){
+window.addEventListener("load", async function () {
 
     const username = document.querySelector("#username");
     const usernameWarning = document.querySelector("#usernameWarning");
@@ -8,12 +8,12 @@ window.addEventListener("load", async function(){
     const submitBtn = document.querySelector(`input[type="submit"]`);
 
 
-    async function getAllUsernames(){
+    async function getAllUsernames() {
         const response = await fetch("./api/users");
         const userJson = await response.json();
-        
+
         let usernameArray = [];
-        userJson.forEach(function(user){
+        userJson.forEach(function (user) {
             usernameArray.push(user.username);
         });
 
@@ -22,8 +22,8 @@ window.addEventListener("load", async function(){
 
     const usernameArray = await getAllUsernames();
 
-    username.addEventListener("input", function(){
-        if(usernameArray.includes(username.value)){
+    username.addEventListener("input", function () {
+        if (usernameArray.includes(username.value)) {
             username.style.border = "solid red";
             usernameWarning.innerText = `This username already exist, please choose another username`;
         } else {
@@ -32,19 +32,21 @@ window.addEventListener("load", async function(){
         }
     });
 
-    passwordTwo.addEventListener("input", function(){
-        if(passwordTwo.value != passwordOne.value){
-            passwordOne.style.border = "solid red";
-            passwordTwo.style.border = "solid red";
-            passwordWarning.innerText = `Password does not match`;
-            submitBtn.disabled = true;
-        } else {
-            passwordOne.style.border = null;
-            passwordTwo.style.border = null;
-            passwordWarning.innerText = "";
-            submitBtn.disabled = false;
-        }
-    });
+    if (passwordOne || passwordTwo) {
+        passwordTwo.addEventListener("input", function () {
+            if (passwordTwo.value != passwordOne.value) {
+                passwordOne.style.border = "solid red";
+                passwordTwo.style.border = "solid red";
+                passwordWarning.innerText = `Password does not match`;
+                submitBtn.disabled = true;
+            } else {
+                passwordOne.style.border = null;
+                passwordTwo.style.border = null;
+                passwordWarning.innerText = "";
+                submitBtn.disabled = false;
+            }
+        });
+    }
 
 
 });

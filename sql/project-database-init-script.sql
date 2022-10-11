@@ -104,4 +104,3 @@ INSERT INTO liked_comments VALUES
 	(1, 2),
 	(2, 1),
 	(1, 3);
-

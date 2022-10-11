@@ -8,6 +8,8 @@ router.get("/api/users", async function(req, res){
     res.json(userArray);
 });
 
-router.get("/api/articles")
+router.get("/api/articles", async function(req, res){
+    
+});
 
 module.exports = router;

@@ -1,26 +1,33 @@
 <div class="container">
     <fieldset>
-        <legend>Sign Up</legend>
-        <form method="POST" action="./signUp">
+        {{#if user}}
+            <legend>Edit Details</legend>
+            <form method="POST" action="./editDetails">
+        {{else}}
+            <legend>Sign Up</legend>
+            <form method="POST" action="./signUp">
+        {{/if}}
 
-            <div class="userDetail">
-                <label for="fname">First name: </label>
-                <input type="text" name="fname" id="fname" required>
+        <div class="userDetail">
+            <label for="fname">First name: </label>
+            <input type="text" name="fname" id="fname" required value="{{user.fname}}">
+        </div>
+
+        <div class="userDetail">
+            <label for="lname">Last name: </label>
+            <input type="text" name="lname" id="lname" required value="{{user.lname}}">
+        </div>
+
+        <div class="userDetail">
+            <label for="username">Username: </label>
+            <input type="text" name="username" id="username" required value="{{user.username}}">
+            <div class="message">
+                <span id="usernameWarning"></span>
             </div>
+        </div>
 
-            <div class="userDetail">
-                <label for="lname">Last name: </label>
-                <input type="text" name="lname" id="lname" required>
-            </div>
-
-            <div class="userDetail">
-                <label for="username">Username: </label>
-                <input type="text" name="username" id="username" required>
-                <div class="message">
-                    <span id="usernameWarning"></span>
-                </div>
-            </div>
-
+        {{#if user}}
+        {{else}}
             <div class="userDetail">
                 <label for="password">Password: </label>
                 <input type="password" name="password" id="password" required>
@@ -33,67 +40,80 @@
                     <span id="passwordWarning"></span>
                 </div>
             </div>
+        {{/if}}
 
-            <div class="userDetail">
-                <label for="birthDate">Date of Birth: </label>
-                <input type="date" id="birthDate" name="birthDate" required>
-            </div>
+        <div class="userDetail">
+            <label for="birthDate">Date of Birth: </label>
+            <input type="date" id="birthDate" name="birthDate" required value="{{user.birth_date}}">
+        </div>
 
-            <div class="userDetail">
-                <label for="email">E-mail: </label>
-                <input type="text" id="email" name="email" required>
-            </div>
+       <div class="userDetail">
+            <label for="email">E-mail: </label>
+            <input type="text" id="email" name="email" required value="{{user.email}}">
+        </div>
 
-            <div class="userDetail">
-                <label for="description">Description: </label>
-                <textarea rows="4" cols="50" id="description" name="description"></textarea>
-            </div>
-            
-            <div class="userDetail">
-                <label>
-                    <img src="./avatar/avatar-1.jpg" alt="Avatar" class="avatar">
-                    <input type="radio" id="avatarOne" value="avatar-1" name="avatar" checked> 
-                </label>
-                <label>
-                    <img src="./avatar/avatar-2.jpg" alt="Avatar" class="avatar">
-                    <input type="radio" id="avatarTwo" value="avatar-2" name="avatar"> 
-                </label>
-                <label>
-                    <img src="./avatar/avatar-3.jpg" alt="Avatar" class="avatar">
-                    <input type="radio" id="avatarThree" value="avatar-3" name="avatar"> 
-                </label>
-                <label>
-                    <img src="./avatar/avatar-4.jpg" alt="Avatar" class="avatar">
-                    <input type="radio" id="avatarFour" value="avatar-4" name="avatar"> 
-                </label>
-                <label>
-                    <img src="./avatar/avatar-5.jpg" alt="Avatar" class="avatar">
-                    <input type="radio" id="avatarFive" value="avatar-5" name="avatar"> 
-                </label>
-                <label>
-                    <img src="./avatar/avatar-6.jpg" alt="Avatar" class="avatar">
-                    <input type="radio" id="avatarSix" value="avatar-6" name="avatar"> 
-                </label>
-                <label>
-                    <img src="./avatar/avatar-7.jpg" alt="Avatar" class="avatar">
-                    <input type="radio" id="avatarSeven" value="avatar-7" name="avatar"> 
-                </label>
-                <label>
-                    <img src="./avatar/avatar-8.jpg" alt="Avatar" class="avatar">
-                    <input type="radio" id="avatarEight" value="avatar-8" name="avatar"> 
-                </label>
+        <div class="userDetail">
+            <label for="description">About me description: </label>
+            <textarea rows="4" cols="50" id="description" name="description">{{user.description}}</textarea>
+        </div>
 
-                <label>
-                    <img src="./avatar/avatar-9.jpg" alt="Avatar" class="avatar">
-                    <input type="radio" id="avatarNine" value="avatar-9" name="avatar"> 
-                </label>
-            </div>
-        
+        <div class="userDetail">
+            <label>
+                <img src="../avatar/avatar-1.jpg" alt="Avatar" class="avatar">
+                <input type="radio" id="avatarOne" value="avatar-1" name="avatar" checked>
+            </label>
+            <label>
+                <img src="../avatar/avatar-2.jpg" alt="Avatar" class="avatar">
+                <input type="radio" id="avatarTwo" value="avatar-2" name="avatar">
+            </label>
+            <label>
+                <img src="../avatar/avatar-3.jpg" alt="Avatar" class="avatar">
+                <input type="radio" id="avatarThree" value="avatar-3" name="avatar">
+            </label>
+            <label>
+                <img src="../avatar/avatar-4.jpg" alt="Avatar" class="avatar">
+                <input type="radio" id="avatarFour" value="avatar-4" name="avatar">
+            </label>
+            <label>
+                <img src="../avatar/avatar-5.jpg" alt="Avatar" class="avatar">
+                <input type="radio" id="avatarFive" value="avatar-5" name="avatar">
+            </label>
+            <label>
+                <img src="../avatar/avatar-6.jpg" alt="Avatar" class="avatar">
+                <input type="radio" id="avatarSix" value="avatar-6" name="avatar">
+            </label>
+            <label>
+                <img src="../avatar/avatar-7.jpg" alt="Avatar" class="avatar">
+                <input type="radio" id="avatarSeven" value="avatar-7" name="avatar">
+            </label>
+            <label>
+                <img src="../avatar/avatar-8.jpg" alt="Avatar" class="avatar">
+                <input type="radio" id="avatarEight" value="avatar-8" name="avatar">
+            </label>
+            <label>
+                <img src="../avatar/avatar-9.jpg" alt="Avatar" class="avatar">
+                <input type="radio" id="avatarNine" value="avatar-9" name="avatar">
+            </label>
+        </div>
+
+        {{#if user}}
+            <input type="submit" value="Confirm changes" id="submit">
+            <a href="../profile"><button type="button">Cancel changes</button></a>
+        {{else}}
             <input type="submit" value="Create Account" id="submit">
             <input type="reset" value="Reset">
-
+        {{/if}}
         </form>
+
+        {{#if user}}
+        <form action="./deleteAccount" method="POST">
+            <input type="text" name="userId" value="{{user.id}}" hidden>
+            <input type="submit" value="Delete account">
+        </form>
+        {{/if}}
+
     </fieldset>
 </div>
+
 
 <script src="./js/forms-verification.js"></script>

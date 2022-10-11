@@ -37,7 +37,18 @@ async function retrieveArticlesBySort(condition, order){
     const articles = await db.all(SQL`
         SELECT a.*, u.username FROM articles AS a, users AS u
 	        WHERE a.author_id = u.id
-	        ORDER BY ${condition} ${order}; `);
+	        ORDER BY ${condition} ${order}`);
+
+    return articles;
+}
+
+async function retrieveArticlesByAuthorSort(id, condition, order){
+    const db = dbPromise;
+
+    const articles = await db.all(SQL`
+        SELECT a.*, u.username FROM articles AS a, users AS u
+	        WHERE a.author_id = u.id AND u.id = ${id}
+	        ORDER BY ${condition} ${order}`);
 
     return articles;
 }
@@ -77,6 +88,7 @@ module.exports = {
     retrieveAllArticles,
     retrieveArticleById,
     retrieveArticlesBySort,
+    retrieveArticlesByAuthorSort,
     retrieveArticlesByAuthorId,
     updateArticle,
     deleteArticle

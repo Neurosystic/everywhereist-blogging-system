@@ -8,18 +8,23 @@ const { verifyAuthenticated } = require("../middleware/auth-middleware.js");
 router.get("/profile", verifyAuthenticated, function(req, res){
     //get by authentication token stored in cookie 
     //verify if authenticated, otherwise redirect elsewhere
+    res.locals.viewingUser = res.locals.user;
     res.render("userAdmin");
 });
 
 router.get("/user/:id", async function(req, res){
-    const id = req.params.id;
-    const user = await userDao.retrieveUserById(id);
+    const viewingId = req.params.id;
+    const viewingUser = await userDao.retrieveUserById(viewingId);
 
-    if(!user){
+    if(!viewingUser){
         return res.redirect("/"); //Change this in the future
     }
 
-    res.locals.user = user;
+    res.locals.viewingUser = viewingUser;
+    if(res.locals.user.id == viewingUser.id){
+        return res.redirect("/profile");
+    }
+    
     res.render("userProfile");
 });
 

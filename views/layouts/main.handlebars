@@ -2,16 +2,35 @@
 <html>
 
 <head>
+
     <meta charset="UTF-8">
     {{#if title}}
     <title>{{title}}</title>
     {{else}}
     <title>Default title.</title>
     {{/if}}
+    <link rel="stylesheet" type="text/css" href="./css/home.css">
+
 </head>
 
 <body>
+    <div id="nav-bar">
+        <a class="nav-item" href="/">Home</a>
+        {{#if user}}
+            <a href="../profile">
+                <img src="../avatar/{{user.avatar}}.jpg" alt="User avatar" id="imgNav">
+                <span>{{user.username}}</span>
+            </a>
+            <a href="../logout">Log out</a>
+        {{else}}
+            <a class="nav-item" href="../login">Log in</a>
+            <a class="nav-item" href="../signUp">Register</a>
+        {{/if}}
+    </div>
+
     {{{body}}}
+
+
 </body>
 
 </html>

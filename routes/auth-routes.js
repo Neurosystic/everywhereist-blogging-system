@@ -55,7 +55,7 @@ router.post("/signUp", async function(req, res){
     }
     await userDao.createUser(user);
 
-    res.redirect(`/profile`);
+    res.redirect("/profile");
 });
 
 router.get("/logout", function(req, res){
@@ -63,6 +63,24 @@ router.get("/logout", function(req, res){
     res.locals.user = null;
     //do we want to have toastMessages to deliever some transient messages???
     res.setToastMessage("Successfully logged out!");
+    res.redirect("/");
+});
+
+router.get("/editDetails", function(req, res){
+    res.render("detailsForm");
+});
+
+router.post("/editDetails", async function(req, res){
+
+});
+
+router.post("/deleteAccount", async function(req, res){
+    const id = req.body.userId;
+    await userDao.deleteUser(id);
+    res.clearCookie("authToken");
+    res.locals.user = null;
+    //do we want to have toastMessages to deliever some transient messages???
+    res.setToastMessage("Successfully deleted account!");
     res.redirect("/");
 });
 
