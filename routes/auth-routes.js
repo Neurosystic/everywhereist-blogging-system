@@ -42,6 +42,9 @@ router.get("/signUp", function(req, res){
 
 router.post("/signUp", async function(req, res){
     const hash_password = await hashSalt.generateHash(req.body.password);
+    const authToken = uuid();
+    res.cookie("authToken", authToken);
+
     const user = {
         fname : req.body.fname,
         lname : req.body.lname,
@@ -51,9 +54,10 @@ router.post("/signUp", async function(req, res){
         email : req.body.email,
         description : req.body.description,
         avatar : req.body.avatar,
-        authToken : null
+        authToken : authToken
     }
     await userDao.createUser(user);
+    res.locals.user = user;
 
     res.redirect("/profile");
 });
