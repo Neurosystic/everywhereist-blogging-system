@@ -13,7 +13,7 @@ router.get("/login", function(req, res){
 router.post("/login", async function(req, res){
     const username = req.body.username;
     const password = req.body.password;
-    const user = await userDao.retreiveUserByUsername(username);
+    const user = await userDao.retrieveUserByUsername(username);
 
     if(!user){
         res.locals.user = null;

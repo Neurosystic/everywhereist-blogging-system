@@ -8,4 +8,6 @@ router.get("/api/users", async function(req, res){
     res.json(userArray);
 });
 
+router.get("/api/articles")
+
 module.exports = router;

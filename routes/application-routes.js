@@ -1,15 +1,14 @@
 const express = require("express");
 const router = express.Router();
 
-const testDao = require("../modules/test-dao.js");
-//create userDao
+const articlesDao = require("../modules/articles-dao.js");
+
 
 router.get("/", async function(req, res) {
 
-    /**
-     * Create auth-middleware file which will verify if user has logged in
-     */
-
+    const articles = await articlesDao.retrieveAllArticles();
+    res.locals.articles = articles;
+    
     res.render("home");
 });
 

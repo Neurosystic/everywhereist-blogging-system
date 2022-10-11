@@ -21,7 +21,7 @@ async function retrieveUserById(id) {
     return user;
 }
 
-async function retreiveUserByUsername(username){
+async function retrieveUserByUsername(username){
     const db = await dbPromise;
     
     const user = await db.get(SQL`
@@ -92,5 +92,5 @@ module.exports = {
     retrieveAllUsers,
     updateUser,
     deleteUser,
-    retreiveUserByUsername
+    retrieveUserByUsername
 }

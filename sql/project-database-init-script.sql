@@ -28,7 +28,9 @@ CREATE TABLE IF NOT EXISTS articles (
 	id INTEGER NOT NULL PRIMARY KEY,
 	title TEXT,
 	content TEXT,
+	image TEXT,
 	date_published DATETIME, 
+	date_edited DATETIME,
 	author_id INTEGER NOT NULL,
 	FOREIGN KEY (author_id) REFERENCES users (id) ON DELETE CASCADE
 );
@@ -45,6 +47,7 @@ CREATE TABLE IF NOT EXISTS comments (
 	id INTEGER NOT NULL PRIMARY KEY,
 	content TEXT,
 	date_published DATETIME,
+	date_edited DATETIME,
 	parent_comment_id INTEGER,
 	article_id INTEGER,
 	commenter_id INTEGER,
