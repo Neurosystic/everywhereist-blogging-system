@@ -35,7 +35,7 @@ async function retrieveArticlesBySort(condition, order){
     const db = await dbPromise;
 
     return await db.all(`
-        SELECT a.*, u.username FROM articles AS a, users AS u
+        SELECT a.*, u.username, u.avatar FROM articles AS a, users AS u
 	        WHERE a.author_id = u.id
 	        ORDER BY ${condition} ${order}`);
 }
@@ -44,7 +44,7 @@ async function retrieveArticlesByAuthorSort(id, condition, order){
     const db = await dbPromise;
 
     return await db.all(`
-        SELECT a.*, u.username FROM articles AS a, users AS u
+        SELECT a.*, u.username, u.avatar FROM articles AS a, users AS u
             WHERE a.author_id = u.id AND u.id = ${id}
             ORDER BY ${condition} ${order}`);
 }
@@ -53,7 +53,8 @@ async function retrieveArticlesByAuthorId(userId){
     const db = await dbPromise;
 
     const articles = await db.all(SQL`
-        SELECT * FROM articles WHERE author_id = ${userId}`);
+        SELECT a.*, u.username, u.avatar FROM articles AS a, users AS u
+            WHERE a.author_id = u.id AND u.id = ${userId}`);
     
     return articles;
 }

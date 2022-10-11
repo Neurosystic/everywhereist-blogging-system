@@ -17,6 +17,7 @@
     <div id="nav-bar">
         <a class="nav-item" href="/">Home</a>
         {{#if user}}
+            <a href="../createNewArticle">Create new article</a>
             <a href="../profile">
                 <img src="../avatar/{{user.avatar}}.jpg" alt="User avatar" id="imgNav">
                 <span>{{user.username}}</span>

@@ -19,8 +19,10 @@ router.get("/user/:id", async function(req, res){
     if(!viewingUser){
         return res.redirect("/"); //Change this in the future
     }
-
     res.locals.viewingUser = viewingUser;
+    if(!res.locals.user){
+        return res.render("userProfile");
+    }
     if(res.locals.user.id == viewingUser.id){
         return res.redirect("/profile");
     }
