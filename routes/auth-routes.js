@@ -13,7 +13,7 @@ router.get("/login", function(req, res){
 router.post("/login", async function(req, res){
     const username = req.body.username;
     const password = req.body.password;
-    const user = await userDao.retreiveUserByUsername(username);
+    const user = await userDao.retrieveUserByUsername(username);
 
     if(!user){
         res.locals.user = null;
@@ -55,7 +55,7 @@ router.post("/signUp", async function(req, res){
     }
     await userDao.createUser(user);
 
-    res.redirect(`/profile`);
+    res.redirect("/profile");
 });
 
 router.get("/logout", function(req, res){
@@ -63,6 +63,43 @@ router.get("/logout", function(req, res){
     res.locals.user = null;
     //do we want to have toastMessages to deliever some transient messages???
     res.setToastMessage("Successfully logged out!");
+    res.redirect("/");
+});
+
+router.get("/editDetails", function(req, res){
+    if(!res.locals.user){
+        res.redirect("/signUp");
+    }
+    res.render("detailsForm");
+});
+
+router.post("/editDetails", async function(req, res){
+    const user = {
+        id : res.locals.user.id,
+        fname : req.body.fname,
+        lname : req.body.lname,
+        username : req.body.username,
+        hash_password : res.locals.user.hash_password,
+        birth_date : req.body.birthDate,
+        email : req.body.email,
+        description : req.body.description,
+        avatar : req.body.avatar,
+        authToken : req.cookies.authToken
+    }
+
+    await userDao.updateUser(user);
+
+    res.redirect("/profile");
+
+});
+
+router.post("/deleteAccount", async function(req, res){
+    const id = req.body.userId;
+    await userDao.deleteUser(id);
+    res.clearCookie("authToken");
+    res.locals.user = null;
+    //do we want to have toastMessages to deliever some transient messages???
+    res.setToastMessage("Successfully deleted account!");
     res.redirect("/");
 });
 
