@@ -9,7 +9,7 @@ window.addEventListener("load", async function () {
 
 
     async function getAllUsernames() {
-        const response = await fetch("./api/users");
+        const response = await fetch("../api/users");
         const userJson = await response.json();
 
         let usernameArray = [];

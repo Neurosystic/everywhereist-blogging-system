@@ -32,25 +32,21 @@ async function retrieveArticleById(id){
 
 //Change according to home.handlebars
 async function retrieveArticlesBySort(condition, order){
-    const db = dbPromise;
+    const db = await dbPromise;
 
-    const articles = await db.all(SQL`
+    return await db.all(`
         SELECT a.*, u.username FROM articles AS a, users AS u
 	        WHERE a.author_id = u.id
 	        ORDER BY ${condition} ${order}`);
-
-    return articles;
 }
 
 async function retrieveArticlesByAuthorSort(id, condition, order){
-    const db = dbPromise;
+    const db = await dbPromise;
 
-    const articles = await db.all(SQL`
+    return await db.all(`
         SELECT a.*, u.username FROM articles AS a, users AS u
-	        WHERE a.author_id = u.id AND u.id = ${id}
-	        ORDER BY ${condition} ${order}`);
-
-    return articles;
+            WHERE a.author_id = u.id AND u.id = ${id}
+            ORDER BY ${condition} ${order}`);
 }
 
 async function retrieveArticlesByAuthorId(userId){

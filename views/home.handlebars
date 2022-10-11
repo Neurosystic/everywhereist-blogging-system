@@ -1,9 +1,10 @@
-<div class="container">
-    {{#if toastMessage}}
-    <p>{{toastMessage}}</p>
-    {{/if}}
+{{#if toastMessage}}
+<p>{{toastMessage}}</p>
+{{/if}}
 
-    <div id="header-container">
+<div class="container">
+
+    {{!-- <div id="header-container">
         <img id="test" src="../images/headerimage.jpg">
         <p id="welcome-title">Welcome! Read Thoughs, Share Ideas</p>
 
@@ -11,49 +12,28 @@
             <div id="logo">
                 <p>Image</p>
             </div>
+        </div>
+    </div> --}}
 
+    <div class="articlePanel">
+        <div class="articleTags">
+            <a href="">All Articles</a>
+            <a href="">Top Articles</a>
+        </div>
+        <br>
+        <label for="sort">Sort by</label>
+        <select name="sort" id="sort">
+            <option value="title asc">Article Title: A-Z</option>
+            <option value="title desc">Article Title: Z-A</option>
+            <option value="username asc">Username: A-Z</option>
+            <option value="username desc">Username: Z-A</option>
+            <option value="date asc">Date: oldest to latest</option>
+            <option value="date desc">Date: latest to oldest</option>
+        </select>
+
+        <div class="articles">
         </div>
     </div>
-
-    <div class="articleContainer">
-    <div class="articleTags">
-        <a href="">All Articles</a>
-        <a href="">Top Articles</a>
-    </div>
-    <br>
-    <form action="" method="post">
-        <label for="filter">Sort by</label>
-        <select name="filter" id="">
-            <option value="title">Article Title: A-Z</option>
-            <option value="title">Article Title: Z-A</option>
-            <option value="username">Username: A-Z</option>
-            <option value="username">Username: Z-A</option>
-            <option value="date">Date: latest to oldest</option>
-            <option value="date">Date: oldest to latest</option>
-        </select>
-        
-    </form>
-
-    <div class="allArticle">
-        {{#each articles}}
-            <div>
-                <img src={{this.image}} alt="">articleImg1
-                <span>{{this.avartar}}</span>
-                {{this.username}}
-                {{this.date_published}}
-                {{this.title}}
-                {{this.content}}
-            </div>
-        {{/each}}
-
-        <div>
-            <span id="numsOfComments">( )</span>
-            comments
-            <span id="numsOfLikes">( )</span>
-            like
-        </div>     
-    </div>
 </div>
 
-
-</div>
+<script src="../js/articles-fetch.js"></script>

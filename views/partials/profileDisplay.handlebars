@@ -1,9 +1,12 @@
+<script src="../js/articles-fetch.js"></script>
+
 <div class="username">
     <h1>{{viewingUser.username}}</h1>
 </div>
 <div class="userDetails">
     <img src="../avatar/{{viewingUser.avatar}}.jpg" alt="{{viewingUser.username}} user avatar">
-    <span hidden>{{viewingUser.id}}</span>
+    <span id="userId" hidden>{{viewingUser.id}}</span>
+    {{!--The above if for referencing - indication to which fetch address will be used --}}
     <p>{{viewingUser.fname}} {{viewingUser.lname}}</p>
     <p>Contact me: {{viewingUser.email}}</p>
     <p>Birth date: {{viewingUser.birth_date}}</p>

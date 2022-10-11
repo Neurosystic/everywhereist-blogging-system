@@ -67,10 +67,29 @@ router.get("/logout", function(req, res){
 });
 
 router.get("/editDetails", function(req, res){
+    if(!res.locals.user){
+        res.redirect("/signUp");
+    }
     res.render("detailsForm");
 });
 
 router.post("/editDetails", async function(req, res){
+    const user = {
+        id : res.locals.user.id,
+        fname : req.body.fname,
+        lname : req.body.lname,
+        username : req.body.username,
+        hash_password : res.locals.user.hash_password,
+        birth_date : req.body.birthDate,
+        email : req.body.email,
+        description : req.body.description,
+        avatar : req.body.avatar,
+        authToken : req.cookies.authToken
+    }
+
+    await userDao.updateUser(user);
+
+    res.redirect("/profile");
 
 });
 
