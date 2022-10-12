@@ -1,7 +1,7 @@
 const SQL = require("sql-template-strings");
 const dbPromise = require("./database.js");
 
-async function createLikedArticle(article_id, user_id){
+async function registerArticleLiked(article_id, user_id){
     const db = await dbPromise;
     
     await db.run(SQL`
@@ -9,7 +9,7 @@ async function createLikedArticle(article_id, user_id){
             (${article_id}, ${user_id})`);           
 }
 
-async function deleteLikedArticle(article_id, user_id){
+async function removeArticleLiked(article_id, user_id){
     const db = await dbPromise;
 
     await db.run(SQL`
@@ -34,13 +34,13 @@ async function retrieveAllArticleLikeCount(){
     const result = await db.all(SQL`
         SELECT article_id, COUNT(*) FROM liked_articles
             GROUP BY article_id`);
-            
+
     return result;
 }
 
 module.exports = {
-    createLikedArticle,
-    deleteLikedArticle,
+    registerArticleLiked,
+    removeArticleLiked,
     retrieveArticleLikeCount,
     retrieveAllArticleLikeCount
 }

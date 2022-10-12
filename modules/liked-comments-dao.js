@@ -1,7 +1,7 @@
 const SQL = require("sql-template-strings");
 const dbPromise = require("./database.js");
 
-async function createLikedComment(comment_id, user_id){
+async function registerCommentLiked(comment_id, user_id){
     const db = await dbPromise;
 
     await db.run(SQL`
@@ -9,7 +9,7 @@ async function createLikedComment(comment_id, user_id){
             (${comment_id},${user_id})`);
 }
 
-async function deleteLikedComment(comment_id, user_id){
+async function removeCommentLiked(comment_id, user_id){
     const db = await dbPromise;
 
     await db.run(SQL`
@@ -36,8 +36,8 @@ async function retrieveAllCommentLikeCount(){
 }
 
 module.exports = {
-    createLikedComment,
-    deleteLikedComment,
+    registerCommentLiked,
+    removeCommentLiked,
     retrieveAllCommentLikeCount,
     retrieveCommentLikeCounts
 }
