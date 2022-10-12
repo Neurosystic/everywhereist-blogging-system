@@ -25,7 +25,7 @@ window.addEventListener("load", function(){
     }
 
     const userId = document.querySelector("#userId");
-    const articlesDiv = document.querySelector(".articles");
+    const contentDiv = document.querySelector(".articleContents");
 
     if(userId){
         loadUserArticles(userId.textContent);
@@ -53,13 +53,13 @@ window.addEventListener("load", function(){
     }
 
     function createArticleCard(articleArray){
-        articlesDiv.innerHTML = "";
+        contentDiv.innerHTML = "";
         articleArray.forEach(function(item){
             const itemDiv = document.createElement("div");
             itemDiv.classList.add("card");
             const imgDiv = document.createElement("div");
             imgDiv.classList.add("cardImg");
-            articlesDiv.append(itemDiv);
+            contentDiv.append(itemDiv);
             itemDiv.append(imgDiv);
             if(item.image){
                 imgDiv.innerHTML = `
