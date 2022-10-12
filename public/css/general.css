@@ -1,78 +1,65 @@
-.homeloginbutton{
-    text-align: right;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    
-    
+* {
+    border: 1px solid black;
+    margin: 0;
+    font-family: Lora, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #000000;
 }
 
-main{
-    
-    
+.header, .footer{
+    background-color: #f7f2ee;
+    padding: 20px 50px;
 }
 
-footer{
-
-
+.header *{
+    font-family: Montserrat, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    font-size: 13px;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 0.1em;
 }
 
-img {
-    width: 980px;
-    height: 659px;
-    object-fit: cover;
-    object-position: 50% 50%;
-
-}
-
-#header-container{
-    
-    max-width: 100%;
-    height: 600px;
-    object-fit: contain;
-}
-
-
-
-#top-section{
-    margin-top: 20px;
-    position: relative;
+.nav{
     display: flex;
-    flex-direction: row;
-    justify-content: space-between ;
-    border: 2px solid black;
-    
-    
+    justify-content: space-between;
+    gap: 100px;
 }
 
-.nav-bar{
-    position: relative;
-    padding-top: 20px;
-     
+a:hover {
+    opacity: 0.5;
 }
 
-.nav-item{
-    border: 2px solid black;
-    display: flex;
-    flex-direction: row;
-}
-
-#test{
-    width: 100%;
-    max-height: 100%;
-    position: absolute;
-    margin-top: 0px;
-    z-index: -1;
-
-}
-
-#logo{
-    margin-left: 30px;
-}
-#welcome-title{
-    position: relative;
+.footer{
     text-align: center;
-    padding-top: 240px;
-    color: antiquewhite;
-    font-family: monospace;
-    font-style: monaco;
-    font-size:xx-large;
+    font-size: small;
 }
+
+.container{
+    width: 65%;
+    margin: auto;
+}
+
+.introDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-image: url("../images/headerimage.jpg");
+    background-size: cover;
+    height: 400px;
+}
+
+.navHome > *, .authDiv > *{
+    padding: 0 30px;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../font/Montserrat-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Lora';
+    src: url('../font/Lora-Regular.ttf');
+}
+
+/*remember to put in the responsiveness*/

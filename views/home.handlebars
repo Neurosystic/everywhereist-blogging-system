@@ -2,25 +2,14 @@
 <p>{{toastMessage}}</p>
 {{/if}}
 
+<div class="introDiv">
+    <h1>[Home page Title]</h1>
+    <p>Content including description of website</p>
+</div>
+
 <div class="container">
 
-    {{!-- <div id="header-container">
-        <img id="test" src="../images/headerimage.jpg">
-        <p id="welcome-title">Welcome! Read Thoughs, Share Ideas</p>
-
-        <div id="top-section">
-            <div id="logo">
-                <p>Image</p>
-            </div>
-        </div>
-    </div> --}}
-
     <div class="articlePanel">
-        <div class="articleTags">
-            <a href="">All Articles</a>
-            <a href="">Top Articles</a>
-        </div>
-        <br>
         <label for="sort">Sort by</label>
         <select name="sort" id="sort">
             <option value="title asc">Article Title: A-Z</option>
@@ -30,10 +19,14 @@
             <option value="date_published asc">Date: oldest to latest</option>
             <option value="date_published desc">Date: latest to oldest</option>
         </select>
+    </div>
+    <div class="articles">
+    </div>  
 
-        <div class="articles">
-        </div>
+    <div class="topThree">
+        <p>Popular articles - aim to display top 3</p>
     </div>
 </div>
 
 <script src="../js/articles-fetch.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/home.css">

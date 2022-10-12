@@ -1,0 +1,27 @@
+.articlePanel > *{
+    padding: 2px 4px;
+    font-size: 0.85em;
+    text-align: center;
+}
+
+.container {
+    display: grid;
+    grid-template-rows: 1fr auto auto;
+    grid-template-areas: 
+        "p"
+        "t"
+        "a";
+}
+
+.articlePanel {
+    padding: 5px 20px;
+    grid-area: p;
+}
+
+.topThree{
+    grid-area: t;
+}
+
+.articles{
+    grid-area: a;
+}
