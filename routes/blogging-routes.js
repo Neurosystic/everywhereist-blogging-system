@@ -18,6 +18,7 @@ router.get("/user/:id", async function(req, res){
     const viewingUser = await userDao.retrieveUserById(viewingId);
 
     if(!viewingUser){
+        res.setToastMessage("User does not exist!");
         return res.redirect("/"); //Change this in the future
     }
     res.locals.viewingUser = viewingUser;
@@ -36,6 +37,7 @@ router.get("/articles/:id", async function(req,res){
     const articles = await articleDao.retrieveArticleById(articleId);
 
     if(!articles){
+        res.setToastMessage("Article does not exist!");
         return res.redirect("/");
     }
     res.locals.articles = articles;

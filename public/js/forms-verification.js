@@ -9,13 +9,8 @@ window.addEventListener("load", async function () {
 
 
     async function getAllUsernames() {
-        const response = await fetch("../api/users");
-        const userJson = await response.json();
-
-        let usernameArray = [];
-        userJson.forEach(function (user) {
-            usernameArray.push(user.username);
-        });
+        const response = await fetch("../api/usernames");
+        const usernameArray = await response.json();
 
         return usernameArray;
     }

@@ -1,0 +1,83 @@
+fieldset{
+    border: 5px solid #f7775e;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.container {
+    padding: 50px 0;
+}
+
+.container *{
+    letter-spacing: 0.1em;
+}
+
+form{
+    padding: 20px;
+}
+
+label, input {
+    margin: 10px;
+}
+
+input[type="text"], input[type="password"]{
+    width: 95%;
+}
+
+input[type="submit"], input[type="reset"], button{
+    padding: 10px;
+    background-color: #f7f2ee;
+    border-radius: 10px;
+    border-color: #f7775e;
+}
+
+.otherCommands{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+}
+
+legend{
+    text-transform: uppercase;
+    padding: 5px;
+}
+
+.avatar{
+    padding-top: 90px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+[type=radio] { 
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+[type=radio] + img {
+    cursor: pointer;
+    width: 100px;
+    border-radius: 50%;
+    padding: 5px;
+    margin: 5px;
+}
+  
+[type=radio]:checked + img {
+    outline: 2px solid red;
+}
+
+.description{
+    position: relative;
+}
+
+textarea {
+    position: absolute;
+    width: 95%;
+    height: max-content;
+    left: 10px;   
+}
+

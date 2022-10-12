@@ -1,27 +1,56 @@
+.articlePanel {
+    padding: 5px 20px;
+}
+
 .articlePanel > *{
     padding: 2px 4px;
     font-size: 0.85em;
     text-align: center;
 }
 
-.container {
-    display: grid;
-    grid-template-rows: 1fr auto auto;
-    grid-template-areas: 
-        "p"
-        "t"
-        "a";
-}
-
-.articlePanel {
-    padding: 5px 20px;
-    grid-area: p;
-}
-
-.topThree{
-    grid-area: t;
-}
-
 .articles{
-    grid-area: a;
+    display: flex;
+    flex-direction: column;
 }
+
+.articleContents, .popularContents{
+    display: flex;
+    gap: 30px 30px;
+    padding-bottom: 30px;
+}
+
+.card{
+    width: 100%;
+}
+
+.cardAuthor{
+    font-size: 0.8em;
+    display: flex;
+    align-items: center;
+}
+
+.cardAuthor div{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.cardAuthor img{
+    width: 50px;
+    border-radius: 50%;
+    padding: 1px;
+}
+
+.cardIntro p{
+    font-size: 0.9em;
+    overflow-y: hidden;
+    height: 145px;
+    width: 90%;
+    margin: auto;
+}
+
+.cardIntro h4{
+    width: 90%;
+    margin: auto;
+}
+

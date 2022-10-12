@@ -29,7 +29,7 @@ window.addEventListener("load", function(){
 
     if(userId){
         loadUserArticles(userId.textContent);
-        //Implemment statements to allow user to sort article when browsering to  author page
+        //Implemment statements to allow user to sort article when browsering to author page
     } 
     else {
         loadAllArticles();
@@ -76,15 +76,20 @@ window.addEventListener("load", function(){
                 <div class="cardAuthor">
                     <a href="../user/${item.author_id}">
                         <img src="../avatar/${item.avatar}.jpg" alt="Author avatar">
-                    <h4>${item.username}</h4>
                     </a>
+                    <div>
+                        <a href="../user/${item.author_id}">
+                            <h4>${item.username}</h4>
+                        </a>
+                        <p>Published: ${item.date_published}</p>
+                    </div>
+                    
                 </div>
                 <div class="cardIntro">
-                    <p>Published: ${item.date_published}</p>
                     <a href="../article/${item.id}">
-                        <h5>${item.title}</h5>
+                        <h4>${item.title}</h4>
+                        <p>${item.content}</p>
                     </a>
-                    <p>${item.content}</p>
                 </div>`;
         });
     }

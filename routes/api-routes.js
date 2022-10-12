@@ -4,9 +4,15 @@ const router = express.Router();
 const userDao = require("../modules/users-dao.js");
 const articleDao = require("../modules/articles-dao.js");
 
-router.get("/api/users", async function(req, res){
+router.get("/api/usernames", async function(req, res){
     const userArray = await userDao.retrieveAllUsers();
-    res.json(userArray);
+
+    let usernameArray = [];
+    userArray.forEach(function (user) {
+        usernameArray.push(user.username);
+    });
+
+    res.json(usernameArray);
 });
 
 router.get("/api/articles", async function(req, res){
