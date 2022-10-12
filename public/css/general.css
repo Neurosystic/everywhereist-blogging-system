@@ -78,4 +78,13 @@ a:hover {
     font-weight: bold;
 }
 
+.articleTitle{
+    font-family: Montserrat, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    text-transform: uppercase;
+    font-size: 15px;
+    letter-spacing: 0.1em;
+    font-weight: bolder;
+}
+
+
 /*remember to put in the responsiveness*/

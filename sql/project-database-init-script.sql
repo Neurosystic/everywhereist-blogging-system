@@ -74,11 +74,11 @@ CREATE TABLE IF NOT EXISTS liked_comments (
 	
 INSERT INTO users (fname, lname, username, hash_password, description, birth_date, email, authToken, avatar) VALUES
 	-- Password = 123
-	('Lily', 'Ansco', 'user1', '$2b$10$UjRNmIXscQ5fNDVUnjNw0eLEblMtoTogY9F68/nSEvFZv6O1cdQUW', 'Lorem Ipsum has been the industry standard dummy text ever since the 1500s', '1999-01-01', 'user1@gmail.com', NULL, 'avatar-4'),
+	('Lily', 'Ansco', 'user1', '$2b$10$UjRNmIXscQ5fNDVUnjNw0eLEblMtoTogY9F68/nSEvFZv6O1cdQUW', 'Lorem Ipsum has been the industry standard dummy text ever since the 1500s', '1999-01-01', 'user1@gmail.com', NULL, 'avatar-4.jpg'),
 	-- Password = 123
-	('Lucy', 'Bees', 'user2', '$2b$10$zZ83DDqNqJGS3uKJ.JvHhOZQ4vqHCZkyY2hGqOvpaM8WOJpHxLcRK', 'There are many variations of passages of Lorem Ipsum available', '2000-02-01', 'user2@outlook.com', NULL, 'avatar-1'),
+	('Lucy', 'Bees', 'user2', '$2b$10$zZ83DDqNqJGS3uKJ.JvHhOZQ4vqHCZkyY2hGqOvpaM8WOJpHxLcRK', 'There are many variations of passages of Lorem Ipsum available', '2000-02-01', 'user2@outlook.com', NULL, 'avatar-1.jpg'),
 	-- Password 321
-	('Poly', 'Humms', 'user3', '$2b$10$Y/jkljAjEW9GhPS3gfpKWum9ECv1364OmTzI3YZIgqmlIHVxGiVsi', 'The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet', '1996-11-25', 'user3@hellworld.com', NULL, 'avatar-5');
+	('Poly', 'Humms', 'user3', '$2b$10$Y/jkljAjEW9GhPS3gfpKWum9ECv1364OmTzI3YZIgqmlIHVxGiVsi', 'The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet', '1996-11-25', 'user3@hellworld.com', NULL, 'avatar-5.jpg');
 	
 INSERT INTO articles (title, content, date_published, author_id) VALUES
 	('What is Lorem Ipsum?', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2022-10-09 00:00:00', 1),

@@ -6,6 +6,7 @@ const userDao = require("../modules/users-dao.js");
 const articleDao = require ("../modules/articles-dao.js");
 const { verifyAuthenticated } = require("../middleware/auth-middleware.js");
 
+
 router.get("/profile", verifyAuthenticated, function(req, res){
     //get by authentication token stored in cookie 
     //verify if authenticated, otherwise redirect elsewhere
@@ -34,15 +35,35 @@ router.get("/user/:id", async function(req, res){
 
 router.get("/article/:id", async function(req,res){
     const articleId = req.params.id;
-    const articles = await articleDao.retrieveArticleById(articleId);
+    const article = await articleDao.retrieveArticleById(articleId);
 
-    if(!articles){
+    if(!article){
         res.setToastMessage("Article does not exist!");
         return res.redirect("/");
     }
-    res.locals.articles = articles;
+    res.locals.article = article;
     res.render("articleView");
 });
 
+//please implement the below routers, thank you - sophie!
+router.get("/createArticle", verifyAuthenticated, async function(req, res){
+
+    res.render("editor");
+});
+
+router.post("/createArticle", async function(req, res){
+
+});
+
+router.get("/article/:id/editArticle", async function(req, res){
+    // need a way to authentiicate this so that only req.locals.user == article.author_id can edit, else redirect appropriately
+
+
+    res.render("editor");
+});
+
+router.post("/editArticle", async function(req, res){
+
+});
 
 module.exports = router;

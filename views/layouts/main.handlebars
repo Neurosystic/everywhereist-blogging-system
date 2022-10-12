@@ -10,7 +10,7 @@
     <title>Default title.</title>
     {{/if}}
     <link rel="stylesheet" type="text/css" href="../css/general.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 </head>
 
 <body>
@@ -25,9 +25,9 @@
 
             <div class="authDiv">
                 {{#if user}}
-                <a href="../createNewArticle">Create new article</a>
+                <a href="../createArticle">Create new article</a>
                 <a href="../profile">
-                    <img src="../avatar/{{user.avatar}}.jpg" alt="User avatar" id="imgNav">
+                    <img src="../avatar/{{user.avatar}}" alt="User avatar" id="imgNav">
                     <span>{{user.username}}</span>
                 </a>
                 <a href="../logout">Log out</a>

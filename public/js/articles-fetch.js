@@ -75,19 +75,18 @@ window.addEventListener("load", function(){
             itemDiv.innerHTML += `
                 <div class="cardAuthor">
                     <a href="../user/${item.author_id}">
-                        <img src="../avatar/${item.avatar}.jpg" alt="Author avatar">
+                        <img src="../avatar/${item.avatar}" alt="Author avatar">
                     </a>
                     <div>
                         <a href="../user/${item.author_id}">
                             <h4>${item.username}</h4>
                         </a>
                         <p>Published: ${item.date_published}</p>
-                    </div>
-                    
+                    </div> 
                 </div>
                 <div class="cardIntro">
                     <a href="../article/${item.id}">
-                        <h4>${item.title}</h4>
+                        <h4 class="articleTitle">${item.title}</h4>
                         <p>${item.content}</p>
                     </a>
                 </div>`;
