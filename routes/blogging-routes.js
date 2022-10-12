@@ -32,7 +32,7 @@ router.get("/user/:id", async function(req, res){
     res.render("userProfile");
 });
 
-router.get("/articles/:id", async function(req,res){
+router.get("/article/:id", async function(req,res){
     const articleId = req.params.id;
     const articles = await articleDao.retrieveArticleById(articleId);
 
