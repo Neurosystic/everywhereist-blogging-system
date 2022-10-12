@@ -21,9 +21,9 @@ async function unlikeArticle(article,user){
 async function getNumberofLikes(article){
     const db = await dbPromise;
     const result =  await db.run(SQL`SELECT COUNT(article_id) AS NumberOfLikes FROM liked_comments
-                            WHERE srticle_id=${article.id}`);
+                            WHERE article_id=${article.id}`);
    
-    return result.getNumberofLikes;
+    return result.NumberofLikes;
 
 }
 
