@@ -107,3 +107,8 @@ INSERT INTO liked_comments VALUES
 
 SELECT a.*, u.username, u.avatar FROM articles AS a, users AS u
             WHERE a.author_id = u.id AND u.id = 1 ORDER BY username ASC
+
+
+
+
+			
