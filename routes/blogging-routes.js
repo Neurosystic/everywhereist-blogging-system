@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 const userDao = require("../modules/users-dao.js");
+const articleDao = require ("../modules/articles-dao.js");
 const { verifyAuthenticated } = require("../middleware/auth-middleware.js");
 
 router.get("/profile", verifyAuthenticated, function(req, res){
@@ -28,6 +29,17 @@ router.get("/user/:id", async function(req, res){
     }
     
     res.render("userProfile");
+});
+
+router.get("/articles/:id", async function(req,res){
+    const articleId = req.params.id;
+    const articles = await articleDao.retrieveArticleById(articleId);
+
+    if(!articles){
+        return res.redirect("/");
+    }
+    res.locals.articles = articles;
+    res.render("articleView");
 });
 
 
