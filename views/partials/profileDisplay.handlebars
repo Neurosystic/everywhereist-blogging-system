@@ -3,14 +3,17 @@
     <h1>{{viewingUser.username}}</h1>
 </div>
 <div class="userDetails">
-    <img src="../avatar/{{viewingUser.avatar}}.jpg" alt="{{viewingUser.username}} user avatar">
+    <img src="../avatar/{{viewingUser.avatar}}" alt="{{viewingUser.username}} user avatar">
     <span id="userId" hidden>{{viewingUser.id}}</span>
     {{!--The above if for referencing - indication to which fetch address will be used --}}
     <p>{{viewingUser.fname}} {{viewingUser.lname}}</p>
     <p>Contact me: {{viewingUser.email}}</p>
     <p>Birth date: {{viewingUser.birth_date}}</p>
 </div>
-<div class="main">
+<div class="stats">
+    <p>This will include stats of followers and such</p>
+</div>
+<div class="description">
     <h2>About me</h2>
     <p>{{viewingUser.description}}</p>
 </div>
@@ -19,4 +22,5 @@
     <div class="articleContents"></div>
 </div>
 
+<link rel="stylesheet" type="text/css" href="../css/user.css">
 <script src="../js/articles-fetch.js"></script>

@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="articleImg">
+        <img src="../images/{{article.image}}" alt="Cover page image for article">
+    </div>
+    <h2 class="articleTitle">{{article.title}}</h2>
+    <div class="authorPanel">
+        <div class="cardAuthor">
+            <a href="../user/{{author.author_id}}">
+                <img src="../avatar/{{article.avatar}}" alt="Author avatar">
+            </a>
+            <div class="authorPanel">
+                <a href="../user/{{author.author_id}}">
+                    <p><strong>Author: {{article.username}}</strong></p>
+                </a>
+                <p>Date published: {{article.date_published}}</p>
+                {{#if article.date_edited}}
+                <p>Last edited: {{article.date_edited}}</p>
+                {{/if}}
+            </div>
+        </div>
+        <div class="otherCommands">
+            {{!-- make so that if user has already liked the article the icon would change to become solid --}}
+            {{#if user}}
+            <button class="like">
+                <i class="fa-regular fa-heart"></i>
+            </button>
+            {{/if}}
+            {{!-- this will be the location where an edit, delete article button can be placed --}}
+        </div>
+    </div>
+    <div class="articleContent">
+        {{article.content}}
+    </div>
+
+</div>
+
+<link rel="stylesheet" type="text/css" href="../css/article.css">
+{{!-- Write handlebar helper function which will take in two parameters and check if it has value equality --}}

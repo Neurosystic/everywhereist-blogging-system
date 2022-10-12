@@ -9,28 +9,43 @@
     {{else}}
     <title>Default title.</title>
     {{/if}}
-    <link rel="stylesheet" type="text/css" href="./css/home.css">
-
+    <link rel="stylesheet" type="text/css" href="../css/general.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 </head>
 
 <body>
-    <div id="nav-bar">
-        <a class="nav-item" href="/">Home</a>
-        {{#if user}}
-            <a href="../createNewArticle">Create new article</a>
-            <a href="../profile">
-                <img src="../avatar/{{user.avatar}}.jpg" alt="User avatar" id="imgNav">
-                <span>{{user.username}}</span>
-            </a>
-            <a href="../logout">Log out</a>
-        {{else}}
-            <a class="nav-item" href="../login">Log in</a>
-            <a class="nav-item" href="../signUp">Register</a>
-        {{/if}}
+    <div class="header">
+        
+        
+        <div class="nav">
+            <div class="navHome">
+                <img src="" alt="Website logo" id="imgLogo">
+                <a href="../">Home</a>
+            </div>
+
+            <div class="authDiv">
+                {{#if user}}
+                <a href="../createArticle">Create new article</a>
+                <a href="../profile">
+                    <img src="../avatar/{{user.avatar}}" alt="User avatar" id="imgNav">
+                    <span>{{user.username}}</span>
+                </a>
+                <a href="../logout">Log out</a>
+                {{else}}
+                <a href="../login">Log in</a>
+                <a href="../signUp">Register</a>
+                {{/if}}
+            </div>
+            
+        </div>
+            
     </div>
 
     {{{body}}}
 
+    <div class="footer">
+        <p><em>© 2022 [Team name], All Rights Reserved</em></p>
+    </div>
 
 </body>
 

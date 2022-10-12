@@ -1,0 +1,48 @@
+.articleTitle{
+    font-size: 30px;
+    text-align: center;
+}
+
+.cardAuthor{
+    font-size: 0.8em;
+    display: flex;
+    align-items: center;
+}
+
+.cardAuthor div{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.cardAuthor img{
+    width: 50px;
+    border-radius: 50%;
+    padding: 1px;
+}
+
+.container > *{
+    padding: 5px;
+}
+
+.articleContent{
+    margin-bottom: 30px;
+}
+
+.authorPanel{
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    border-radius: 3px;
+    border: none;
+    background-color: inherit;
+    outline: none;
+    
+}
+
+i {
+    font-size: 20px;
+    color: #f7775e;
+}
