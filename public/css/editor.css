@@ -110,7 +110,7 @@ input[type="text"]{
     padding: 5px 0;
 }
 
-input[type="submit"], input::file-selector-button{
+input[type="submit"], input::file-selector-button, #cancelCmd{
     padding: 10px;
     background-color: #f7f2ee;
     border-radius: 10px;
@@ -122,4 +122,13 @@ input[type="submit"], input::file-selector-button{
 
 input[type="submit"]{
     margin: 15px 0;
+}
+
+#delete{
+    text-align: right;
+}
+
+#delete *{
+    color: rgb(124, 15, 15);
+    font-weight: bold;
 }

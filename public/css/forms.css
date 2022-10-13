@@ -82,3 +82,7 @@ textarea {
     left: 10px;   
 }
 
+#delete *{
+    color: rgb(124, 15, 15);
+    font-weight: bold;
+}

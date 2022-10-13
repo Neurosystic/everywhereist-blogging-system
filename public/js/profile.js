@@ -1,25 +1,13 @@
-window.addEventListener("load", function(){
+window.addEventListener("load", function () {
 
-    async function fetchAllArticle(){
-        const response = await fetch("../api/articles");
-        const articlesJson = await response.json();
-        return articlesJson;
-    }
-
-    async function fetchArticleByAuthor(id){
+    async function fetchArticleByAuthor(id) {
         const response = await fetch(`../api/articles?author=${id}`);
         const articleJson = await response.json();
         return articleJson;
     }
 
-    async function fetchUserArticleSort(id, condition, order){
+    async function fetchUserArticleSort(id, condition, order) {
         const response = await fetch(`../api/articles?author=${id}&sort=${condition}&order=${order}`);
-        const articleJson = await response.json();
-        return articleJson;
-    }
-
-    async function fetchAllArticleSort(condition, order){
-        const response = await fetch(`../api/articles?sort=${condition}&order=${order}`);
         const articleJson = await response.json();
         return articleJson;
     }
@@ -27,29 +15,13 @@ window.addEventListener("load", function(){
     const userId = document.querySelector("#userId");
     const contentDiv = document.querySelector(".articleContents");
 
-    if(userId){
-        loadUserArticles(userId.textContent);
-        //Implemment statements to allow user to sort article when browsering to author page
-    } 
-    else {
-        loadAllArticles();
-        const sort = document.querySelector("#sort");
-        sort.addEventListener("change", async function(){
-            const sortOrder = sort.value.split(" ");
-            const articleArray = await fetchAllArticleSort(sortOrder[0], sortOrder[1]);
-            createArticleCard(articleArray);
-        });
-    }
+    loadUserArticles(userId.textContent);
 
-    async function loadUserArticles(id){
+    //Implemment statements to allow user to sort article when browsering to author page
+    
+    async function loadUserArticles(id) {
         const articleArray = await fetchArticleByAuthor(id);
         createArticleCard(articleArray);
-    }
-
-    async function loadAllArticles(){
-        const articleArray = await fetchAllArticle();
-        createArticleCard(articleArray);
-        
     }
 
     function createArticleCard(articleArray){
@@ -71,7 +43,7 @@ window.addEventListener("load", function(){
                     <img src="" alt="Article cover image"> 
                 `;
             }
-
+    
             itemDiv.innerHTML += `
                 <div class="cardAuthor">
                     <a href="../user/${item.author_id}">
@@ -82,6 +54,7 @@ window.addEventListener("load", function(){
                             <h4>${item.username}</h4>
                         </a>
                         <p>Published: ${item.date_published}</p>
+                        <p id="edited">Last edited: ${item.date_edited}</p>
                     </div> 
                 </div>
                 <div class="cardIntro">
@@ -90,7 +63,14 @@ window.addEventListener("load", function(){
                         <p>${item.content}</p>
                     </a>
                 </div>`;
+            
+                const editedDate = document.querySelector("#edited");
+                if(!item.date_edited){
+                    editedDate.style.display = "none";
+                }
+                
         });
     }
+    
 
 });

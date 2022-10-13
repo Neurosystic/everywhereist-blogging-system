@@ -1,15 +1,21 @@
 <div class="container">
+    {{#if toastMessage}}
+    <div class="message">
+        <p>{{toastMessage}}</p>
+    </div>
+    {{/if}}
+    
     <div class="articleImg">
         <img src="../images/{{article.image}}" alt="Cover page image for article">
     </div>
     <h2 class="articleTitle">{{article.title}}</h2>
     <div class="authorPanel">
         <div class="cardAuthor">
-            <a href="../user/{{author.author_id}}">
+            <a href="../user/{{article.author_id}}">
                 <img src="../avatar/{{article.avatar}}" alt="Author avatar">
             </a>
             <div class="authorPanel">
-                <a href="../user/{{author.author_id}}">
+                <a href="../user/{{article.author_id}}">
                     <p><strong>Author: {{article.username}}</strong></p>
                 </a>
                 <p>Date published: {{article.date_published}}</p>
@@ -33,11 +39,11 @@
     <div class="articleContent">
         <span id="authorId" style="display: none">{{article.author_id}}</span>
         <span id="userId" style="display: none">{{user.id}}</span>
-        {{article.content}}
+        {{{article.content}}}
     </div>
 
 </div>
 
 <link rel="stylesheet" type="text/css" href="../css/article.css">
-<script src="../js/articles.js"></script>
+<script src="../js/articleView.js"></script>
 {{!-- Write handlebar helper function which will take in two parameters and check if it has value equality --}}

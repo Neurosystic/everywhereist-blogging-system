@@ -1,10 +1,9 @@
 <div class="container">
+    {{#if toastMessage}}
     <div class="message">
-        {{#if toastMessage}}
-            <p>{{toastMessage}}</p>
-        {{/if}}
+        <p>{{toastMessage}}</p>
     </div>
-    
+    {{/if}}
 
     <fieldset>
         <legend>Login</legend>

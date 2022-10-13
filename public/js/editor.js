@@ -3,19 +3,15 @@ window.addEventListener("load", function () {
     const optionsButton = document.querySelectorAll(".option-button");
     const advancedOptionButton = document.querySelectorAll(".adv-option-button");
 
-    const fontName = document.getElementById("fontName");
     const fontSizeRef = document.getElementById("fontSize");
     const writingArea = document.getElementById("text-input");
-
-    const linkButton = document.getElementById("createLink");
     const alignButton = document.querySelectorAll(".align");
     const spacingButton = document.querySelectorAll(".spacing");
     const formatButton = document.querySelectorAll(".format");
     const scriptButton = document.querySelectorAll(".script");
-    const headingButton = document.querySelector(".heading-button")
 
-    window.onload = initialiser();
-
+    initialiser();
+    
     //Initial Settings 
     function initialiser() {
         //function calls for highlighting buttons
@@ -57,22 +53,6 @@ window.addEventListener("load", function () {
         });
     });
 
-    headingButton.addEventListener("change", function(){
-        modifyText(headingButton.id, false, headingButton.value);
-    });
-
-    //link 
-    linkButton.addEventListener("click", function () {
-        let userLink = prompt("Enter a URL");
-        //if link has http then pass directly else add https
-        if (/http/i.test(userLink)) {
-            modifyText(linkButton.id, false, userLink);
-        } else {
-            userLink = "http://" + userLink;
-            modifyText(linkButton.id, false, userLink);
-        }
-    });
-
     //Highlight clicked button 
     function highlighter(className, needsRemoval) {
         className.forEach(function (button) {
@@ -109,16 +89,7 @@ window.addEventListener("load", function () {
     document.querySelector("input[type=submit]").addEventListener("click", function () {
         const content = document.querySelector("#content");
         const textInput = document.querySelector("#text-input");
-        const message = document.querySelector("#warningMessage");
         content.value = textInput.innerHTML;
-        if(!content.value){
-            message.innerText = `Content must not be empty`;
-            message.style.color = "red";
-        } else{
-            message.innerText = "";
-        }
-        //testing inout content value
-        console.log(document.querySelector("#content").value);
     });
 
 });
