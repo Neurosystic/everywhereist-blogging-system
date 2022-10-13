@@ -39,7 +39,9 @@ app.use(addUserToLocals);
 app.use(require("./routes/application-routes.js"));
 app.use(require("./routes/auth-routes.js"));
 app.use(require("./routes/api-routes.js"));
-app.use(require("./routes/blogging-routes.js"));
+app.use(require("./routes/user-routes.js"));
+app.use(require("./routes/article-routes.js"));
+app.use(require("./routes/media-routes.js"));
 
 // Start the server running.
 app.listen(port, function () {

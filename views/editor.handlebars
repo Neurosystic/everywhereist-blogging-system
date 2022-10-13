@@ -1,107 +1,117 @@
 <div class="container">
-    <div class="editor">
-        <!-- Below is the rich text editor -->
-        <div class="option">
-            <!-- Text Format -->
-            <button id="bold" class="option-button format">
-                <i class="fa-solid fa-bold"></i>
-            </button>
-            <button id="italic" class="option-button format">
-                <i class="fa-solid fa-italic"></i>
-            </button>
-            <button id="underline" class="option-button format">
-                <i class="fa-solid fa-underline"></i>
-            </button>
-            <button id="strikethrough" class="option-button format">
-                <i class="fa-solid fa-strikethrough"></i>
-            </button>
-            <button id="superscript" class="option-button script">
-                <i class="fa-solid fa-superscript"></i>
-            </button>
-            <button id="subscript" class="option-button script">
-                <i class="fa-solid fa-subscript"></i>
-            </button>
+    {{#if article}}
+    <form method="POST" action="../editArticle" enctype="multipart/form-data">
+        <input type="text" name="articleID" value="{{article.id}}" style="display:none" required>
+    {{else}}
+    <form method="POST" action="../createArticle" enctype="multipart/form-data">
+    {{/if}}
+        <div class="inputForm">
+            <h2>Article title: </h2>
+            <input type="text" id="title" name="title" maxlength="100" value="{{article.title}}">
+        </div>
+        <div class="inputForm">
+            <h2>Upload a cover image: </h2>
+            <input type="file" id="file" name="imageFile" accept=".png, .jpg, .jpeg, .bmp, .gif" value="{{article.image}}">
+        </div>
+        <div class="editor">
+       
+            <!-- Below is the rich text editor -->
+            <div class="option">
+                <!-- Text Format -->
+                <button id="bold" class="option-button format">
+                    <i class="fa-solid fa-bold"></i>
+                </button>
+                <button id="italic" class="option-button format">
+                    <i class="fa-solid fa-italic"></i>
+                </button>
+                <button id="underline" class="option-button format">
+                    <i class="fa-solid fa-underline"></i>
+                </button>
+                <button id="strikethrough" class="option-button format">
+                    <i class="fa-solid fa-strikethrough"></i>
+                </button>
+                <button id="superscript" class="option-button script">
+                    <i class="fa-solid fa-superscript"></i>
+                </button>
+                <button id="subscript" class="option-button script">
+                    <i class="fa-solid fa-subscript"></i>
+                </button>
 
-            <!-- List -->
-            <button id="insertOrderedList" class="option-button">
-                <i class="fa-solid fa-list-ol"></i>
-            </button>
-            <button id="insertUnorderedList" class="option-button">
-                <i class="fa-solid fa-list-ul"></i>
-            </button>
+                <!-- List -->
+                <button id="insertOrderedList" class="option-button">
+                    <i class="fa-solid fa-list-ol"></i>
+                </button>
+                <button id="insertUnorderedList" class="option-button">
+                    <i class="fa-solid fa-list-ul"></i>
+                </button>
 
-            <!-- Undo/Redo -->
-            <button id="undo" class="option-button">
-                <i class="fa-solid fa-rotate-left"></i>
-            </button>
-            <button id="redo" class="option-button">
-                <i class="fa-solid fa-rotate-right"></i>
-            </button>
+                <!-- Undo/Redo -->
+                <button id="undo" class="option-button">
+                    <i class="fa-solid fa-rotate-left"></i>
+                </button>
+                <button id="redo" class="option-button">
+                    <i class="fa-solid fa-rotate-right"></i>
+                </button>
 
-            <!-- Link -->
-            <button id="createLink" class="adv-option-button">
-                <i class="fa fa-link"></i>
-            </button>
-            <button id="unlink" class="option-button">
-                <i class="fa fa-unlink"></i>
-            </button>
+                <!-- Alignment -->
+                <button id="justifyLeft" class="option-button align">
+                    <i class="fa-solid fa-align-left"></i>
+                </button>
+                <button id="justifyCenter" class="option-button align">
+                    <i class="fa-solid fa-align-center"></i>
+                </button>
+                <button id="justifyRight" class="option-button align">
+                    <i class="fa-solid fa-align-right"></i>
+                </button>
+                <button id="justifyFull" class="option-button align">
+                    <i class="fa-solid fa-align-justify"></i>
+                </button>
+                <button id="indent" class="option-button spacing">
+                    <i class="fa-solid fa-indent"></i>
+                </button>
+                <button id="outdent" class="option-button spacing">
+                    <i class="fa-solid fa-outdent"></i>
+                </button>
 
-            <!-- Alignment -->
-            <button id="justifyLeft" class="option-button align">
-                <i class="fa-solid fa-align-left"></i>
-            </button>
-            <button id="justifyCenter" class="option-button align">
-                <i class="fa-solid fa-align-center"></i>
-            </button>
-            <button id="justifyRight" class="option-button align">
-                <i class="fa-solid fa-align-right"></i>
-            </button>
-            <button id="justifyFull" class="option-button align">
-                <i class="fa-solid fa-align-justify"></i>
-            </button>
-            <button id="indent" class="option-button spacing">
-                <i class="fa-solid fa-indent"></i>
-            </button>
-            <button id="outdent" class="option-button spacing">
-                <i class="fa-solid fa-outdent"></i>
-            </button>
+                <!-- Font -->
+                <select id="fontSize" class="adv-option-button"></select>
 
-            <!-- Headings -->
-            <select id="formatBlock" class="heading-button">
-                <option value="H1">Heading 1</option>
-                <option value="H2">Heading 2</option>
-                <option value="H3">Heading 3</option>
-                <option value="H4">Heading 4</option>
-                <option value="H5">Heading 5</option>
-                <option value="H6">Heading 6</option>
-            </select>
+                <!-- Headings -->
+                <select id="formatBlock" class="adv-option-button">
+                    <option value="H1">Heading 1</option>
+                    <option value="H2">Heading 2</option>
+                    <option value="H3">Heading 3</option>
+                    <option value="H4">Heading 4</option>
+                    <option value="H5">Heading 5</option>
+                    <option value="H6">Heading 6</option>
+                </select>
 
-            <!-- Font -->
-            <select id="fontName" class="adv-option-button"></select>
-            <select id="fontSize" class="adv-option-button"></select>
-
-            <!-- Colour -->
-            <div id="colorPanel">
-                <div class="input-wrapper">
-                    <input type="color" id="foreColor" class="adv-option-button">
-                    <label for="foreColor">Font Color</label>
-                </div>
-                <div class="input-wrapper">
-                    <input type="color" id="backColor" class="adv-option-button">
-                    <label for="backColor">Highlight Color</label>
-                </div>
             </div>
 
-        </div>
+            <div id="text-input" contenteditable="true">{{article.content}}</div>
+            <textarea id="content" style="display:none" name="content" required></textarea>
+            
+            {{#if article}}
+                <input type="text" value="{{article.id}}" name="articleId" style="display: none">
+                <input type="submit" value="Confirm changes" id="submit">
+                <a href="../article/{{article.id}}"><input id="cancelCmd" type="button" value="Cancel changes"></a>
+            {{else}}
+                <input type="submit" value="Create Article" id="submit">
+            {{/if}}
+        </form>
 
-        <div id="text-input" contenteditable="true"></div>
-        <input type="submit" id="submit">
-    </div>
+        {{#if article}}
+        <form id="delete" action="./deleteArticle" method="POST">
+            <input type="text" name="articleId" value="{{article.id}}" style="display:none">
+            <input type="submit" value="Delete article">
+        </form>
+        {{/if}}
+            
+        </div>
+    </form>
+
 </div>
 
 
 <script src="../js/editor.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/editor.css">
-
-{{!-- Google Fonts --}}
-<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">

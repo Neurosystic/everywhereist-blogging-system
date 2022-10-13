@@ -24,7 +24,10 @@ async function retrieveCommentByArticleId(id){
     const db = await dbPromise;
 
     const comments = await db.all(SQL`
-        SELECT * FROM comments WHERE article_id = ${id}`);
+        SELECT c.*, u.username, u.avatar 
+            FROM comments AS c, users AS u
+	        WHERE c.commenter_id = u.id 
+                AND c.article_id=${id}`);
     
     return comments;
 }

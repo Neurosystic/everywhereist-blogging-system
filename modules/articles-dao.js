@@ -5,7 +5,7 @@ async function createArticle(article){
     const db = await dbPromise;
     
     const result = await db.run(SQL`
-        INSERT INTO articles (title, articles (title, content, image, date_published, author_id) VALUES 
+        INSERT INTO articles (title, content, image, date_published, author_id) VALUES 
             (${article.title}, ${article.content}, ${article.image}, ${article.date_published}, ${article.author_id})`);
     
     article.id = result.lastID;
@@ -26,7 +26,7 @@ async function retrieveArticleById(id){
 
     const article = await db.get(SQL`
         SELECT a.*, u.username, u.avatar FROM articles AS a, users AS u
-            WHERE a.author_id = u.id AND u.id = ${id}`);
+            WHERE a.author_id = u.id AND a.id = ${id}`);
 
     return article;
 }
@@ -61,7 +61,7 @@ async function retrieveArticlesByAuthorId(userId){
 }
 
 async function updateArticle(article){
-    const db = dbPromise;
+    const db = await dbPromise;
 
     await db.run(SQL`
         UPDATE articles SET

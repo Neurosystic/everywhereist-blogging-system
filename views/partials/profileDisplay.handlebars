@@ -1,10 +1,9 @@
-
 <div class="username">
     <h1>{{viewingUser.username}}</h1>
 </div>
 <div class="userDetails">
     <img src="../avatar/{{viewingUser.avatar}}" alt="{{viewingUser.username}} user avatar">
-    <span id="userId" hidden>{{viewingUser.id}}</span>
+    <span id="userId" style="display: none">{{viewingUser.id}}</span>
     {{!--The above if for referencing - indication to which fetch address will be used --}}
     <p>{{viewingUser.fname}} {{viewingUser.lname}}</p>
     <p>Contact me: {{viewingUser.email}}</p>
@@ -23,4 +22,4 @@
 </div>
 
 <link rel="stylesheet" type="text/css" href="../css/user.css">
-<script src="../js/articles-fetch.js"></script>
+<script src="../js/profile.js"></script>
