@@ -1,21 +1,50 @@
-// JS implementation of like button when clicked - toggle class??
-const likeBtn = document.querySelector(".like");
-const regularLike = document.querySelector(".fa-regular");
-const solidLike = document.querySelector(".fa-solid");
+window.addEventListener("load", async function () {
+    // JS implementation of like button when clicked - toggle class??
+    const likeBtn = document.querySelector("#likeBtn");
+    const heartIcon = document.querySelector("#heartIcon");
+    const likeCount = document.querySelector("#likeCount");
 
-// retrieve from local cookie - if(cookie){... like button enable}
-// register like onto database 
-likeBtn.disabled = false;
+    const likeForm = document.querySelector("#likeForm");
+    const unlikeForm = document.querySelector("#unlikeForm");
 
-regularLike.addEventListener('click', () =>{
-    regularLike.style.display = 'none';
-    solidLike.style.display = 'block';
-})
-solidLike.addEventListener('click', () =>{
-    solidLike.style.display = 'none';
-    regularLike.style.display = 'block';
-})
+    const authorId = document.querySelector("#authorId").textContent;
+    const userId = document.querySelector("#userId").textContent;
+    const articleId = document.querySelector("#articleId").textContent;
 
+    if(userId){
+        likeBtn.disabled = false;
+    }
 
+    let unmatchCount = 0;
+    const likeArray = await fetchArticleLikeCounts(articleId);
+    likeCount.innerText = `${likeArray.length}`;
+    likeArray.forEach(function(element){
+        if(element.user_id == userId){
+            likeForm.style.display = "none";
+        } else {
+            unmatchCount++;
+        }
+    });
 
-//if storing like - to get article id - can use #articleId.textContent
+    if(unmatchCount >= likeArray.length){
+        unlikeForm.style.display = "none";
+    }
+
+    if(authorId == userId){
+        const otherCommandDiv = document.querySelector(".otherCommands");
+        otherCommandDiv.innerHTML += `
+            <div class="adminCmd">
+                <form action="../editArticle" method="GET">
+                    <input type="text" name="articleId" value="${articleId}" style="display:none">
+                    <input type="submit" value="Edit Article">
+                </form>
+            </div>
+        `;
+    }
+
+    async function fetchArticleLikeCounts(id){
+        const response = await fetch(`../api/articleLikes?articleId=${id}`);
+        const likesJson = await response.json();
+        return likesJson;
+    }
+});

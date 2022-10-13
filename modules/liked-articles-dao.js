@@ -18,13 +18,12 @@ async function removeArticleLiked(article_id, user_id){
             AND user_id = ${user_id}`);           
 }
 
-async function retrieveArticleLikeCount(article_id){
+async function retrieveArticleLikes(article_id){
     const db = await dbPromise;
 
-    const result = await db.get(SQL`
-        SELECT COUNT(*) FROM liked_articles
+    const result = await db.all(SQL`
+        SELECT * FROM liked_articles
             WHERE article_id = ${article_id}`); //unsure of how to read the data
-   
     return result;
 }
 
@@ -41,6 +40,6 @@ async function retrieveAllArticleLikeCount(){
 module.exports = {
     registerArticleLiked,
     removeArticleLiked,
-    retrieveArticleLikeCount,
+    retrieveArticleLikes,
     retrieveAllArticleLikeCount
 }

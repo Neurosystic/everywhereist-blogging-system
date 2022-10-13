@@ -51,7 +51,7 @@ router.post("/createArticle", upload.single("imageFile"), async function (req, r
 
 router.get("/editArticle", verifyAuthenticated, async function (req, res) {
     // need a way to authentiicate this so that only req.locals.user == article.author_id can edit, else redirect appropriately
-    const articleId = req.query.id;
+    const articleId = req.query.articleId;
     const article = await articleDao.retrieveArticleById(articleId);
 
     if (!article) {
@@ -66,28 +66,42 @@ router.get("/editArticle", verifyAuthenticated, async function (req, res) {
     res.render("editor");
 });
 
-///editttt
+router.post("/editArticle", upload.single("imageFile"), async function (req, res) {
+    const id = req.body.articleId;
+    const oldArticle = await articleDao.retrieveArticleById(id);
 
-router.post("/editArticle", async function (req, res) {
+    const fileInfo = req.file;
+    let imageFile = null;
+    if (fileInfo) {
+        const oldFileName = fileInfo.path;
+        const newFileName = `./public/images/${fileInfo.originalname}`;
+        fs.renameSync(oldFileName, newFileName);
+        const image = await jimp.read(newFileName);
+        image.resize(320, jimp.AUTO);
+        await image.write(`./public/images/thumbnails/${fileInfo.originalname}`);
+        imageFile = fileInfo.originalname;
+    } 
 
-    let newContent = res.body.content;
+    const updatedArticle = {
+        id : oldArticle.id,
+        title : req.body.title,
+        content : req.body.content,
+        image : imageFile,
+        date_published : oldArticle.date_published,
+        date_edited : getCurrentTime(),
+        author_id: res.locals.user.id
+    }
 
-    let articleDetails = retrieveArticleById(req.body.articleID);
-
-    let editedArticle = {
-        "title": articleDetails.title,
-        "content": newContent,
-        "image": req.body.image,
-        "date_published": articleDetails.date_published,
-        "date_edited": req.body.date,
-        "author_id": articleDetails.author_id,
-    };
-
-    updateArticle(editedArticle);
+    await articleDao.updateArticle(updatedArticle);
+    res.locals.article = updatedArticle;
+    res.redirect(`/article/${updatedArticle.id}`);
 });
 
 router.post("/deleteArticle", async function(req, res){
-    
+    const articleId = req.body.articleId;
+    await articleDao.deleteArticle(articleId);
+    res.setToastMessage("Successfully deleted article!");
+    res.redirect("/");
 });
 
 module.exports = router;

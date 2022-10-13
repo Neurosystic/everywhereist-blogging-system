@@ -61,7 +61,7 @@ async function retrieveArticlesByAuthorId(userId){
 }
 
 async function updateArticle(article){
-    const db = dbPromise;
+    const db = await dbPromise;
 
     await db.run(SQL`
         UPDATE articles SET

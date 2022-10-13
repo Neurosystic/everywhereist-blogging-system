@@ -62,12 +62,13 @@ window.addEventListener("load", function () {
                         <h4 class="articleTitle">${item.title}</h4>
                         <p>${item.content}</p>
                     </a>
-                </div>`;
+                </div>
+            `;
             
-                const editedDate = document.querySelector("#edited");
-                if(!item.date_edited){
-                    editedDate.style.display = "none";
-                }
+            const editedDate = document.querySelector("#edited");
+            if(!item.date_edited){
+                editedDate.style.display = "none";
+            }
                 
         });
     }

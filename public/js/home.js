@@ -65,7 +65,8 @@ window.addEventListener("load", function () {
                         <h4 class="articleTitle">${item.title}</h4>
                         <p>${item.content}</p>
                     </a>
-                </div>`;
+                </div>
+            `;
         });
     }
 

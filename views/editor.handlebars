@@ -92,6 +92,7 @@
             <textarea id="content" style="display:none" name="content" required></textarea>
             
             {{#if article}}
+                <input type="text" value="{{article.id}}" name="articleId" style="display: none">
                 <input type="submit" value="Confirm changes" id="submit">
                 <a href="../article/{{article.id}}"><input id="cancelCmd" type="button" value="Cancel changes"></a>
             {{else}}
