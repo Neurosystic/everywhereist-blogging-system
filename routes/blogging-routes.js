@@ -64,6 +64,21 @@ router.get("/article/:id/editArticle", async function(req, res){
 
 router.post("/editArticle", async function(req, res){
 
+    let newContent = res.body.content;
+
+    let articleDetails = retrieveArticleById(req.body.articleID);
+
+    let editedArticle = {
+        "title" : articleDetails.title,
+        "content" : newContent,
+        "image" : req.body.image,
+        "date_published" : articleDetails.date_published,
+        "date_edited" : req.body.date,
+        "author_id" : articleDetails.author_id,
+    };
+
+    updateArticle(editedArticle);
+
 });
 
 module.exports = router;
