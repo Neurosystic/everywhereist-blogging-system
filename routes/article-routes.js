@@ -20,9 +20,7 @@ router.get("/article/:id", async function (req, res) {
     }
     res.locals.article = article;
     const comments = await commentDao.retrieveCommentByArticleId(articleId);
-    const commentArray = convertCommentsToTree(comments);
-    console.log(commentArray)
-    res.locals.commentArray = commentArray;
+    res.locals.commentArray = comments;
     res.render("articleView");
 });
 
