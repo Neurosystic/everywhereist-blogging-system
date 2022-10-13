@@ -47,11 +47,21 @@ router.get("/article/:id", async function(req,res){
 
 //please implement the below routers, thank you - sophie!
 router.get("/createArticle", verifyAuthenticated, async function(req, res){
-
+    
     res.render("editor");
 });
 
 router.post("/createArticle", async function(req, res){
+
+    let article = {
+        "title" : res.body.title,
+        "content" : res.body.content,
+        "image" : res.body.image,
+        "date_published" : res.body.date_published,
+        "author_id" :res.body.author_id
+   }
+    
+   createArticle(article);
 
 });
 
@@ -63,6 +73,21 @@ router.get("/article/:id/editArticle", async function(req, res){
 });
 
 router.post("/editArticle", async function(req, res){
+
+    let newContent = res.body.content;
+
+    let articleDetails = retrieveArticleById(req.body.articleID);
+
+    let editedArticle = {
+        "title" : articleDetails.title,
+        "content" : newContent,
+        "image" : req.body.image,
+        "date_published" : articleDetails.date_published,
+        "date_edited" : req.body.date,
+        "author_id" : articleDetails.author_id,
+    };
+
+    updateArticle(editedArticle);
 
 });
 

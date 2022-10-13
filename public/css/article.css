@@ -46,3 +46,7 @@ i {
     font-size: 20px;
     color: #f7775e;
 }
+ /* hide solid heart icon */
+.fa-solid{
+    display: none;
+}
