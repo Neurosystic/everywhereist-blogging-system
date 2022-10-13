@@ -26,7 +26,7 @@ window.addEventListener("load", async function () {
         }
     });
 
-    if(unmatchCount >= likeArray.length){
+    if(unmatchCount >= likeArray.length && unlikeForm){
         unlikeForm.style.display = "none";
     }
 

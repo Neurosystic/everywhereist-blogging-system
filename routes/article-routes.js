@@ -2,21 +2,27 @@ const express = require("express");
 const fs = require("fs");
 const jimp = require("jimp");
 const router = express.Router();
+const upload = require("../middleware/multer-uploader.js");
 
 const articleDao = require("../modules/articles-dao.js");
+const commentDao = require("../modules/comments-dao.js");
 const { verifyAuthenticated } = require("../middleware/auth-middleware.js");
-const { getCurrentTime } = require("../modules/current-time.js");
-const upload = require("../middleware/multer-uploader.js");
+const { getCurrentTime } = require("../modules/format-functions.js");
+const { convertCommentsToTree } = require("../modules/format-functions.js");
+
 
 router.get("/article/:id", async function (req, res) {
     const articleId = req.params.id;
     const article = await articleDao.retrieveArticleById(articleId);
-
     if (!article) {
         res.setToastMessage("Article does not exist!");
         return res.redirect("/");
     }
     res.locals.article = article;
+    const comments = await commentDao.retrieveCommentByArticleId(articleId);
+    const commentArray = convertCommentsToTree(comments);
+    console.log(commentArray)
+    res.locals.commentArray = commentArray;
     res.render("articleView");
 });
 
