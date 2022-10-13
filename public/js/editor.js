@@ -14,17 +14,6 @@ window.addEventListener("load", function () {
     const scriptButton = document.querySelectorAll(".script");
     const headingButton = document.querySelector(".heading-button")
 
-    //Lists of fontlist
-    let fontList = [
-        "Arial",
-        "Verdana",
-        "Times New Roman",
-        "Garamond",
-        "Georgia",
-        "Courier New",
-        "cursive"
-    ];
-
     window.onload = initialiser();
 
     //Initial Settings 
@@ -35,14 +24,6 @@ window.addEventListener("load", function () {
         highlighter(spacingButton, true);
         highlighter(formatButton, false);
         highlighter(scriptButton, true);
-
-        //create options for font names 
-        fontList.map(function (value) {
-            const option = document.createElement("option");
-            option.value = value;
-            option.innerHTML = value;
-            fontName.appendChild(option);
-        });
 
         //fontSize allows only till 10
         for (let i = 1; i <= 10; i++) {
@@ -125,10 +106,19 @@ window.addEventListener("load", function () {
         });
     };
 
-
-    //testing content
-    document.getElementById("submit").addEventListener("click", function () {
-        console.log(writingArea);
+    document.querySelector("input[type=submit]").addEventListener("click", function () {
+        const content = document.querySelector("#content");
+        const textInput = document.querySelector("#text-input");
+        const message = document.querySelector("#warningMessage");
+        content.value = textInput.innerHTML;
+        if(!content.value){
+            message.innerText = `Content must not be empty`;
+            message.style.color = "red";
+        } else{
+            message.innerText = "";
+        }
+        //testing inout content value
+        console.log(document.querySelector("#content").value);
     });
 
 });

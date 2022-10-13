@@ -8,10 +8,11 @@
     padding: 50px 0;
 }
 
-.editor{
+form > div{
     background-color: #ffffff;
     width: 100%;
-    padding: 50px 30px;
+    padding: 50px;
+    margin: 20px 0;
     position: relative;
     border-radius: 10px;
     box-shadow: 0 25px 50px rgb(7, 20, 35, 0.2);
@@ -86,6 +87,39 @@ input[type="color"]::-moz-color-swatch {
     background-color: #e0e9ff;
 }
 
-a{
-    text-decoration: underline !important;
+.input-wrapper > label {
+    font-size: 15px;
+}
+
+#text-input a{
+    color: #f7775e;
+}
+
+input[type="text"]{
+    width: 100%;
+    padding: 5px;
+}
+
+.inputForm > h2{
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+.inputForm > * {
+    padding: 5px 0;
+}
+
+input[type="submit"], input::file-selector-button{
+    padding: 10px;
+    background-color: #f7f2ee;
+    border-radius: 10px;
+    border-color: #f7775e;
+    letter-spacing: 0.1em;
+    font-size: 13px;
+    font-family: Lora, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+input[type="submit"]{
+    margin: 15px 0;
 }

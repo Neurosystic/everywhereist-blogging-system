@@ -107,7 +107,7 @@
 
         {{#if user}}
         <form action="./deleteAccount" method="POST">
-            <input type="text" name="userId" value="{{user.id}}" hidden>
+            <input type="text" name="userId" value="{{user.id}}" style="display: none">
             <input type="submit" value="Delete account">
         </form>
         {{/if}}
