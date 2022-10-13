@@ -47,11 +47,21 @@ router.get("/article/:id", async function(req,res){
 
 //please implement the below routers, thank you - sophie!
 router.get("/createArticle", verifyAuthenticated, async function(req, res){
-
+    
     res.render("editor");
 });
 
 router.post("/createArticle", async function(req, res){
+
+    let article = {
+        "title" : res.body.title,
+        "content" : res.body.content,
+        "image" : res.body.image,
+        "date_published" : res.body.date_published,
+        "author_id" :res.body.author_id
+   }
+    
+   createArticle(article);
 
 });
 
