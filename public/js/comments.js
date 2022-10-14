@@ -2,21 +2,32 @@ window.addEventListener("load", function () {
 
     const userId = document.querySelector("#userId").textContent;
     const authorId = document.querySelector("#authorId").textContent;
-    const commenterId = document.querySelector(".commenterId").textContent;
+    const commenterIds = document.querySelectorAll(".commenterId");
     const replyDiv = document.querySelectorAll(".replyCommands");
     const replyTrigger = document.querySelectorAll(".reply");
-    const grandChildrenForm = document.querySelectorAll(".grandchildComment .replyCommands");
+    const grandChildrenCommentForm = document.querySelectorAll(".grandchildComment .commentFormDiv");
+    const grandChildrenDeleteForm = document.querySelectorAll(".grandchildComment .deleteForm");
     const replyForm = document.querySelectorAll(".replyForm");
     const deleteForm = document.querySelectorAll(".deleteForm");
     const hideBtn = document.querySelector("#hideBtn");
     const comments = document.querySelector(".commentDiv");
 
-    document.querySelector(".commentDiv > .replyCommands .replyForm").style.display = "initial";
-    document.querySelector(".commentDiv > .replyCommands .reply").innerText = "Comment on article";
+    const articleCommentForm = document.querySelector(".commentDiv > .replyCommands .replyForm");
+    if (articleCommentForm) {
+        articleCommentForm.style.display = "initial";
+        document.querySelector(".commentDiv > .replyCommands .reply").innerText = "Comment on article";
+    }
 
-    hideElementArray(grandChildrenForm);
+    hideElementArray(grandChildrenCommentForm);
 
-    if (!userId) {
+    const commenterArray = [];
+
+    commenterIds.forEach(function (id) {
+        commenterArray.push(id.textContent);
+    });
+
+
+    if (userId == null) {
         hideElementArray(replyDiv);
     } else {
         replyTrigger.forEach(function (trigger) {
@@ -38,8 +49,11 @@ window.addEventListener("load", function () {
         for (let i = 0; i < deleteForm.length - 1; i++) {
             deleteForm[i].style.display = "initial";
         }
-    } else if (commenterId == userId) {
-        const commenterDeleteForm = document.querySelectorAll(`.comment${commenterId} > .deleteForm`);
+        grandChildrenDeleteForm.forEach(function (form) {
+            form.style.display = "inital";
+        });
+    } else if (commenterArray.includes(userId)) {
+        const commenterDeleteForm = document.querySelectorAll(`.comment${userId} > .deleteForm`);
         commenterDeleteForm.forEach(function (form) {
             form.style.display = "initial";
         });
@@ -49,7 +63,7 @@ window.addEventListener("load", function () {
         if (hideBtn.textContent == "Hide Comments") {
             comments.style.display = "none";
             hideBtn.innerText = "View Comments";
-        } else if (hideBtn.textContent == "View Comments"){
+        } else if (hideBtn.textContent == "View Comments") {
             comments.style.display = "initial";
             hideBtn.innerText = "Hide Comments";
         }

@@ -4,6 +4,8 @@ const router = express.Router();
 const likeArticleDao = require("../modules/liked-articles-dao.js");
 const commentDao = require("../modules/comments-dao.js");
 const { getCurrentTime } = require("../modules/format-functions.js");
+const { verifyAuthenticated } = require("../middleware/auth-middleware.js");
+router.use(verifyAuthenticated);
 
 router.post("/likeArticle", async function(req, res){
     const articleId = req.body.articleId;
