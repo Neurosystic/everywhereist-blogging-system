@@ -6,7 +6,7 @@ async function createComment(comment){
     
     const result = await db.run(SQL`
         INSERT INTO comments (content, date_published, parent_comment_id, article_id, commenter_id) VALUES
-            (${comment.content}, ${comment.date_published}, ${comment.parent_comment_id}, ${comment.article_id}, ${comment.commenter_id}`);
+            (${comment.content}, ${comment.date_published}, ${comment.parent_comment_id}, ${comment.article_id}, ${comment.commenter_id})`);
     
     comment.id = result.lastID;
 }

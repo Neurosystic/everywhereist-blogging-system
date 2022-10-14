@@ -1,3 +1,9 @@
+
+<link rel="stylesheet" type="text/css" href="../css/article.css">
+<link rel="stylesheet" type="text/css" href="../css/comments.css">
+<script src="../js/articleView.js"></script>
+<script src="../js/comments.js"></script>
+
 <div class="container">
     {{#if toastMessage}}
     <div class="message">
@@ -29,6 +35,7 @@
 
             {{!-- if #likes.value ==1 then .likeCount.innerText = "like" --}}
             <div class="likeCommand">
+
                 <p><span id="likeCount"></span> likes</p> 
                 {{#if user}}
                 <form method="POST" action="../likeArticle" id="likeForm">
@@ -40,7 +47,7 @@
 
                 <form method="POST" action="../unlikeArticle" id="unlikeForm">
                     <input type="text" name="articleId" value="{{article.id}}" style="display: none">
-                    <button type="submit" id="likeBtn">
+                    <button type="submit" id="unlikeBtn">
                         <i id="heartIcon" class="fa-solid fa-heart"></i>
                     </button>
                 </form>
@@ -61,8 +68,37 @@
         {{{article.content}}}
     </div>
 
+    <div class="commentDiv">
+        <div class="sectionHeader">
+            <h3>Comments: </h3>
+            <button type="button">Hide Comments</button>
+        </div>
+        {{#if commentTree}}
+            {{#each commentTree}}
+            <div class="parentComment">
+                {{> comments}}
+            </div>
+                {{#if this.children}}
+                    {{#each this.children}}
+                        <div class="childComment"> 
+                            {{> comments}}
+                        </div>
+                        {{#if this.children}}
+                            {{#each this.children}}
+                                <div class="grandchildComment">
+                                    {{> comments}}
+                                </div>
+                            {{/each}}
+                        {{/if}}
+                    {{/each}}
+                {{/if}}
+            {{/each}}
+        {{else}}
+        <p>No comments yet</p>
+        {{/if}}
+        {{#if user}}
+        <h3>Post a comment</h3>
+        {{> commentForm}}
+        {{/if}}
+    </div>
 </div>
-
-<link rel="stylesheet" type="text/css" href="../css/article.css">
-<script src="../js/articleView.js"></script>
-{{!-- Write handlebar helper function which will take in two parameters and check if it has value equality --}}

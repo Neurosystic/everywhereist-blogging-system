@@ -1,0 +1,14 @@
+<div class="replyCommands">
+    <span style="display: none"></span>
+    <p class="reply">Reply to {{this.username}}</p>
+    <div class="replyForm" style="display: none">
+        <form method="POST" action="../postComment">
+            <input type="text" name="commentId" value="{{this.id}}" style="display: none">
+            <input type="text" name="articleId" value="{{this.article_id}}{{article.id}}" style="display: none">
+            <textarea rows="4" name="comment" required></textarea>
+            <br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+</div>

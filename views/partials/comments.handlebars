@@ -1,0 +1,21 @@
+{{#if this.parent_comment_id}}
+<i class="fa-solid fa-angles-right"></i>
+{{/if}}
+
+<div class="commenterCard">
+    <a href="../user/{{this.commenter_id}}">
+        <img src="../avatar/{{this.avatar}}" alt="Author avatar">
+    </a>
+    <div class="content">
+        <div class="commenterPanel">
+            <a href="../user/{{this.commenter_id}}">
+                <p id="username">{{this.username}}</p>
+            </a>
+            <p>{{this.date_published}}</p>
+        </div>
+        <div class="commentContent">
+            <p>{{this.content}}</p>
+        </div>
+        {{> commentForm}}
+    </div>
+</div>

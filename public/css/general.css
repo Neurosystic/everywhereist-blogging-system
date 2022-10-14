@@ -86,5 +86,9 @@ a:hover {
     font-weight: bolder;
 }
 
+.articleContent, .cardIntro p{
+    color: #565050;
+    line-height: 1.5em;
+}
 
 /*remember to put in the responsiveness*/
