@@ -1,4 +1,4 @@
-@import url(../css/commentForm.css);
+@import url(./commentForm.css);
 
 .commenterCard {
     display: flex;

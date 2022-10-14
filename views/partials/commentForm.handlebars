@@ -1,5 +1,5 @@
-<div class="replyCommands">
-    <span style="display: none"></span>
+<div class="replyCommands comment{{this.commenter_id}}">
+    <span class="commenterId" style="display: none">{{this.commenter_id}}</span>
     <p class="reply">Reply to {{this.username}}</p>
     <div class="replyForm" style="display: none">
         <form method="POST" action="../postComment">
@@ -8,6 +8,13 @@
             <textarea rows="4" name="comment" required></textarea>
             <br><br>
             <input type="submit" value="Submit">
+        </form>
+    </div>
+    <div class="deleteForm" style="display: none">
+        <form class="delete" method="POST" action="../deleteComment">
+            <input type="text" name="commentId" value="{{this.id}}" style="display: none">
+            <input type="text" name="articleId" value="{{this.article_id}}{{article.id}}" style="display: none">
+            <input type="submit" value="Delete comment">
         </form>
     </div>
 

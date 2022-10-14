@@ -47,13 +47,6 @@ i {
     color: #f7775e;
 }
 
-input[type="submit"], button{
-    padding: 10px;
-    background-color: #f7f2ee;
-    border-radius: 10px;
-    border-color: #f7775e;
-}
-
 .sectionHeader{
     display: flex;
     justify-content: space-between;

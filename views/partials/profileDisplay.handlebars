@@ -1,4 +1,3 @@
-
 <link rel="stylesheet" type="text/css" href="../css/user.css">
 <script src="../js/profile.js"></script>
 
@@ -13,14 +12,28 @@
     <p>Contact me: {{viewingUser.email}}</p>
     <p>Birth date: {{viewingUser.birth_date}}</p>
 </div>
-<div class="stats">
-    <p>This will include stats of followers and such</p>
+
+<div class="summaryStats">
+
 </div>
+
 <div class="description">
     <h2>About me</h2>
     <p>{{viewingUser.description}}</p>
 </div>
-<div class="articles">
-    <h2>Published Articles</h2>
-    <div class="articleContents"></div>
+<div class="mainContent">
+    <div class="articles">
+        <h2>Published Articles</h2>
+        <div class="articleContents"></div>
+    </div>
+    <div class="analytics" style="display: none">
+        <h2>Performance Report</h2>
+        <p>This will include stats of followers and such</p>
+    </div>
+    <div class="followerList" style="display: none">
+        <h2>Followers</h2>
+    </div>
+    <div class="subscriptionlist" style="display: none">
+        <h2>Subscriptions</h2>
+    </div>
 </div>

@@ -2,9 +2,10 @@
     display: grid;
     grid-template-areas: 
         "user user"
-        "details stats"
+        "details summary"
         "details about"
-        "details articles";
+        "details navbar"
+        "details main";
     grid-template-columns: 1fr 3fr;
     grid-template-rows: auto auto auto auto;
     grid-gap: 2%;
@@ -33,18 +34,24 @@
 .userDetails *{
     padding: 10px 0;
 }
-.stats{
-    grid-area: stats;
+
+.summaryStats{
+    grid-area: summary;
 }
 
 .description{
     grid-area: about;
 }
 
-.articles{
-    grid-area: articles;
+.mainContent{
+    grid-area: main;
+}
+
+.navbar{
+    grid-area: navbar;
 }
 
 .cardAuthor img, .cardAuthor h4, .cardAuthor a{
     display: none;
 }
+

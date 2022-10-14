@@ -5,17 +5,16 @@
 }
 
 .container{
-    padding: 50px 0;
+    padding: 30px 0;
 }
 
 form > div{
     background-color: #ffffff;
     width: 100%;
-    padding: 50px;
+    padding: 40px 60px;
     margin: 20px 0;
     position: relative;
-    border-radius: 10px;
-    box-shadow: 0 25px 50px rgb(7, 20, 35, 0.2);
+    border: 1px solid #edebeb;
 }
 
 .options{
@@ -42,38 +41,6 @@ select {
     border-radius: 3px;
 }
 
-#colorPanel {
-    display: flex;
-    gap: 15px;
-}
-
-.input-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-input[type="color"] {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background-color: transparent;
-    width: 40px;
-    height: 28px;
-    border: none;
-    cursor: pointer;
-}
-
-input[type="color"]::-webkit-color-swatch {
-    border-radius: 15px;
-    box-shadow: 0 0 0 2px #ffffff, 0 0 0 3px #020909;
-}
-
-input[type="color"]::-moz-color-swatch {
-    border-radius: 15px;
-    box-shadow: 0 0 0 2px #ffffff, 0 0 0 3px #020909;
-}
-
 #text-input {
     margin-top: 10px;
     padding: 20px;
@@ -85,14 +52,6 @@ input[type="color"]::-moz-color-swatch {
 
 .active {
     background-color: #e0e9ff;
-}
-
-.input-wrapper > label {
-    font-size: 15px;
-}
-
-#text-input a{
-    color: #f7775e;
 }
 
 input[type="text"]{
@@ -110,25 +69,18 @@ input[type="text"]{
     padding: 5px 0;
 }
 
-input[type="submit"], input::file-selector-button, #cancelCmd{
-    padding: 10px;
-    background-color: #f7f2ee;
-    border-radius: 10px;
-    border-color: #f7775e;
+input::file-selector-button, #cancelCmd{
+    background-color: black;
+    color: #ffff;
+    border: none;
+    border-radius: 0;
+    font-family: Montserrat, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-transform: uppercase;
     letter-spacing: 0.1em;
-    font-size: 13px;
-    font-family: Lora, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 12px;
+    padding: 10px 30px;
 }
 
 input[type="submit"]{
     margin: 15px 0;
-}
-
-#delete{
-    text-align: right;
-}
-
-#delete *{
-    color: rgb(124, 15, 15);
-    font-weight: bold;
 }
