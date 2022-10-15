@@ -1,6 +1,3 @@
-.container{
-    position: relative;
-}
 
 #editLink{
     background-color: black;
@@ -14,5 +11,5 @@
     padding: 10px 30px;
     position: absolute;
     right: 0;
-    top: 20px;
+    top: 28px;
 }

@@ -21,13 +21,11 @@ window.addEventListener("load", function () {
     hideElementArray(grandChildrenCommentForm);
 
     const commenterArray = [];
-
     commenterIds.forEach(function (id) {
         commenterArray.push(id.textContent);
     });
 
-
-    if (userId == null) {
+    if (!userId) {
         hideElementArray(replyDiv);
     } else {
         replyTrigger.forEach(function (trigger) {

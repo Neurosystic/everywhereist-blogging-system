@@ -63,7 +63,9 @@ window.addEventListener("load", function () {
                 <div class="cardIntro">
                     <a href="../article/${item.id}">
                         <h4 class="articleTitle">${item.title}</h4>
-                        <p>${item.content}</p>
+                        <div class="articlePreview">
+                            <p>${item.content}</p>
+                        </div>
                     </a>
                 </div>
             `;

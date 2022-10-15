@@ -52,14 +52,6 @@
     padding: 1px;
 }
 
-.cardIntro p{
-    font-size: 0.9em;
-    overflow-y: hidden;
-    height: 145px;
-    width: 90%;
-    margin: auto;
-}
-
 .cardIntro h4{
     width: 90%;
     margin: auto;

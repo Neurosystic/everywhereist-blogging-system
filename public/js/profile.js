@@ -1,4 +1,4 @@
-window.addEventListener("load", function () {
+window.addEventListener("load", async function () {
 
     async function fetchArticleByAuthor(id) {
         const response = await fetch(`../api/articles?author=${id}`);
@@ -12,10 +12,11 @@ window.addEventListener("load", function () {
         return articleJson;
     }
 
-    const userId = document.querySelector("#userId");
+    const viewingUserId = document.querySelector("#viewingUserId").textContent;
     const contentDiv = document.querySelector(".articleContents");
+    const userId = document.querySelector("#userId").textContent;
 
-    loadUserArticles(userId.textContent);
+    loadUserArticles(viewingUserId);
 
     //Implemment statements to allow user to sort article when browsering to author page
     
@@ -35,7 +36,7 @@ window.addEventListener("load", function () {
             itemDiv.append(imgDiv);
             if(item.image){
                 imgDiv.innerHTML = `
-                    <img src="${item.image}" alt="Article cover image">
+                    <img src="../images/thumbnails/${item.image}" alt="Article cover image">
                 `;
             } else {
                 //set src of conver image to something that is default if author does not submit an image
@@ -60,7 +61,9 @@ window.addEventListener("load", function () {
                 <div class="cardIntro">
                     <a href="../article/${item.id}">
                         <h4 class="articleTitle">${item.title}</h4>
-                        <p>${item.content}</p>
+                        <div class="articlePreview">
+                            <p>${item.content}</p>
+                        </div>
                     </a>
                 </div>
             `;
@@ -73,5 +76,29 @@ window.addEventListener("load", function () {
         });
     }
     
+    const subscribeForm = document.querySelector("#subscribeForm");
+    const unsubscribeForm = document.querySelector("#unsubscribeForm");
+    const userFollowingList = [];
+
+    async function fetchFollowingList(id) {
+        const response = await fetch(`../api/following?userId=${id}`);
+        const followingJson = await response.json();
+        return followingJson;
+    }
+
+    if (subscribeForm && unsubscribeForm) {
+        const followingJson = await fetchFollowingList(userId);
+        followingJson.forEach(function (item) {
+            userFollowingList.push(item.author_id);
+        });
+
+        if(userFollowingList.includes(parseInt(viewingUserId))){
+            unsubscribeForm.style.display = "initial";
+            subscribeForm.style.display = "none";
+        } else {
+            subscribeForm.style.display = "initial";
+            unsubscribeForm.style.display = "none";
+        }
+    }
 
 });

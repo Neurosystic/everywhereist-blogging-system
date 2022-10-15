@@ -6,7 +6,8 @@
 </div>
 <div class="userDetails">
     <img src="../avatar/{{viewingUser.avatar}}" alt="{{viewingUser.username}} user avatar">
-    <span id="userId" style="display: none">{{viewingUser.id}}</span>
+    <span id="userId" style="display: none">{{user.id}}</span>
+    <span id="viewingUserId" style="display: none">{{viewingUser.id}}</span>
     {{!--The above if for referencing - indication to which fetch address will be used --}}
     <p>{{viewingUser.fname}} {{viewingUser.lname}}</p>
     <p>Contact me: {{viewingUser.email}}</p>

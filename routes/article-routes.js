@@ -36,9 +36,15 @@ router.post("/createArticle", upload.single("imageFile"), async function (req, r
         const oldFileName = fileInfo.path;
         const newFileName = `./public/images/${fileInfo.originalname}`;
         fs.renameSync(oldFileName, newFileName);
-        const image = await jimp.read(newFileName);
-        image.resize(320, jimp.AUTO);
-        await image.write(`./public/images/thumbnails/${fileInfo.originalname}`);
+        const thumbnail = await jimp.read(newFileName);
+        thumbnail.resize(320, jimp.AUTO);
+        thumbnail.crop(0, 0, 320, 200);
+        await thumbnail.write(`./public/images/thumbnails/${fileInfo.originalname}`);
+        
+        const articleThumb = await jimp.read(newFileName);
+        articleThumb.resize(1000, jimp.AUTO);
+        await articleThumb.write(`./public/images/articleThumb/${fileInfo.originalname}`);
+
         imageFile = fileInfo.originalname;
     } 
 
@@ -65,7 +71,7 @@ router.get("/editArticle", verifyAuthenticated, async function (req, res) {
     }
     if(article.author_id != res.locals.user.id){
         res.setToastMessage("You do not have rights to edit the article");
-        return res.redirect(`/article/${articleId}`)
+        return res.redirect("`/article/${articleId}`")
     }
     res.locals.article = article;
     res.render("editor");
@@ -81,9 +87,14 @@ router.post("/editArticle", upload.single("imageFile"), async function (req, res
         const oldFileName = fileInfo.path;
         const newFileName = `./public/images/${fileInfo.originalname}`;
         fs.renameSync(oldFileName, newFileName);
-        const image = await jimp.read(newFileName);
-        image.resize(320, jimp.AUTO);
-        await image.write(`./public/images/thumbnails/${fileInfo.originalname}`);
+        const thumbnail = await jimp.read(newFileName);
+        thumbnail.resize(320, jimp.AUTO);
+        thumbnail.crop(0, 0, 320, 200);
+        await thumbnail.write(`./public/images/thumbnails/${fileInfo.originalname}`);
+        
+        const articleThumb = await jimp.read(newFileName);
+        articleThumb.resize(1000, jimp.AUTO);
+        await articleThumb.write(`./public/images/articleThumb/${fileInfo.originalname}`);
         imageFile = fileInfo.originalname;
     } 
 

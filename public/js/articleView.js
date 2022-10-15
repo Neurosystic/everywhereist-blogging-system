@@ -1,7 +1,6 @@
 window.addEventListener("load", async function () {
     // JS implementation of like button when clicked - toggle class??
     const likeBtn = document.querySelector("#likeBtn");
-    const heartIcon = document.querySelector("#heartIcon");
     const likeCount = document.querySelector("#likeCount");
 
     const likeForm = document.querySelector("#likeForm");
@@ -11,26 +10,34 @@ window.addEventListener("load", async function () {
     const userId = document.querySelector("#userId").textContent;
     const articleId = document.querySelector("#articleId").textContent;
 
-    if(userId){
+    const subscribeForm = document.querySelector("#subscribeForm");
+    const unsubscribeForm = document.querySelector("#unsubscribeForm");
+    const userFollowingList = [];
+
+    if (userId) {
         likeBtn.disabled = false;
+        const followingJson = await fetchFollowingList(userId);
+        followingJson.forEach(function (item) {
+            userFollowingList.push(item.author_id);
+        });
     }
 
     let unmatchCount = 0;
     const likeArray = await fetchArticleLikeCounts(articleId);
     likeCount.innerText = `${likeArray.length}`;
-    likeArray.forEach(function(element){
-        if(element.user_id == userId){
+    likeArray.forEach(function (element) {
+        if (element.user_id == userId) {
             likeForm.style.display = "none";
         } else {
             unmatchCount++;
         }
     });
 
-    if(unmatchCount >= likeArray.length && unlikeForm){
+    if (unmatchCount >= likeArray.length && unlikeForm) {
         unlikeForm.style.display = "none";
     }
 
-    if(authorId == userId){
+    if (authorId == userId) {
         const otherCommandDiv = document.querySelector(".otherCommands");
         otherCommandDiv.innerHTML += `
             <div class="adminCmd">
@@ -40,11 +47,27 @@ window.addEventListener("load", async function () {
                 </form>
             </div>
         `;
+        document.querySelector(".subscriptionCmd").style.display = "none";
+    } else if (userId) {
+        if (userFollowingList.includes(parseInt(authorId))) {
+            unsubscribeForm.style.display = "initial";
+            subscribeForm.style.display = "none";
+        } else {
+            subscribeForm.style.display = "initial";
+            unsubscribeForm.style.display = "none";
+        }
     }
 
-    async function fetchArticleLikeCounts(id){
+    async function fetchArticleLikeCounts(id) {
         const response = await fetch(`../api/articleLikes?articleId=${id}`);
         const likesJson = await response.json();
         return likesJson;
     }
+
+    async function fetchFollowingList(id) {
+        const response = await fetch(`../api/following?userId=${id}`);
+        const followingJson = await response.json();
+        return followingJson;
+    }
+
 });
