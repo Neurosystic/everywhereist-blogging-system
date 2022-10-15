@@ -25,14 +25,15 @@ form > div{
 }
 
 button {
-    height: 28px;
-    width: 28px;
+    height: 32px;
+    width: 32px;
     place-items: center;
     border-radius: 3px;
     border: none;
     background-color: #ffffff;
     outline: none;
     color: #020909;
+    padding: 10px !important;
 }
 
 select {

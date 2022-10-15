@@ -11,11 +11,6 @@
     letter-spacing: 0.1em;
 }
 
-.articles{
-    display: flex;
-    flex-direction: column;
-}
-
 .articles h2{
     font-family: Montserrat, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 19px;
@@ -24,14 +19,17 @@
     padding: 10px 0;
 }
 
-.articleContents, .popularContents{
+.articleContents{
     display: flex;
-    gap: 30px 30px;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 20px 20px;
     padding-bottom: 30px;
 }
 
 .card{
-    width: 100%;
+    width: 220px;
 }
 
 .cardAuthor{

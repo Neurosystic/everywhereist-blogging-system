@@ -1,15 +1,24 @@
-
-#editLink{
+#editLink, .navbar span{
     background-color: black;
     color: #ffff;
     border: none;
-    border-radius: 0;
     font-family: Montserrat, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-size: 12px;
     padding: 10px 30px;
+}
+
+#editLink {    
     position: absolute;
     right: 0;
     top: 28px;
+}
+
+.navbar{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: space-between; 
+    /* Which one looks better: space evenly or space between */
 }

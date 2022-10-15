@@ -57,7 +57,6 @@ router.post("/createArticle", upload.single("imageFile"), async function (req, r
         author_id: res.locals.user.id
     }
     await articleDao.createArticle(article);
-    console.log(article)
     res.redirect(`/article/${article.id}`);
 });
 

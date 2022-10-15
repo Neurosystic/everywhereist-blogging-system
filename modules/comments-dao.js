@@ -62,11 +62,24 @@ async function deleteComment(id){
         DELETE FROM comments WHERE id = ${id}`);
 }
 
+async function retrieveUserTotalCommentReceived(id){
+    const db = await dbPromise;
+
+    const comments = await db.all(SQL`
+        SELECT c.*, a.id, a.author_id
+            FROM comments AS c, articles AS a
+            WHERE c.article_id = a.id 
+                AND a.author_id = ${id}`);
+    
+    return comments;
+}
+
 module.exports = {
     createComment,
     retrieveAllComments,
     retrieveCommentByArticleId,
     retrieveCommentsByCommenterId,
     updateComment,
-    deleteComment
+    deleteComment,
+    retrieveUserTotalCommentReceived
 }
