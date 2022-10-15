@@ -21,15 +21,16 @@
 
 .articleContents{
     display: flex;
-    flex-direction: row;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    gap: 20px 20px;
+    max-height: 700px;
+    overflow-y: auto;
+    gap: 20px;
     padding-bottom: 30px;
 }
 
 .card{
-    width: 220px;
+    width: 250px;
 }
 
 .cardAuthor{

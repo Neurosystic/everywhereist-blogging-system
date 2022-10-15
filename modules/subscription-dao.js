@@ -23,7 +23,7 @@ async function retrieveUserFollowerList(id){
     const db = await dbPromise;
 
     const result = await db.all(SQL`
-        SELECT s.*, u.id, u.username, u.avatar 
+        SELECT s.*, u.id, u.username, u.fname, u.lname, u.avatar 
             FROM subscription AS s, users AS u
             WHERE s.subscriber_id = u.id 
                 AND s.author_id = ${id}`);
@@ -36,7 +36,7 @@ async function retrieveUserFollowingList(id){
     const db = await dbPromise;
 
     const result = await db.all(SQL`
-        SELECT s.*, u.id, u.username, u.avatar 
+        SELECT s.*, u.id, u.username, u.fname, u.lname, u.avatar 
             FROM subscription AS s, users AS u
             WHERE s.author_id = u.id
                 AND s.subscriber_id = ${id}`);

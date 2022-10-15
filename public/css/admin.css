@@ -6,7 +6,7 @@
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-size: 12px;
-    padding: 10px 30px;
+    padding: 10px 30px !important;
 }
 
 #editLink {    
@@ -21,4 +21,40 @@
     flex-wrap: wrap;
     justify-content: space-between; 
     /* Which one looks better: space evenly or space between */
+}
+
+.subDiv > div {
+    border: 1px solid #edebeb;
+    padding: 10px 20px;
+    width: 180px;
+}
+
+.subDiv > div > div *{
+    font-size: small;
+    text-align: center;
+}
+
+.subDiv img{
+    width: 40px;
+    padding-top: 5px;
+    display: block;
+    margin: auto;
+}
+
+.subDiv form{
+    padding: 5px 0;
+}
+
+.subDiv input[type="submit"]{
+    margin: auto;
+    display: block;
+}
+
+.subDiv {
+    display: flex;
+    gap: 5px;
+    overflow-y: auto;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-height: 300px;
 }

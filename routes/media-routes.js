@@ -59,4 +59,11 @@ router.post("/unsubscribe", async function(req, res){
     res.redirect("back");
 });
 
+router.post("/removeFollower", async function(req, res){
+    const followerId = req.body.followerId;
+    const authorId = res.locals.user.id;
+    await subscriptionDao.removeSubscription(followerId, authorId);
+    res.redirect("back");
+});
+
 module.exports = router;

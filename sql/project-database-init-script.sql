@@ -105,4 +105,7 @@ INSERT INTO liked_comments VALUES
 	(2, 1),
 	(1, 3);
 
-	
+SELECT s.*, u.id, u.username, u.fname, u.lname, u.avatar 
+            FROM subscription AS s, users AS u
+            WHERE s.author_id = u.id
+                AND s.subscriber_id = 1
