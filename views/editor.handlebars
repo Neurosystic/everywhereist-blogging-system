@@ -1,3 +1,6 @@
+<script src="../js/editor.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/editor.css">
+
 <div class="container">
     {{#if article}}
     <form method="POST" action="../editArticle" enctype="multipart/form-data">
@@ -11,7 +14,7 @@
         </div>
         <div class="inputForm">
             <h2>Upload a cover image: </h2>
-            <input type="file" id="file" name="imageFile" accept=".png, .jpg, .jpeg, .bmp, .gif" value="{{article.image}}">
+            <input type="file" id="file" name="imageFile" accept=".png, .jpg, .jpeg, .bmp, .gif" value="../images/{{article.image}}">
         </div>
         <div class="editor">
        
@@ -88,7 +91,7 @@
 
             </div>
 
-            <div id="text-input" contenteditable="true">{{article.content}}</div>
+            <div id="text-input" contenteditable="true">{{{article.content}}}</div>
             <textarea id="content" style="display:none" name="content" required></textarea>
             
             {{#if article}}
@@ -101,7 +104,7 @@
         </form>
 
         {{#if article}}
-        <form id="delete" action="./deleteArticle" method="POST">
+        <form class="delete" action="../deleteArticle" method="POST">
             <input type="text" name="articleId" value="{{article.id}}" style="display:none">
             <input type="submit" value="Delete article">
         </form>
@@ -113,5 +116,3 @@
 </div>
 
 
-<script src="../js/editor.js"></script>
-<link rel="stylesheet" type="text/css" href="../css/editor.css">

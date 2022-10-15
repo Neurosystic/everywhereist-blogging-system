@@ -28,7 +28,7 @@ router.post("/login", async function(req, res){
         await userDao.updateUser(user);
         res.cookie("authToken", authToken);
         res.locals.user = user;
-        res.redirect("/profile");
+        res.redirect("/");
     } else {
         res.locals.user = null;
         res.setToastMessage("Invalid password");

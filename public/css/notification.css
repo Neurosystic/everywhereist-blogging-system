@@ -1,0 +1,9 @@
+.notificationPanel{
+    display: inline-block;
+}
+
+i.fa-solid.fa-bell{
+    color: #f7775e;
+    font-size: 20px;
+    font-family: "FontAwesome" !important;
+}

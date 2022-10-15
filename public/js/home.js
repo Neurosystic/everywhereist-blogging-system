@@ -44,7 +44,7 @@ window.addEventListener("load", function () {
             } else {
                 //set src of conver image to something that is default if author does not submit an image
                 imgDiv.innerHTML = `
-                        <img src="" alt="Article cover image"> 
+                        <img src="../images/thumbnails/general.jpg" alt="Article cover image"> 
                     `;
             }
 
@@ -63,7 +63,9 @@ window.addEventListener("load", function () {
                 <div class="cardIntro">
                     <a href="../article/${item.id}">
                         <h4 class="articleTitle">${item.title}</h4>
-                        <p>${item.content}</p>
+                        <div class="articlePreview">
+                            <p>${item.content}</p>
+                        </div>
                     </a>
                 </div>
             `;

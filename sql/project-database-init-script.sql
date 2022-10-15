@@ -3,7 +3,7 @@
  * It should contain all DROP TABLE and CREATE TABLE statments, and any INSERT statements
  * required.
  */
-
+DROP TABLE IF EXISTS notifications;
 DROP TABLE IF EXISTS liked_comments;
 DROP TABLE IF EXISTS liked_articles;
 DROP TABLE IF EXISTS comments;
@@ -38,6 +38,7 @@ CREATE TABLE IF NOT EXISTS articles (
 CREATE TABLE IF NOT EXISTS subscription (
 	subscriber_id INTEGER,
 	author_id INTEGER,
+	date_subscription DATETIME,
 	PRIMARY KEY (subscriber_id, author_id),
 	FOREIGN KEY (subscriber_id) REFERENCES users (id) ON DELETE CASCADE,
 	FOREIGN KEY (author_id) REFERENCES users (id) ON DELETE CASCADE
@@ -80,15 +81,15 @@ INSERT INTO users (fname, lname, username, hash_password, description, birth_dat
 	-- Password 321
 	('Poly', 'Humms', 'user3', '$2b$10$Y/jkljAjEW9GhPS3gfpKWum9ECv1364OmTzI3YZIgqmlIHVxGiVsi', 'The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet', '1996-11-25', 'user3@hellworld.com', NULL, 'avatar-5.jpg');
 	
-INSERT INTO articles (title, content, date_published, author_id) VALUES
-	('What is Lorem Ipsum?', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2022-10-09 00:00:00', 1),
-	('Why do we use it?', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', '2022-10-10 12:12:05', 2),
-	('Where can I get some?', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words whichlook even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isnt anything embarrassing hidden in the middle of text.', '2022-09-28 23:00:10', 3);
+INSERT INTO articles (image, title, content, date_published, author_id) VALUES
+	('boat.jpg', 'What is Lorem Ipsum?', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2022-10-09 00:00:00', 1),
+	('plane.jpg', 'Why do we use it?', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', '2022-10-10 12:12:05', 2),
+	('road.jpg', 'Where can I get some?', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words whichlook even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isnt anything embarrassing hidden in the middle of text.', '2022-09-28 23:00:10', 3);
 	
 INSERT INTO subscription VALUES 
-	(2, 1),
-	(3, 2),
-	(1, 3);
+	(2, 1, '2022-10-09 01:00:00'),
+	(1, 2, '2022-10-01 16:00:00'),
+	(1, 3, '2022-10-01 16:00:00');
 	
 INSERT INTO comments (content, date_published, parent_comment_id, article_id, commenter_id) VALUES
 	('Great!', '2022-10-09 01:00:00', NULL, 1, 2),
@@ -104,5 +105,4 @@ INSERT INTO liked_comments VALUES
 	(1, 2),
 	(2, 1),
 	(1, 3);
-
 	

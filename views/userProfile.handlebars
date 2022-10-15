@@ -1,3 +1,15 @@
 <div class="container">
+    {{#if user}}
+    <div class="subscriptionCmd">
+        <form method="POST" action="../subscribe" id="subscribeForm">
+            <input type="text" name="authorId" value="{{viewingUser.id}}" style="display: none">
+            <input type="submit" value="Subscribe">
+        </form>
+        <form method="POST" action="../unsubscribe" id="unsubscribeForm">
+            <input type="text" name="authorId" value="{{viewingUser.id}}" style="display: none">
+            <input type="submit" value="Unsubscribe">
+        </form>
+    </div>
+    {{/if}}
     {{> profileDisplay}}
 </div>

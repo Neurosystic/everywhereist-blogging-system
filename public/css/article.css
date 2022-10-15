@@ -1,3 +1,7 @@
+.container{
+    padding: 30px 0;
+}
+
 .articleTitle{
     font-size: 30px;
     text-align: center;
@@ -34,15 +38,38 @@
     justify-content: space-between;
 }
 
-button {
+#likeBtn, #unlikeBtn {
     border-radius: 3px;
     border: none;
     background-color: inherit;
     outline: none;
-    
+    padding: 0;
 }
 
 i {
     font-size: 20px;
     color: #f7775e;
+}
+
+.sectionHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.otherCommands{
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 0 20px;
+    align-items: center;
+}
+
+.likeCommand{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.articleImg img{
+    width: 100%;
 }

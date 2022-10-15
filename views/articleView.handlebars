@@ -1,3 +1,8 @@
+<link rel="stylesheet" type="text/css" href="../css/article.css">
+<link rel="stylesheet" type="text/css" href="../css/comments.css">
+<script src="../js/articleView.js"></script>
+<script src="../js/comments.js"></script>
+
 <div class="container">
     {{#if toastMessage}}
     <div class="message">
@@ -6,7 +11,11 @@
     {{/if}}
 
     <div class="articleImg">
-        <img src="../images/{{article.image}}" alt="Cover page image for article">
+        {{#if article.image}}
+        <a href="../images/{{article.image}}">
+        <img src="../images/articleThumb/{{article.image}}" alt="Cover page image for article">
+        </a>
+        {{/if}}
     </div>
     <h2 class="articleTitle">{{article.title}}</h2>
     <div class="authorPanel">
@@ -29,7 +38,8 @@
 
             {{!-- if #likes.value ==1 then .likeCount.innerText = "like" --}}
             <div class="likeCommand">
-                <p><span id="likeCount"></span> likes</p> 
+
+                <p><span id="likeCount">{{likeCount}}</span> likes</p>
                 {{#if user}}
                 <form method="POST" action="../likeArticle" id="likeForm">
                     <input type="text" name="articleId" value="{{article.id}}" style="display: none">
@@ -40,17 +50,29 @@
 
                 <form method="POST" action="../unlikeArticle" id="unlikeForm">
                     <input type="text" name="articleId" value="{{article.id}}" style="display: none">
-                    <button type="submit" id="likeBtn">
+                    <button type="submit" id="unlikeBtn">
                         <i id="heartIcon" class="fa-solid fa-heart"></i>
                     </button>
                 </form>
                 {{else}}
                 <button type="button" id="likeBtn" disabled="true">
-                        <i id="heartIcon" class="fa-regular fa-heart"></i>
+                    <i id="heartIcon" class="fa-regular fa-heart"></i>
                 </button>
                 {{/if}}
             </div>
-            
+
+            {{#if user}}
+            <div class="subscriptionCmd">
+                <form method="POST" action="../subscribe" id="subscribeForm">
+                    <input type="text" name="authorId" value="{{article.author_id}}" style="display: none">
+                    <input type="submit" value="Subscribe">
+                </form>
+                <form method="POST" action="../unsubscribe" id="unsubscribeForm">
+                    <input type="text" name="authorId" value="{{article.author_id}}" style="display: none">
+                    <input type="submit" value="UnSubscribe">
+                </form>
+            </div>
+            {{/if}}
             {{!-- this will be the location where an edit, delete article button can be placed --}}
         </div>
     </div>
@@ -61,8 +83,38 @@
         {{{article.content}}}
     </div>
 
-</div>
+    <button type="button" id="hideBtn">Hide Comments</button>
+    <div class="commentDiv">
+        <div class="sectionHeader">
+            <h3>Comments: </h3>
 
-<link rel="stylesheet" type="text/css" href="../css/article.css">
-<script src="../js/articleView.js"></script>
-{{!-- Write handlebar helper function which will take in two parameters and check if it has value equality --}}
+        </div>
+        {{#if commentTree}}
+        {{#each commentTree}}
+        <div class="parentComment">
+            {{> comments}}
+        </div>
+        {{#if this.children}}
+        {{#each this.children}}
+        <div class="childComment">
+            {{> comments}}
+        </div>
+        {{#if this.children}}
+        {{#each this.children}}
+        <div class="grandchildComment">
+            {{> comments}}
+        </div>
+        {{/each}}
+        {{/if}}
+        {{/each}}
+        {{/if}}
+        {{/each}}
+        {{else}}
+        <p>No comments yet</p>
+        {{/if}}
+        {{#if user}}
+        <h3>Post a comment</h3>
+        {{> commentForm}}
+        {{/if}}
+    </div>
+</div>

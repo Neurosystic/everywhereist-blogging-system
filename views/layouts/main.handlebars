@@ -15,8 +15,8 @@
 
 <body>
     <div class="header">
-        
-        
+
+
         <div class="nav">
             <div class="navHome">
                 <img src="" alt="Website logo" id="imgLogo">
@@ -26,6 +26,16 @@
             <div class="authDiv">
                 {{#if user}}
                 <a href="../createArticle">Create new article</a>
+                
+                <div class="notificationPanel">
+                    <span class="num">1</span>
+                        <i class="fa-solid fa-bell"></i>
+                    <div class="notification hide">
+                        {{!-- <div class="text">You have a new subscriber</div>
+                        <div class="text">Author published a new article</div>
+                        <div class="text">Someone replied to your comment</div> --}}
+                    </div>
+                </div>
                 <a href="../profile">
                     <img src="../avatar/{{user.avatar}}" alt="User avatar" id="imgNav">
                     <span>{{user.username}}</span>
@@ -36,9 +46,9 @@
                 <a href="../signUp">Register</a>
                 {{/if}}
             </div>
-            
+
         </div>
-            
+
     </div>
 
     {{{body}}}

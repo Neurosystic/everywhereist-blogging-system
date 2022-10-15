@@ -1,3 +1,5 @@
+@import url(./notification.css);
+
 * {
     /* border: 1px solid black; */
     margin: 0;
@@ -7,7 +9,7 @@
 
 a {
     text-decoration: none;
-}
+} 
 
 .header, .footer{
     background-color: #f7f2ee;
@@ -86,5 +88,43 @@ a:hover {
     font-weight: bolder;
 }
 
+.articleContent, .cardIntro p{
+    color: #565050;
+    line-height: 1.5em;
+}
+
+.delete input[type="submit"]{
+    background-color: rgb(70, 3, 3);
+}
+
+input[type="submit"], button{
+    background-color: black;
+    color: #ffff;
+    border: none;
+    border-radius: 0;
+    font-family: Montserrat, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 12px;
+    padding: 10px 30px;
+}
+
+.articlePreview * {
+    font-family: Lora, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    font-size: 13px !important;
+    color: #565050;
+    font-weight: normal;
+}
+
+.articlePreview{
+    overflow-y: hidden;
+    width: 90%;
+    margin: auto;
+    height: 145px;
+}
+
+.cardImg img{
+    width:100%;
+}
 
 /*remember to put in the responsiveness*/

@@ -1,0 +1,24 @@
+.replyCommands textarea{
+    width: 90%;
+}
+
+.replyCommands > * {
+    padding: 5px;
+}
+
+.commentDiv > .replyCommands textarea{
+    margin: auto;
+    width: 100%;
+}
+
+#hideBtn{
+    background-color: black;
+    color: #ffff;
+    border: none;
+    border-radius: 0;
+    font-family: Montserrat, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 12px;
+    padding: 10px 30px;
+}

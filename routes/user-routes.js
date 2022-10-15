@@ -3,13 +3,25 @@ const express = require("express");
 const router = express.Router();
 
 const userDao = require("../modules/users-dao.js");
+const subscriptionDao = require("../modules/subscription-dao.js");
+const likeArticleDao = require("../modules/liked-articles-dao.js");
+const commentDao = require("../modules/comments-dao.js");
 const { verifyAuthenticated } = require("../middleware/auth-middleware.js");
 
 
-router.get("/profile", verifyAuthenticated, function(req, res){
+router.get("/profile", verifyAuthenticated, async function(req, res){
     //get by authentication token stored in cookie 
     //verify if authenticated, otherwise redirect elsewhere
+    const viewingId = res.locals.user.id;
     res.locals.viewingUser = res.locals.user;
+
+    const followersArray = await subscriptionDao.retrieveUserFollowerList(viewingId);
+    const likeArray = await likeArticleDao.retrieveUserTotalLikesReceived(viewingId);
+    const commentArray = await commentDao.retrieveUserTotalCommentReceived(viewingId);
+    
+    res.locals.followerCount = followersArray.length;
+    res.locals.likeCount = likeArray.length;
+    res.locals.commentCount = commentArray.length;
     res.render("userAdmin");
 });
 
@@ -22,13 +34,20 @@ router.get("/user/:id", async function(req, res){
         return res.redirect("/"); //Change this in the future
     }
     res.locals.viewingUser = viewingUser;
+    const followersArray = await subscriptionDao.retrieveUserFollowerList(viewingId);
+    const likeArray = await likeArticleDao.retrieveUserTotalLikesReceived(viewingId);
+    const commentArray = await commentDao.retrieveUserTotalCommentReceived(viewingId);
+    
+    res.locals.followerCount = followersArray.length;
+    res.locals.likeCount = likeArray.length;
+    res.locals.commentCount = commentArray.length;
     if(!res.locals.user){
         return res.render("userProfile");
     }
     if(res.locals.user.id == viewingUser.id){
         return res.redirect("/profile");
     }
-    
+
     res.render("userProfile");
 });
 

@@ -37,9 +37,22 @@ async function retrieveAllArticleLikeCount(){
     return result;
 }
 
+async function retrieveUserTotalLikesReceived(id){
+    const db = await dbPromise;
+
+    const result = await db.all(SQL`
+        SELECT l.*, a.id, a.author_id
+            FROM liked_articles AS l, articles AS a
+            WHERE l.article_id = a.id 
+                AND a.author_id = ${id}`);
+
+    return result;
+}
+
 module.exports = {
     registerArticleLiked,
     removeArticleLiked,
     retrieveArticleLikes,
-    retrieveAllArticleLikeCount
+    retrieveAllArticleLikeCount,
+    retrieveUserTotalLikesReceived
 }

@@ -1,3 +1,6 @@
+<link rel="stylesheet" type="text/css" href="../css/forms.css">
+<script src="../js/forms-verification.js"></script>
+
 <div class="container">
     <fieldset>
         {{#if user}}
@@ -54,7 +57,7 @@
 
         <div class="userDetail description">
             <label for="description">About me description: <br><br></label>
-            <textarea rows="4" cols="50" id="description" name="description">{{user.description}}</textarea>
+            <textarea rows="4" id="description" name="description">{{user.description}}</textarea>
         </div>
 
         <div class="userDetail avatar">
@@ -106,13 +109,10 @@
         </form>
 
         {{#if user}}
-        <form id="delete" action="./deleteAccount" method="POST">
+        <form class="delete userFormDelete" action="./deleteAccount" method="POST">
             <input type="submit" value="Delete account">
         </form>
         {{/if}}
 
     </fieldset>
 </div>
-
-<link rel="stylesheet" type="text/css" href="../css/forms.css">
-<script src="../js/forms-verification.js"></script>
