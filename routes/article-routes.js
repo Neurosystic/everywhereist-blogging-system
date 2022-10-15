@@ -38,15 +38,16 @@ router.post("/createArticle", upload.single("imageFile"), async function (req, r
         fs.renameSync(oldFileName, newFileName);
         const thumbnail = await jimp.read(newFileName);
         thumbnail.resize(320, jimp.AUTO);
-        thumbnail.crop(0, 0, 320, 200);
+        thumbnail.crop(0, (thumbnail.bitmap.height / 2 + 100), 320, 200);
         await thumbnail.write(`./public/images/thumbnails/${fileInfo.originalname}`);
-        
+
         const articleThumb = await jimp.read(newFileName);
         articleThumb.resize(1000, jimp.AUTO);
+        articleThumb.crop(0, ((articleThumb.bitmap.height / 2) - 300), 1000, 600);
         await articleThumb.write(`./public/images/articleThumb/${fileInfo.originalname}`);
 
         imageFile = fileInfo.originalname;
-    } 
+    }
 
     const article = {
         title: req.body.title,
@@ -69,7 +70,7 @@ router.get("/editArticle", verifyAuthenticated, async function (req, res) {
         res.setToastMessage("Article does not exist!");
         return res.redirect("/");
     }
-    if(article.author_id != res.locals.user.id){
+    if (article.author_id != res.locals.user.id) {
         res.setToastMessage("You do not have rights to edit the article");
         return res.redirect("`/article/${articleId}`")
     }
@@ -89,22 +90,23 @@ router.post("/editArticle", upload.single("imageFile"), async function (req, res
         fs.renameSync(oldFileName, newFileName);
         const thumbnail = await jimp.read(newFileName);
         thumbnail.resize(320, jimp.AUTO);
-        thumbnail.crop(0, 0, 320, 200);
+        thumbnail.crop(0, ((thumbnail.bitmap.height / 2) - 100), 320, 200);
         await thumbnail.write(`./public/images/thumbnails/${fileInfo.originalname}`);
-        
+
         const articleThumb = await jimp.read(newFileName);
         articleThumb.resize(1000, jimp.AUTO);
+        articleThumb.crop(0, ((articleThumb.bitmap.height / 2) - 300), 1000, 600);
         await articleThumb.write(`./public/images/articleThumb/${fileInfo.originalname}`);
         imageFile = fileInfo.originalname;
-    } 
+    }
 
     const updatedArticle = {
-        id : oldArticle.id,
-        title : req.body.title,
-        content : req.body.content,
-        image : imageFile,
-        date_published : oldArticle.date_published,
-        date_edited : getCurrentTime(),
+        id: oldArticle.id,
+        title: req.body.title,
+        content: req.body.content,
+        image: imageFile,
+        date_published: oldArticle.date_published,
+        date_edited: getCurrentTime(),
         author_id: res.locals.user.id
     }
 
@@ -113,7 +115,7 @@ router.post("/editArticle", upload.single("imageFile"), async function (req, res
     res.redirect(`/article/${updatedArticle.id}`);
 });
 
-router.post("/deleteArticle", async function(req, res){
+router.post("/deleteArticle", async function (req, res) {
     const articleId = req.body.articleId;
     await articleDao.deleteArticle(articleId);
     res.setToastMessage("Successfully deleted article!");

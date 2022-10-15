@@ -11,9 +11,11 @@
     {{/if}}
 
     <div class="articleImg">
+        {{#if article.image}}
         <a href="../images/{{article.image}}">
         <img src="../images/articleThumb/{{article.image}}" alt="Cover page image for article">
         </a>
+        {{/if}}
     </div>
     <h2 class="articleTitle">{{article.title}}</h2>
     <div class="authorPanel">

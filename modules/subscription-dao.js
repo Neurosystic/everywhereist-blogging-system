@@ -18,7 +18,6 @@ async function removeSubscription(subscriber_id, author_id){
             AND author_id = ${author_id}`);
 
 }
-////informTIONS 
 
 async function retrieveUserFollowerList(id){
     const db = await dbPromise;

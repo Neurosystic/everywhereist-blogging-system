@@ -48,4 +48,10 @@ router.get("/api/following", async function(req, res){
     res.json(followingArray);
 });
 
+router.get("/api/followers", async function(req, res){
+    const userId = req.query.userId;
+    const followingArray = await subscriptionDao.retrieveUserFollowerList(userId);
+    res.json(followingArray);
+});
+
 module.exports = router;

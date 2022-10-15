@@ -106,5 +106,3 @@ INSERT INTO liked_comments VALUES
 	(1, 3);
 
 	
-SELECT author_id FROM subscription
-            WHERE subscriber_id = 1;
