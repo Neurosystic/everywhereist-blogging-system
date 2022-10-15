@@ -3,7 +3,7 @@
  * It should contain all DROP TABLE and CREATE TABLE statments, and any INSERT statements
  * required.
  */
-
+DROP TABLE IF EXISTS notifications;
 DROP TABLE IF EXISTS liked_comments;
 DROP TABLE IF EXISTS liked_articles;
 DROP TABLE IF EXISTS comments;
@@ -38,6 +38,7 @@ CREATE TABLE IF NOT EXISTS articles (
 CREATE TABLE IF NOT EXISTS subscription (
 	subscriber_id INTEGER,
 	author_id INTEGER,
+	date_subscription DATETIME,
 	PRIMARY KEY (subscriber_id, author_id),
 	FOREIGN KEY (subscriber_id) REFERENCES users (id) ON DELETE CASCADE,
 	FOREIGN KEY (author_id) REFERENCES users (id) ON DELETE CASCADE
@@ -71,6 +72,20 @@ CREATE TABLE IF NOT EXISTS liked_comments (
 	FOREIGN KEY (comment_id) REFERENCES comments (id) ON DELETE CASCADE,
 	FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
+
+CREATE TABLE IF NOT EXISTS notifications (
+	id INTEGER NOT NULL PRIMARY KEY,
+	actor_id INTEGER NOT NULL,
+	type TEXT,
+	context TEXT,
+	date_published DATETIME,
+	article_id INTEGER,
+	notifier_id INTEGER,
+	status BIT,
+	FOREIGN KEY (actor_id) REFERENCES users(id),
+	FOREIGN KEY (notifier_id) REFERENCES users(id),
+	FOREIGN KEY (article_id) REFERENCES articles (id)
+);
 	
 INSERT INTO users (fname, lname, username, hash_password, description, birth_date, email, authToken, avatar) VALUES
 	-- Password = 123
@@ -86,9 +101,9 @@ INSERT INTO articles (image, title, content, date_published, author_id) VALUES
 	('road.jpg', 'Where can I get some?', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words whichlook even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isnt anything embarrassing hidden in the middle of text.', '2022-09-28 23:00:10', 3);
 	
 INSERT INTO subscription VALUES 
-	(2, 1),
-	(1, 2),
-	(1, 3);
+	(2, 1, '2022-10-09 01:00:00'),
+	(1, 2, '2022-10-01 16:00:00'),
+	(1, 3, '2022-10-01 16:00:00');
 	
 INSERT INTO comments (content, date_published, parent_comment_id, article_id, commenter_id) VALUES
 	('Great!', '2022-10-09 01:00:00', NULL, 1, 2),

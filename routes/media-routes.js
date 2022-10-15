@@ -48,7 +48,7 @@ router.post("/deleteComment", async function(req, res){
 router.post("/subscribe", async function(req, res){
     const authorId = req.body.authorId;
     const subscriberId = res.locals.user.id;
-    await subscriptionDao.registerSubscription(subscriberId, authorId);
+    await subscriptionDao.registerSubscription(subscriberId, authorId, getCurrentTime());
     res.redirect("back");
 });
 

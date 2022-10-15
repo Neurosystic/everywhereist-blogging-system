@@ -1,12 +1,12 @@
 const SQL = require("sql-template-strings");
 const dbPromise = require("./database.js");
 
-async function registerSubscription(subscriber_id, author_id){
+async function registerSubscription(subscriber_id, author_id, time){
     const db = await dbPromise;
 
     await db.run(SQL`
         INSERT INTO subscription VALUES
-            (${subscriber_id},${author_id})`);
+            (${subscriber_id},${author_id}, ${time})`);
 }
 
 async function removeSubscription(subscriber_id, author_id){
