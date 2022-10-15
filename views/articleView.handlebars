@@ -39,7 +39,7 @@
             {{!-- if #likes.value ==1 then .likeCount.innerText = "like" --}}
             <div class="likeCommand">
 
-                <p><span id="likeCount"></span> likes</p>
+                <p><span id="likeCount">{{likeCount}}</span> likes</p>
                 {{#if user}}
                 <form method="POST" action="../likeArticle" id="likeForm">
                     <input type="text" name="articleId" value="{{article.id}}" style="display: none">

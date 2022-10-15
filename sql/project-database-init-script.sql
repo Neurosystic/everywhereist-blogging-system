@@ -72,20 +72,6 @@ CREATE TABLE IF NOT EXISTS liked_comments (
 	FOREIGN KEY (comment_id) REFERENCES comments (id) ON DELETE CASCADE,
 	FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
-
-CREATE TABLE IF NOT EXISTS notifications (
-	id INTEGER NOT NULL PRIMARY KEY,
-	actor_id INTEGER NOT NULL,
-	type TEXT,
-	context TEXT,
-	date_published DATETIME,
-	article_id INTEGER,
-	notifier_id INTEGER,
-	status BIT,
-	FOREIGN KEY (actor_id) REFERENCES users(id),
-	FOREIGN KEY (notifier_id) REFERENCES users(id),
-	FOREIGN KEY (article_id) REFERENCES articles (id)
-);
 	
 INSERT INTO users (fname, lname, username, hash_password, description, birth_date, email, authToken, avatar) VALUES
 	-- Password = 123
@@ -119,8 +105,4 @@ INSERT INTO liked_comments VALUES
 	(1, 2),
 	(2, 1),
 	(1, 3);
-
-SELECT s.*, u.id, u.username, u.fname, u.lname, u.avatar 
-            FROM subscription AS s, users AS u
-            WHERE s.author_id = u.id
-                AND s.subscriber_id = 1
+	

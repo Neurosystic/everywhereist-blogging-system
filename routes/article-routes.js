@@ -6,6 +6,7 @@ const upload = require("../middleware/multer-uploader.js");
 
 const articleDao = require("../modules/articles-dao.js");
 const commentDao = require("../modules/comments-dao.js");
+const likeArticleDao = require("../modules/liked-articles-dao.js");
 const { verifyAuthenticated } = require("../middleware/auth-middleware.js");
 const { getCurrentTime } = require("../modules/format-functions.js");
 const { convertCommentsToTree } = require("../modules/format-functions.js");
@@ -21,6 +22,8 @@ router.get("/article/:id", async function (req, res) {
     res.locals.article = article;
     const comments = await commentDao.retrieveCommentByArticleId(articleId);
     const commentTree = convertCommentsToTree(comments);
+    const likeArray = await likeArticleDao.retrieveArticleLikes(articleId);
+    res.locals.likeCount = likeArray.length;
     res.locals.commentTree = commentTree;
     res.render("articleView");
 });

@@ -1,7 +1,6 @@
 window.addEventListener("load", async function () {
     // JS implementation of like button when clicked - toggle class??
     const likeBtn = document.querySelector("#likeBtn");
-    const likeCount = document.querySelector("#likeCount");
 
     const likeForm = document.querySelector("#likeForm");
     const unlikeForm = document.querySelector("#unlikeForm");
@@ -24,7 +23,6 @@ window.addEventListener("load", async function () {
 
     let unmatchCount = 0;
     const likeArray = await fetchArticleLikeCounts(articleId);
-    likeCount.innerText = `${likeArray.length}`;
     likeArray.forEach(function (element) {
         if (element.user_id == userId) {
             likeForm.style.display = "none";
