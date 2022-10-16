@@ -51,6 +51,10 @@ i {
     color: #f7775e;
 }
 
+.articleContent *{
+    color: #565050;
+}
+
 .sectionHeader{
     display: flex;
     justify-content: space-between;
