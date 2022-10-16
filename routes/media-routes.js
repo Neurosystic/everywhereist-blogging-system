@@ -97,4 +97,15 @@ router.post("/removeFollower", async function(req, res){
     res.redirect("back");
 });
 
+router.post("/readNotification", async function(req, res){
+    const obj = {
+        notification_id : req.body.notificationId,
+        receiver_id : req.body.receiverId,
+        evoker_id : req.body.evokerId
+    }
+    await notificationDao.updateNotificationReadStatus(obj);
+
+    res.redirect(req.body.redirect);
+});
+
 module.exports = router;

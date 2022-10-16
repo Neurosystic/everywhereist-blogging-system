@@ -11,6 +11,7 @@
     {{/if}}
     <link rel="stylesheet" type="text/css" href="../css/general.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <script src="../js/general.js"></script>
 </head>
 
 <body>
@@ -19,27 +20,49 @@
 
         <div class="nav">
             <div class="navHome">
-                <img src="" alt="Website logo" id="imgLogo">
                 <a href="../">Home</a>
             </div>
 
             <div class="authDiv">
                 {{#if user}}
                 <a href="../createArticle">Create new article</a>
-                
+
                 <div class="notificationPanel">
-                    <span class="num">{{notifications.length}}</span>
-                        <i class="fa-solid fa-bell"></i>
+                    <span class="num">{{unread}}</span>
+                    <i class="fa-solid fa-bell"></i>
                     <div class="notification hide">
-                        {{!-- <div class="text">You have a new subscriber</div>
-                        <div class="text">Author published a new article</div>
-                        <div class="text">Someone replied to your comment</div> --}}
+                        {{#each notificationArray}}
+                        <div class="notify readStatus{{this.is_read}}">
+                            <a href="../user/{{this.evoker_id}}">
+                                <img src="../avatar/{{this.avatar}}" alt="User avatar">
+                            </a>
+                            <div class="notifyContent">
+                                <p>{{this.username}} {{this.description}}</p>
+                                <p class="notifyDate">{{this.date_published}}</p>
+                                <form class="readForm" method="POST" action="../readNotification">
+                                    <input name="redirect" {{#if this.comment_id}}
+                                        value="/article/{{this.article_id}} #comment{{this.comment_id}}" {{else}} {{#if
+                                        this.article_id}} value="/article/{{this.article_id}}" {{else}}
+                                        value="/user/{{this.evoker_id}}" {{/if}} {{/if}} style="display: none">
+                                    <input type="text" name="notificationId" value="{{this.id}}" style="display: none">
+                                    <input type="text" name="receiverId" value="{{this.receiver_id}}" style="display: none">
+                                    <input type="text" name="evokerId" value="{{this.evoker_id}}" style="display: none">
+                                </form>
+                            </div>
+                        </div>
+                        {{/each}}
                     </div>
                 </div>
-                <a href="../profile">
-                    <img src="../avatar/{{user.avatar}}" alt="User avatar" id="imgNav">
-                    <span>{{user.username}}</span>
-                </a>
+                <div class="userCommand">
+                    <a href="../profile">
+                        <img src="../avatar/{{user.avatar}}" alt="User avatar" id="imgNav">
+                    </a>
+                    <a href="../profile">
+                        <span>{{user.username}}</span>
+                    </a>
+
+                </div>
+
                 <a href="../logout">Log out</a>
                 {{else}}
                 <a href="../login">Log in</a>

@@ -21,7 +21,7 @@ async function registerToSubscribers(obj){
                 WHERE n.evoker_id = s.author_id AND (n.type = ${obj.type}) AND n.id = ${obj.id}`);
     } else if(obj.type == "follow"){
         await db.run(SQL`
-            INSERT INTO notify SELECT n.id, u.id, NULL, NULL 
+            INSERT INTO notify SELECT n.id, u.id, u.evoker_id, NULL 
                 FROM notifications AS n, users AS u 
                 WHERE n.subscribed_to = u.id AND (n.type = ${obj.type}) AND n.id = ${obj.id}`);
     }
@@ -30,7 +30,7 @@ async function registerToSubscribers(obj){
 async function updateNotificationReadStatus(obj){
     const db = await dbPromise;
     await db.run(SQL`
-        UPDATE notfiy SET is_read = 1,
+        UPDATE notify SET is_read = 1
         WHERE notification_id = ${obj.notification_id} 
             AND receiver_id = ${obj.receiver_id} 
             AND evoker_id = ${obj.evoker_id}`);
@@ -40,11 +40,11 @@ async function retrieveUserNotifications(id){
     const db = await dbPromise;
     const result = await db.all(SQL`
         SELECT n.*, t.receiver_id, t.is_read, u.username, u.avatar FROM notifications AS n, notify AS t, users AS u
-	        WHERE n.id = t.notification_id AND n.evoker_id = u.id AND receiver_id = ${id}`);
+	        WHERE n.id = t.notification_id AND n.evoker_id = u.id AND receiver_id = ${id} ORDER BY n.date_published DESC`);
     return result;
 }
 
-module.exports ={
+module.exports = {
     registerNotification,
     updateNotificationReadStatus,
     retrieveUserNotifications

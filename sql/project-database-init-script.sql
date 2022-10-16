@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS notify (
 	notification_id INTEGER,
 	receiver_id INTEGER, 
 	evoker_id INTEGER,
-	is_read BIT,
+	is_read NUMBER(1),
 	PRIMARY KEY (notification_id, receiver_id, evoker_id),
 	FOREIGN KEY (notification_id) REFERENCES notifications (id),
 	FOREIGN KEY (receiver_id) REFERENCES users (id),
@@ -143,10 +143,16 @@ INSERT INTO notifications (evoker_id, type, description, date_published, comment
 INSERT INTO notify SELECT n.id, s.subscriber_id, s.author_id, NULL 
 FROM notifications AS n, subscription AS s WHERE n.evoker_id = s.author_id AND (n.type = 'article' OR type = 'comment');
 --inserting follow related notifications 
-INSERT INTO notify SELECT n.id, u.id, NULL, NULL 
+INSERT INTO notify SELECT n.id, u.id, n.evoker_id, NULL 
 FROM notifications AS n, users AS u WHERE n.subscribed_to = u.id AND (n.type = 'follow');
 
 SELECT * FROM notify;
 
 SELECT n.*, t.receiver_id, t.is_read, u.username, u.avatar FROM notifications AS n, notify AS t, users AS u
-	WHERE n.id = t.notification_id AND n.evoker_id = u.id AND receiver_id = 2;
+	WHERE n.id = t.notification_id AND n.evoker_id = u.id AND receiver_id = 1;
+	
+	
+	UPDATE notify SET is_read = 1
+        WHERE notification_id = 3
+            AND receiver_id = 1 
+            AND evoker_id = 2
