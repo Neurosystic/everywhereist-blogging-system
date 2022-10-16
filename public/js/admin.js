@@ -1,7 +1,6 @@
 window.addEventListener("load", function () {
 
     const main = document.querySelector(".mainContent");
-    const userId = document.querySelector("#userId").textContent;
     const analyticTrigger = document.querySelector("#analytics");
     const subscriptTrigger = document.querySelector("#subscriptions");
     const followerTrigger = document.querySelector("#followers");

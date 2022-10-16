@@ -1,5 +1,10 @@
 <link rel="stylesheet" type="text/css" href="../css/article.css">
 <link rel="stylesheet" type="text/css" href="../css/comments.css">
+<script>
+    const userId = {{#if user}}{{user.id}}{{else}}null{{/if}};
+    const articleId = {{article.id}};
+    const authorId = {{article.author_id}};
+</script>
 <script src="../js/articleView.js"></script>
 <script src="../js/comments.js"></script>
 
@@ -77,9 +82,6 @@
         </div>
     </div>
     <div class="articleContent">
-        <span id="authorId" style="display: none">{{article.author_id}}</span>
-        <span id="userId" style="display: none">{{user.id}}</span>
-        <span id="articleId" style="display: none">{{article.id}}</span>
         {{{article.content}}}
     </div>
 

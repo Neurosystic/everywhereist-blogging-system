@@ -1,15 +1,16 @@
 const express = require("express");
-const fs = require("fs");
-const jimp = require("jimp");
 const router = express.Router();
 const upload = require("../middleware/multer-uploader.js");
 
 const articleDao = require("../modules/articles-dao.js");
 const commentDao = require("../modules/comments-dao.js");
 const likeArticleDao = require("../modules/liked-articles-dao.js");
+const notificationDao = require("../modules/notification-dao.js");
+
 const { verifyAuthenticated } = require("../middleware/auth-middleware.js");
 const { getCurrentTime } = require("../modules/format-functions.js");
 const { convertCommentsToTree } = require("../modules/format-functions.js");
+const {formatImage } = require("../modules/format-functions.js");
 
 
 router.get("/article/:id", async function (req, res) {
@@ -34,24 +35,8 @@ router.get("/createArticle", verifyAuthenticated, async function (req, res) {
 
 router.post("/createArticle", upload.single("imageFile"), async function (req, res) {
     const fileInfo = req.file;
-    let imageFile = null;
-    if (fileInfo) {
-        const oldFileName = fileInfo.path;
-        const newFileName = `./public/images/${fileInfo.originalname}`;
-        fs.renameSync(oldFileName, newFileName);
-        const thumbnail = await jimp.read(newFileName);
-        thumbnail.resize(320, jimp.AUTO);
-        thumbnail.crop(0, (thumbnail.bitmap.height / 2 + 100), 320, 200);
-        await thumbnail.write(`./public/images/thumbnails/${fileInfo.originalname}`);
-
-        const articleThumb = await jimp.read(newFileName);
-        articleThumb.resize(1000, jimp.AUTO);
-        articleThumb.crop(0, ((articleThumb.bitmap.height / 2) - 300), 1000, 600);
-        await articleThumb.write(`./public/images/articleThumb/${fileInfo.originalname}`);
-
-        imageFile = fileInfo.originalname;
-    }
-
+    const imageFile = await formatImage(fileInfo);
+    
     const article = {
         title: req.body.title,
         content: req.body.content,
@@ -60,11 +45,23 @@ router.post("/createArticle", upload.single("imageFile"), async function (req, r
         author_id: res.locals.user.id
     }
     await articleDao.createArticle(article);
+
+    const notificationObj = {
+        evoker_id : res.locals.user.id,
+        type : "article",
+        description : `published an article: "${article.title}"`,
+        date_published : article.date_published,
+        comment_id : null,
+        article_id : article.id,
+        subscribed_to : null
+    }
+
+    await notificationDao.registerNotification(notificationObj);
+
     res.redirect(`/article/${article.id}`);
 });
 
 router.get("/editArticle", verifyAuthenticated, async function (req, res) {
-    // need a way to authentiicate this so that only req.locals.user == article.author_id can edit, else redirect appropriately
     const articleId = req.query.articleId;
     const article = await articleDao.retrieveArticleById(articleId);
 
@@ -76,6 +73,7 @@ router.get("/editArticle", verifyAuthenticated, async function (req, res) {
         res.setToastMessage("You do not have rights to edit the article");
         return res.redirect("`/article/${articleId}`")
     }
+
     res.locals.article = article;
     res.render("editor");
 });
@@ -85,22 +83,7 @@ router.post("/editArticle", upload.single("imageFile"), async function (req, res
     const oldArticle = await articleDao.retrieveArticleById(id);
 
     const fileInfo = req.file;
-    let imageFile = null;
-    if (fileInfo) {
-        const oldFileName = fileInfo.path;
-        const newFileName = `./public/images/${fileInfo.originalname}`;
-        fs.renameSync(oldFileName, newFileName);
-        const thumbnail = await jimp.read(newFileName);
-        thumbnail.resize(320, jimp.AUTO);
-        thumbnail.crop(0, ((thumbnail.bitmap.height / 2) - 100), 320, 200);
-        await thumbnail.write(`./public/images/thumbnails/${fileInfo.originalname}`);
-
-        const articleThumb = await jimp.read(newFileName);
-        articleThumb.resize(1000, jimp.AUTO);
-        articleThumb.crop(0, ((articleThumb.bitmap.height / 2) - 300), 1000, 600);
-        await articleThumb.write(`./public/images/articleThumb/${fileInfo.originalname}`);
-        imageFile = fileInfo.originalname;
-    }
+    const imageFile = await formatImage(fileInfo);
 
     const updatedArticle = {
         id: oldArticle.id,
@@ -114,6 +97,18 @@ router.post("/editArticle", upload.single("imageFile"), async function (req, res
 
     await articleDao.updateArticle(updatedArticle);
     res.locals.article = updatedArticle;
+
+    const notificationObj = {
+        evoker_id : res.locals.user.id,
+        type : "article",
+        description : `edited an article: "${article.title}"`,
+        date_published : updatedArticle.date_published,
+        comment_id : null,
+        article_id : updatedArticle.id,
+        subscribed_to : null
+    }
+
+    await notificationDao.registerNotification(notificationObj);
     res.redirect(`/article/${updatedArticle.id}`);
 });
 
