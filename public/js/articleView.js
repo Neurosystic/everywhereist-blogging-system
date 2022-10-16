@@ -5,10 +5,6 @@ window.addEventListener("load", async function () {
     const likeForm = document.querySelector("#likeForm");
     const unlikeForm = document.querySelector("#unlikeForm");
 
-    const authorId = document.querySelector("#authorId").textContent;
-    const userId = document.querySelector("#userId").textContent;
-    const articleId = document.querySelector("#articleId").textContent;
-
     const subscribeForm = document.querySelector("#subscribeForm");
     const unsubscribeForm = document.querySelector("#unsubscribeForm");
     const userFollowingList = [];

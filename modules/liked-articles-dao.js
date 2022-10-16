@@ -1,12 +1,12 @@
 const SQL = require("sql-template-strings");
 const dbPromise = require("./database.js");
 
-async function registerArticleLiked(article_id, user_id){
+async function registerArticleLiked(article_id, user_id, time){
     const db = await dbPromise;
     
     await db.run(SQL`
         INSERT INTO liked_articles VALUES
-            (${article_id}, ${user_id})`);           
+            (${article_id}, ${user_id}, ${time})`);           
 }
 
 async function removeArticleLiked(article_id, user_id){

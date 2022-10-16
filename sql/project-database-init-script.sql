@@ -3,6 +3,7 @@
  * It should contain all DROP TABLE and CREATE TABLE statments, and any INSERT statements
  * required.
  */
+DROP TABLE IF EXISTS notify;
 DROP TABLE IF EXISTS notifications;
 DROP TABLE IF EXISTS liked_comments;
 DROP TABLE IF EXISTS liked_articles;
@@ -60,6 +61,7 @@ CREATE TABLE IF NOT EXISTS comments (
 CREATE TABLE IF NOT EXISTS liked_articles (
 	article_id INTEGER,
 	user_id INTEGER,
+	date_published DATETIME,
 	PRIMARY KEY (article_id, user_id),
 	FOREIGN KEY (article_id) REFERENCES articles (id) ON DELETE CASCADE,
 	FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
@@ -68,9 +70,36 @@ CREATE TABLE IF NOT EXISTS liked_articles (
 CREATE TABLE IF NOT EXISTS liked_comments (
 	comment_id INTEGER,
 	user_id INTEGER,
+	date_published DATETIME,
 	PRIMARY KEY (comment_id, user_id),
 	FOREIGN KEY (comment_id) REFERENCES comments (id) ON DELETE CASCADE,
 	FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS notifications (
+	id INTEGER NOT NULL PRIMARY KEY,
+	evoker_id INTEGER NOT NULL,
+	type TEXT,
+	description TEXT,
+	date_published DATETIME,
+	comment_id INTEGER,
+	article_id INTEGER,
+	subscribed_to INTEGER,
+	FOREIGN KEY (evoker_id) REFERENCES users (id),
+	FOREIGN KEY (subscribed_to) REFERENCES users (id),
+	FOREIGN KEY (comment_id) REFERENCES comments (id),
+	FOREIGN KEY (article_id) REFERENCES articles (id)
+);
+
+CREATE TABLE IF NOT EXISTS notify (
+	notification_id INTEGER,
+	receiver_id INTEGER, 
+	evoker_id INTEGER,
+	is_read NUMBER(1),
+	PRIMARY KEY (notification_id, receiver_id, evoker_id),
+	FOREIGN KEY (notification_id) REFERENCES notifications (id),
+	FOREIGN KEY (receiver_id) REFERENCES users (id),
+	FOREIGN KEY (evoker_id) REFERENCES users (id)
 );
 	
 INSERT INTO users (fname, lname, username, hash_password, description, birth_date, email, authToken, avatar) VALUES
@@ -88,7 +117,7 @@ INSERT INTO articles (image, title, content, date_published, author_id) VALUES
 	
 INSERT INTO subscription VALUES 
 	(2, 1, '2022-10-09 01:00:00'),
-	(1, 2, '2022-10-01 16:00:00'),
+	(3, 1, '2022-10-01 16:00:00'),
 	(1, 3, '2022-10-01 16:00:00');
 	
 INSERT INTO comments (content, date_published, parent_comment_id, article_id, commenter_id) VALUES
@@ -97,12 +126,46 @@ INSERT INTO comments (content, date_published, parent_comment_id, article_id, co
 	('LOL', '2022-10-01 16:00:00', NULL, 1, 3);
 
 INSERT INTO liked_articles VALUES
-	(1, 2),
-	(1, 3),
-	(2, 1);
+	(1, 2, '2022-10-09 01:00:00'),
+	(1, 3, '2022-10-09 01:00:00'),
+	(2, 1, '2022-10-09 01:00:00');
 
 INSERT INTO liked_comments VALUES
-	(1, 2),
-	(2, 1),
-	(1, 3);
+	(1, 2, '2022-10-09 01:00:00'),
+	(2, 1, '2022-10-09 01:00:00'),
+	(1, 3, '2022-10-09 01:00:00');
 	
+INSERT INTO notifications (evoker_id, type, description, date_published, comment_id, article_id, subscribed_to) VALUES 
+	(1, 'article', 'posted a new article: title', '2022-10-09 00:00:00', NULL, 1, NULL),
+	(1, 'follow', 'started following you', '2022-10-01 16:00:00', NULL, NULL, 2),
+	(2, 'follow', 'started following you', '2022-10-09 01:00:00', NULL, NULL, 1),
+	(3, 'follow', 'started following you', '2022-10-09 01:00:00', NULL, NULL, 2);
+
+-- inserting article or comment related notifications 
+INSERT INTO notify SELECT n.id, s.subscriber_id, s.author_id, NULL 
+FROM notifications AS n, subscription AS s WHERE n.evoker_id = s.author_id AND (n.type = 'article' OR type = 'comment');
+--inserting follow related notifications 
+INSERT INTO notify SELECT n.id, u.id, n.evoker_id, NULL 
+FROM notifications AS n, users AS u WHERE n.subscribed_to = u.id AND (n.type = 'follow');
+
+
+
+
+
+
+
+
+-- testing code 
+SELECT * FROM notify;
+
+SELECT n.*, t.receiver_id, t.is_read, u.username, u.avatar FROM notifications AS n, notify AS t, users AS u
+	WHERE n.id = t.notification_id AND n.evoker_id = u.id AND receiver_id = 1;
+	
+	
+SELECT a.*, la.article_id, COUNT(la.article_id) AS likeCount FROM liked_articles AS la, articles AS a WHERE la.article_id = a.id GROUP BY la.article_id;
+
+SELECT a.*, c.article_id, COUNT(c.article_id) AS commentCount FROM comments AS c, articles AS a WHERE c.article_id = a.id GROUP BY c.article_id;
+
+
+SELECT a.*, u.username, u.avatar FROM articles AS a, users AS u
+            WHERE a.author_id = u.id AND a.author_id = 1

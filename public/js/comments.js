@@ -1,7 +1,5 @@
 window.addEventListener("load", function () {
 
-    const userId = document.querySelector("#userId").textContent;
-    const authorId = document.querySelector("#authorId").textContent;
     const commenterIds = document.querySelectorAll(".commenterId");
     const replyDiv = document.querySelectorAll(".replyCommands");
     const replyTrigger = document.querySelectorAll(".reply");

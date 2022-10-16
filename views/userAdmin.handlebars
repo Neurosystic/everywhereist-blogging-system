@@ -1,4 +1,11 @@
 <link rel="stylesheet" type="text/css" href="../css/admin.css">
+<script>
+    const articles = [];
+    {{#each articleArray}}
+        articles.push({{this}});
+    {{/each}}
+
+</script>
 <script src="../js/admin.js"></script>
 
 <div class="container">

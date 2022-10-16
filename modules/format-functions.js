@@ -1,3 +1,6 @@
+const fs = require("fs");
+const jimp = require("jimp");
+
 function getCurrentTime() {
     let date = new Date();
     let now_utc = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(),
@@ -36,7 +39,36 @@ function convertCommentsToTree(data){
     return json;
 }
 
+async function formatImage(fileInfo){
+    if (fileInfo) {
+        const oldFileName = fileInfo.path;
+        const newFileName = `./public/images/${fileInfo.originalname}`;
+        fs.renameSync(oldFileName, newFileName);
+        const thumbnail = await jimp.read(newFileName);
+        thumbnail.resize(320, jimp.AUTO);
+        thumbnail.crop(0, ((thumbnail.bitmap.height / 2) - 100), 320, 200);
+        await thumbnail.write(`./public/images/thumbnails/${fileInfo.originalname}`);
+
+        const articleThumb = await jimp.read(newFileName);
+        articleThumb.resize(1000, jimp.AUTO);
+        articleThumb.crop(0, ((articleThumb.bitmap.height / 2) - 300), 1000, 600);
+        await articleThumb.write(`./public/images/articleThumb/${fileInfo.originalname}`);
+
+        return fileInfo.originalname;
+    } else {
+        return null;
+    }
+}
+
+function compare(a, b){
+    if(a.popularity < b.popularity) return -1;
+    else if (a.popularity > b.popularity) return 1;
+    else return 0
+}
+
 module.exports = {
     getCurrentTime,
-    convertCommentsToTree
+    convertCommentsToTree,
+    formatImage,
+    compare
 }

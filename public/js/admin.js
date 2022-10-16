@@ -1,7 +1,6 @@
 window.addEventListener("load", function () {
 
     const main = document.querySelector(".mainContent");
-    const userId = document.querySelector("#userId").textContent;
     const analyticTrigger = document.querySelector("#analytics");
     const subscriptTrigger = document.querySelector("#subscriptions");
     const followerTrigger = document.querySelector("#followers");
@@ -75,5 +74,16 @@ window.addEventListener("load", function () {
         });
 
     });
+
+
+    // articles.forEach(async function(article){
+    //     const likeCount = await likeArticleDao.retrieveArticleLikes(article.id);
+    //     const commentCount = await commentDao.retrieveCommentByArticleId(article.id);
+    //     article.likeCount = likeCount.length;
+    //     article.commentCount = commentCount.length;
+    //     article.popularity = (commentCount.length * (2 + likeCount.length));
+    // });
+
+    console.log(articles);
 
 });

@@ -11,10 +11,7 @@ window.addEventListener("load", async function () {
         const articleJson = await response.json();
         return articleJson;
     }
-
-    const viewingUserId = document.querySelector("#viewingUserId").textContent;
     const contentDiv = document.querySelector(".articleContents");
-    const userId = document.querySelector("#userId").textContent;
 
     loadUserArticles(viewingUserId);
 

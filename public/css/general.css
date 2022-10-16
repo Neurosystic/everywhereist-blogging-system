@@ -24,7 +24,7 @@ a {
 }
 
 .nav{
-    align-items: baseline;
+    align-items: center;
     display: flex;
     justify-content: space-between;
     gap: 100px;
@@ -52,6 +52,16 @@ a:hover {
     background-image: url("../images/headerimage.jpg");
     background-size: cover;
     height: 400px;
+}
+
+.authDiv {
+    display: flex;
+    align-items: center;
+}
+
+.userCommand{
+    display: flex;
+    align-items: center;
 }
 
 .navHome > *, .authDiv > *{
@@ -97,7 +107,7 @@ a:hover {
     background-color: rgb(70, 3, 3);
 }
 
-input[type="submit"], button{
+input[type="submit"], button, input[type="reset"]{
     background-color: black;
     color: #ffff;
     border: none;
@@ -125,6 +135,10 @@ input[type="submit"], button{
 
 .cardImg img{
     width:100%;
+}
+
+.notifyContent{
+    cursor: pointer;
 }
 
 /*remember to put in the responsiveness*/
