@@ -14,7 +14,7 @@ router.use(verifyAuthenticated);
 router.post("/likeArticle", async function(req, res){
     const articleId = req.body.articleId;
     const userId = res.locals.user.id;
-    await likeArticleDao.registerArticleLiked(articleId, userId);
+    await likeArticleDao.registerArticleLiked(articleId, userId, getCurrentTime());
     res.redirect("back");
 });
 

@@ -55,7 +55,7 @@ async function retrieveArticlesByAuthorId(userId){
 
     const articles = await db.all(SQL`
         SELECT a.*, u.username, u.avatar FROM articles AS a, users AS u
-            WHERE a.author_id = u.id AND u.id = ${userId}`);
+            WHERE a.author_id = u.id AND a.author_id = ${userId}`);
     
     return articles;
 }

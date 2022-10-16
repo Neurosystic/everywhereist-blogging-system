@@ -8,7 +8,6 @@ const likeArticleDao = require("../modules/liked-articles-dao.js");
 const commentDao = require("../modules/comments-dao.js");
 const { verifyAuthenticated } = require("../middleware/auth-middleware.js");
 
-
 router.get("/profile", verifyAuthenticated, async function(req, res){
     //get by authentication token stored in cookie 
     //verify if authenticated, otherwise redirect elsewhere
