@@ -101,7 +101,7 @@ router.post("/editArticle", upload.single("imageFile"), async function (req, res
     const notificationObj = {
         evoker_id : res.locals.user.id,
         type : "article",
-        description : `edited an article: "${article.title}"`,
+        description : `edited an article: "${updatedArticle.title}"`,
         date_published : updatedArticle.date_published,
         comment_id : null,
         article_id : updatedArticle.id,
