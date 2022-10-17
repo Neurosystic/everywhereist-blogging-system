@@ -74,31 +74,19 @@ async function retrieveUserTotalCommentReceived(id){
     return comments;
 }
 
-async function countCommentsByID(id){
+async function retrieveCommentPerDayByAuthorId(id){
     
     const db = await dbPromise;
     
-    const commentNumsEachday = await db.get(SQL`
-        SELECT count (commenter_id), date_published FROM comments
-        WHERE article_id = ${id}
-        GROUP BY date (date_published) 
-    
-    `)
+    const result = await db.get(SQL`
+        SELECT COUNT (c.id) As commentCount, DATE(c.date_published) AS date, a.author_id 
+            FROM comments AS c, articles AS a
+            WHERE c.article_id=a.id 
+                AND a.author_id = ${id}
+                GROUP BY DATE(c.date_published) 
+                ORDER BY date DESC`);
 
-    
-    return commentNumsEachday;
-}
-
-async function countCommentTenDays(){
-    
-    const db = await dbPromise;
-    
-    const date = await db.get(SQL`
-    SELECT date_published FROM comments
-    WHERE comments.date_published >=  date ('now','-10 days')
-    
-    `)
-        return date;
+    return result;
 }
 
 
@@ -110,6 +98,5 @@ module.exports = {
     updateComment,
     deleteComment,
     retrieveUserTotalCommentReceived,
-    countCommentsByID,
-    countCommentTenDays
+    retrieveCommentPerDayByAuthorId
 }

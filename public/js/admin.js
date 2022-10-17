@@ -21,16 +21,12 @@ window.addEventListener("load", function () {
 
     analyticTrigger.addEventListener("click", async function () {
         main.innerHTML = "";
-        const commentNumsEachday = await countCommentsByID(id);
-        const date = await countCommentTenDays();
-        const analyticDiv = document.createElement("div");
-        analyticDiv.innerHTML = `
+        // const commentNumsEachday = await countCommentsByID(id);
+        // const date = await countCommentTenDays();
+        // const analyticDiv = document.createElement("div");
+        // analyticDiv.innerHTML = `
         
-        
-        
-        
-        `
-        
+        // `
 
     });
 

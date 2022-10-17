@@ -32,7 +32,17 @@ router.get("/api/articles", async function(req, res){
         articleArray = await articleDao.retrieveArticlesBySort(sort, order);  
     } else {
         articleArray = await articleDao.retrieveArticlesByAuthorSort(userId, sort, order);
-    }   
+    }  
+    
+    for(let i = 0; i < articleArray.length; i++){
+        const likeArray =  await likeArticleDao.retrieveArticleLikes(articleArray[i].id);
+        const commentArray = await commentDao.retrieveCommentByArticleId(articleArray[i].id);
+        const popularity = commentArray.length + (2 * likeArray.length);
+        articleArray[i].commentCount = commentArray.length;
+        articleArray[i].likeCount = likeArray.lenght;
+        articleArray[i].popularity = popularity;
+        articleArray[i].likeCount = (popularity - (commentArray.length)) / 2;
+    }
 
     res.json(articleArray);
 });
@@ -53,12 +63,6 @@ router.get("/api/followers", async function(req, res){
     const userId = req.query.userId;
     const followingArray = await subscriptionDao.retrieveUserFollowerList(userId);
     res.json(followingArray);
-});
-
-router.get("/api/articleComments", async function(req, res){
-    const articleId = req.query.articleId;
-    const commentsArray = await commentDao.retrieveCommentByArticleId(articleId);
-    res.json(commentsArray);
 });
 
 module.exports = router;
