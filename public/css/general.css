@@ -124,6 +124,7 @@ input[type="submit"], button, input[type="reset"]{
     font-size: 13px !important;
     color: #565050;
     font-weight: normal;
+    text-transform: initial !important;
 }
 
 .articlePreview{

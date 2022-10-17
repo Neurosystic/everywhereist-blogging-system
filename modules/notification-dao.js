@@ -21,7 +21,7 @@ async function registerToSubscribers(obj){
                 WHERE n.evoker_id = s.author_id AND (n.type = ${obj.type}) AND n.id = ${obj.id}`);
     } else if(obj.type == "follow"){
         await db.run(SQL`
-            INSERT INTO notify SELECT n.id, u.id, u.evoker_id, NULL 
+            INSERT INTO notify SELECT n.id, u.id, n.evoker_id, NULL 
                 FROM notifications AS n, users AS u 
                 WHERE n.subscribed_to = u.id AND (n.type = ${obj.type}) AND n.id = ${obj.id}`);
     }

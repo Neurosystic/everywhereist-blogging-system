@@ -72,7 +72,7 @@ router.post("/subscribe", async function(req, res){
     const notificationObj = {
         evoker_id : res.locals.user.id,
         type : "follow",
-        description : "stated following you",
+        description : "started following you",
         date_published : date_published,
         comment_id : null,
         article_id : null,
