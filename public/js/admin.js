@@ -75,15 +75,4 @@ window.addEventListener("load", function () {
 
     });
 
-
-    // articles.forEach(async function(article){
-    //     const likeCount = await likeArticleDao.retrieveArticleLikes(article.id);
-    //     const commentCount = await commentDao.retrieveCommentByArticleId(article.id);
-    //     article.likeCount = likeCount.length;
-    //     article.commentCount = commentCount.length;
-    //     article.popularity = (commentCount.length * (2 + likeCount.length));
-    // });
-
-    console.log(articles);
-
 });
