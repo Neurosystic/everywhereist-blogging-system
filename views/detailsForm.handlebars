@@ -109,9 +109,10 @@
         </form>
 
         {{#if user}}
-        <form class="delete userFormDelete" action="./deleteAccount" method="POST">
+        <a href="../deleteAccount" class="userDeleteLink">Delete Account</a>
+        {{!-- <form class="delete userFormDelete" action="./deleteAccount" method="POST">
             <input type="submit" value="Delete account">
-        </form>
+        </form> --}}
         {{/if}}
 
     </fieldset>
