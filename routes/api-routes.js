@@ -5,6 +5,7 @@ const userDao = require("../modules/users-dao.js");
 const articleDao = require("../modules/articles-dao.js");
 const likeArticleDao = require("../modules/liked-articles-dao.js");
 const subscriptionDao = require("../modules/subscription-dao.js");
+const commentDao = require("../modules/comments-dao.js");
 
 router.get("/api/usernames", async function(req, res){
     const userArray = await userDao.retrieveAllUsers();
@@ -52,6 +53,12 @@ router.get("/api/followers", async function(req, res){
     const userId = req.query.userId;
     const followingArray = await subscriptionDao.retrieveUserFollowerList(userId);
     res.json(followingArray);
+});
+
+router.get("/api/articleComments", async function(req, res){
+    const commentId = req.query.commentId;
+    const commentsArray = await commentDao.retrieveCommentByArticleId(commentId);
+    res.json(commentsArray);
 });
 
 module.exports = router;
