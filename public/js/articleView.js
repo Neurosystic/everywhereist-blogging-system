@@ -34,10 +34,7 @@ window.addEventListener("load", async function () {
         const otherCommandDiv = document.querySelector(".otherCommands");
         otherCommandDiv.innerHTML += `
             <div class="adminCmd">
-                <form action="../editArticle" method="GET">
-                    <input type="text" name="articleId" value="${articleId}" style="display:none">
-                    <input type="submit" value="Edit Article">
-                </form>
+            <a href="../editArticle/${articleId}">Edit Article</a>
             </div>
         `;
         document.querySelector(".subscriptionCmd").style.display = "none";
