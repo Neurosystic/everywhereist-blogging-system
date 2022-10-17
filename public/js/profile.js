@@ -15,7 +15,7 @@ window.addEventListener("load", async function () {
   const contentDiv = document.querySelector(".articleContents");
 
   loadUserArticles();
-  fetchTopThreeArticles();
+  await fetchTopThreeArticles();
 
   //Implemment statements to allow user to sort article when browsering to author page
 
@@ -99,7 +99,6 @@ window.addEventListener("load", async function () {
     }
   }
 
-  const topDiv = document.querySelector(".top3");
 
   async function fetchArticleLikeCounts(id) {
     const response = await fetch(`../api/articleLikes?articleId=${id}`);
@@ -113,18 +112,29 @@ window.addEventListener("load", async function () {
     return commentJson;
   }
 
-  async function fetchTopThreeArticles() {
-    const articleArray = await fetchArticleByAuthor(viewingUserId);
-    articleArray.forEach(async function (article) {
-      const likeCount = await fetchArticleLikeCounts(article.id);
-      article.likeCount = likeCount.length;
-      const commentCount = await fetchArticleCommentCounts(article.id);
-      article.commentCount = commentCount.length;
-      const popularity = commentCount.length * (2 + likeCount.length);
-      article.popularity = popularity;
-    });
+//   async function fetchTopThreeArticles() {
+//     const articleArray = await fetchArticleByAuthor(viewingUserId);
+//     articleArray.forEach(async function (article) {
+//       const likeArray = await fetchArticleLikeCounts(article.id);
+//       article.likeCount = likeArray.length;
+//       const commentArray = await fetchArticleCommentCounts(article.id);
+//       article.commentCount = commentArray.length;
+//       const popularity = commentArray.length + (2 * likeArray.length);
+//       article.popularity = popularity;
+//     });
 
     articleArray.sort(compare);
+
+    const topDiv = document.querySelector(".top3");
+    for (let i = 0; i < 3; i++) {
+        if(articleArray[i]){
+            let image = 'gerneral.jpg';
+            if(articleArray[i].image){
+                image = articleArray[i].image;
+            }
+            createTopThreeCard(topDiv, articleArray[i], image);
+        }
+
   }
 
   function compare(a,b){
@@ -136,5 +146,38 @@ window.addEventListener("load", async function () {
           return 0;
       }
   }
-  
+
+    function createTopThreeCard(topDiv, item, image){
+      for (let i = 0; i < 3; i++) {
+            
+            console.log(item.likeCount);
+            topDiv.innerHTML += `
+    
+        <div class="cardIntro">
+            <a href="../article/${item.id}">
+            <img src="../images/thumbnails/${image}" alt="Article cover image">
+                <h4 class="articleTitle">${item.title}</h4>
+                <p>Published: ${array[i].date_published}</p>
+                <div class="articleStats">
+                <div class="popularity">
+                    <i class="fa-solid fa-fire"></i>
+                    <p>Popularity score: <span>${array[i].popularity}</span></p>
+                </div>
+                <div class="likeCount">
+                    <i class="fa-solid fa-heart"></i>
+                    <p>Total likes: <span>${array[i].likeCount}</span></p>
+                </div>
+                <div class="commentCount">
+                    <i class="fa-solid fa-comment"></i>
+                    <p>Total comments: <span>${array[i].commentCount}</span></p>
+                </div>
+            </div>
+            </a>
+        </div>
+            `;
+          }
+          
+      }
+  }
+
 });
