@@ -122,9 +122,9 @@ INSERT INTO subscription VALUES
 	(1, 3, '2022-10-01 16:00:00');
 	
 INSERT INTO comments (content, date_published, parent_comment_id, article_id, commenter_id) VALUES
-	('Great!', '2022-10-09 01:00:00', NULL, 1, 2),
-	('Agree with that!', '2022-10-10 13:00:00', NULL, 1, 2),
-	('LOL', '2022-10-01 16:00:00', NULL, 1, 3);
+	('Great!', '2022-10-08 01:00:00', NULL, 2, 2),
+	('Agree with that!', '2022-10-09 13:00:00', NULL, 1, 2),
+	('LOL', '2022-10-10 16:00:00', NULL, 1, 3);
 
 INSERT INTO liked_articles VALUES
 	(2, 2, '2022-10-09 01:00:00'),
@@ -149,24 +149,8 @@ FROM notifications AS n, subscription AS s WHERE n.evoker_id = s.author_id AND (
 INSERT INTO notify SELECT n.id, u.id, n.evoker_id, NULL 
 FROM notifications AS n, users AS u WHERE n.subscribed_to = u.id AND (n.type = 'follow');
 
-
-
-
-
-
-
-
 -- testing code 
 SELECT * FROM notify;
 
-SELECT n.*, t.receiver_id, t.is_read, u.username, u.avatar FROM notifications AS n, notify AS t, users AS u
-	WHERE n.id = t.notification_id AND n.evoker_id = u.id AND receiver_id = 1;
-	
-	
-SELECT a.*, la.article_id, COUNT(la.article_id) AS likeCount FROM liked_articles AS la, articles AS a WHERE la.article_id = a.id GROUP BY la.article_id;
-
-SELECT a.*, c.article_id, COUNT(c.article_id) AS commentCount FROM comments AS c, articles AS a WHERE c.article_id = a.id GROUP BY c.article_id;
-
-
-SELECT a.*, u.username, u.avatar FROM articles AS a, users AS u
-            WHERE a.author_id = u.id AND a.author_id = 1
+SELECT COUNT (c.id) As commentCount, DATE(c.date_published) AS date, a.author_id FROM comments AS c, articles AS a
+        WHERE c.article_id=a.id AND a.author_id =1 GROUP BY DATE(c.date_published) ORDER BY date DESC;
