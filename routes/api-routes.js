@@ -56,8 +56,8 @@ router.get("/api/followers", async function(req, res){
 });
 
 router.get("/api/articleComments", async function(req, res){
-    const commentId = req.query.commentId;
-    const commentsArray = await commentDao.retrieveCommentByArticleId(commentId);
+    const articleId = req.query.articleId;
+    const commentsArray = await commentDao.retrieveCommentByArticleId(articleId);
     res.json(commentsArray);
 });
 

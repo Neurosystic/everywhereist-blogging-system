@@ -16,9 +16,9 @@ window.addEventListener("load", async function () {
     loadUserArticles(viewingUserId);
 
     //Implemment statements to allow user to sort article when browsering to author page
-    
-    async function loadUserArticles(id) {
-        const articleArray = await fetchArticleByAuthor(id);
+    const articleArray = await fetchArticleByAuthor(id);
+
+    async function loadUserArticles(id) {   
         createArticleCard(articleArray);
     }
 
@@ -96,6 +96,20 @@ window.addEventListener("load", async function () {
             subscribeForm.style.display = "initial";
             unsubscribeForm.style.display = "none";
         }
+    }
+
+    const topDiv = document.querySelector(".top3");
+    
+    async function fetchArticleLikeCounts(id) {
+        const response = await fetch(`../api/articleLikes?articleId=${id}`);
+        const likesJson = await response.json();
+        return likesJson;
+    }
+    
+    async function fetchArticleCommentCounts(id){
+        const response = await fetch(`../api/articleComments?articleId=${id}`);
+        const commentJson = await response.json();
+        return commentJson;
     }
 
 });
