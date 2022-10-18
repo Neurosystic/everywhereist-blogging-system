@@ -87,6 +87,7 @@
     font-size: large;
     text-transform: uppercase;
     letter-spacing: 0.1em;
+    text-align: center;
 }
 
 .subscriptionCmd {
@@ -131,9 +132,19 @@
     width: 150px;
     padding: 10px;
 }
+
+.cardIntro .articleTitle{
+    text-align: center;
+}
 .threePopular li{
     border: 1px solid #edebeb;
     line-height: 30px;
+}
+.popularDiv{
+    margin: 15px 0;
+}
+.card > div{
+    margin: 15px 0;
 }
 
 /* .articles .cardIntro .articleTitle{

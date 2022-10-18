@@ -1,4 +1,6 @@
+@import url(./responsiveness.css);
 @import url(./notification.css);
+
 
 * {
     /* border: 1px solid black; */
@@ -123,6 +125,8 @@ input[type="submit"], button, input[type="reset"], .commands{
     letter-spacing: 0.1em;
     font-size: 12px;
     padding: 10px 30px;
+    width: 200px;
+    margin-left: 20px;
 }
 
 .articlePreview * {

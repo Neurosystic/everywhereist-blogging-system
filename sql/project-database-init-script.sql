@@ -85,10 +85,10 @@ CREATE TABLE IF NOT EXISTS notifications (
 	comment_id INTEGER,
 	article_id INTEGER,
 	subscribed_to INTEGER,
-	FOREIGN KEY (evoker_id) REFERENCES users (id),
-	FOREIGN KEY (subscribed_to) REFERENCES users (id),
-	FOREIGN KEY (comment_id) REFERENCES comments (id),
-	FOREIGN KEY (article_id) REFERENCES articles (id)
+	FOREIGN KEY (evoker_id) REFERENCES users (id) ON DELETE CASCADE,
+	FOREIGN KEY (subscribed_to) REFERENCES users (id) ON DELETE CASCADE,
+	FOREIGN KEY (comment_id) REFERENCES comments (id) ON DELETE CASCADE,
+	FOREIGN KEY (article_id) REFERENCES articles (id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS notify (
@@ -97,9 +97,9 @@ CREATE TABLE IF NOT EXISTS notify (
 	evoker_id INTEGER,
 	is_read NUMBER(1),
 	PRIMARY KEY (notification_id, receiver_id, evoker_id),
-	FOREIGN KEY (notification_id) REFERENCES notifications (id),
-	FOREIGN KEY (receiver_id) REFERENCES users (id),
-	FOREIGN KEY (evoker_id) REFERENCES users (id)
+	FOREIGN KEY (notification_id) REFERENCES notifications (id) ON DELETE CASCADE,
+	FOREIGN KEY (receiver_id) REFERENCES users (id) ON DELETE CASCADE,
+	FOREIGN KEY (evoker_id) REFERENCES users (id) ON DELETE CASCADE
 );
 	
 INSERT INTO users (fname, lname, username, hash_password, description, birth_date, email, authToken, avatar) VALUES

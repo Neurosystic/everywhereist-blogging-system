@@ -50,15 +50,22 @@
     display: block;
 }
 
+input[type="submit"], button, input[type="reset"], .commands {
+    display: block;
+    margin-top: 5px;
+    text-align: center;
+}
+
 .subDiv {
     display: flex;
     gap: 5px;
     overflow-y: auto;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content:center;
     max-height: 300px;
 }
 
 .graph {
     width: 400px;
 }
+
