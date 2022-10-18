@@ -121,11 +121,17 @@ window.addEventListener("load", async function () {
         }
         popularDiv.innerHTML += `
           <li><div class="cardIntro">
-              <a href="../article/${array[i].id}">
+          <div>
+              
               <img src="../images/thumbnails/${image}" alt="Article cover image">
+          </div>
+              <div >
+              <a href="../article/${array[i].id}">
                   <h4 class="articleTitle">${array[i].title}</h4>
-                  <p>Published: ${array[i].date_published}</p>
-                  <div class="articleStats">
+                  <p>Published: ${array[i].date_published}</p> </a>
+                  
+
+              </div>  <div class="articleStats">
                   <div class="popularity">
                       <i class="fa-solid fa-fire"></i>
                       <p>Popularity score: <span>${array[i].popularity}</span></p>
@@ -138,9 +144,10 @@ window.addEventListener("load", async function () {
                       <i class="fa-solid fa-comment"></i>
                       <p>Total comments: <span>${array[i].commentCount}</span></p>
                   </div>
-              </div>
-              </a>
-          </div></li>`;
+              </div> 
+          </div>
+
+          </li>`;
       }
     }
   }

@@ -85,10 +85,10 @@ CREATE TABLE IF NOT EXISTS notifications (
 	comment_id INTEGER,
 	article_id INTEGER,
 	subscribed_to INTEGER,
-	FOREIGN KEY (evoker_id) REFERENCES users (id)  ON DELETE CASCADE,
-	FOREIGN KEY (subscribed_to) REFERENCES users (id)  ON DELETE CASCADE,
-	FOREIGN KEY (comment_id) REFERENCES comments (id)  ON DELETE CASCADE,
-	FOREIGN KEY (article_id) REFERENCES articles (id)  ON DELETE CASCADE
+	FOREIGN KEY (evoker_id) REFERENCES users (id),
+	FOREIGN KEY (subscribed_to) REFERENCES users (id),
+	FOREIGN KEY (comment_id) REFERENCES comments (id),
+	FOREIGN KEY (article_id) REFERENCES articles (id)
 );
 
 CREATE TABLE IF NOT EXISTS notify (
@@ -97,9 +97,9 @@ CREATE TABLE IF NOT EXISTS notify (
 	evoker_id INTEGER,
 	is_read NUMBER(1),
 	PRIMARY KEY (notification_id, receiver_id, evoker_id),
-	FOREIGN KEY (notification_id) REFERENCES notifications (id)  ON DELETE CASCADE,
-	FOREIGN KEY (receiver_id) REFERENCES users (id)  ON DELETE CASCADE,
-	FOREIGN KEY (evoker_id) REFERENCES users (id)  ON DELETE CASCADE
+	FOREIGN KEY (notification_id) REFERENCES notifications (id),
+	FOREIGN KEY (receiver_id) REFERENCES users (id),
+	FOREIGN KEY (evoker_id) REFERENCES users (id)
 );
 	
 INSERT INTO users (fname, lname, username, hash_password, description, birth_date, email, authToken, avatar) VALUES
@@ -125,6 +125,7 @@ INSERT INTO users (fname, lname, username, hash_password, description, birth_dat
 	('yozhi', 'Huang', 'user10', '$2b$10$UjRNmIXscQ5fNDVUnjNw0eLEblMtoTogY9F68/nSEvFZv6O1cdQUW', 'Gray, shaggy hair is pulled back to reveal a thin, cheerful face', '2020-02-14', 'user10@gmail.com', NULL, 'avatar-4.jpg');
 	
 INSERT INTO articles (image, title, content, date_published, author_id) VALUES
+	('boat.jpg', 'Testing', 'Testing content', '2022-10-09 01:00:00', 1),
 	('boat.jpg', 'What is Lorem Ipsum?', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2022-10-09 00:00:00', 1),
 	('plane.jpg', 'Why do we use it?', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', '2022-10-10 12:12:05', 2),
 	('boat.jpg','test','teste12312rt837r6873468736875','2022-10-04 10:12:00',1),
@@ -180,6 +181,7 @@ INSERT INTO liked_articles VALUES
 	(1,8,'2022-10-12 14:12:00'),
 	(2, 9, '2022-10-11 11:00:00');
 
+
 INSERT INTO liked_comments VALUES
 	(1, 2, '2022-10-09 01:00:00'),
 	(2, 1, '2022-10-09 01:00:00'),
@@ -215,36 +217,3 @@ FROM notifications AS n, subscription AS s WHERE n.evoker_id = s.author_id AND (
 INSERT INTO notify SELECT n.id, u.id, n.evoker_id, NULL 
 FROM notifications AS n, users AS u WHERE n.subscribed_to = u.id AND (n.type = 'follow');
 
-
-
-
-
-
-
-
--- testing code 
-SELECT * FROM notify;
-
-SELECT n.*, t.receiver_id, t.is_read, u.username, u.avatar FROM notifications AS n, notify AS t, users AS u
-	WHERE n.id = t.notification_id AND n.evoker_id = u.id AND receiver_id = 1;
-	
-	
-SELECT a.*, la.article_id, COUNT(la.article_id) AS likeCount FROM liked_articles AS la, articles AS a WHERE la.article_id = a.id GROUP BY la.article_id;
-
-SELECT a.*, c.article_id, COUNT(c.article_id) AS commentCount FROM comments AS c, articles AS a WHERE c.article_id = a.id GROUP BY c.article_id;
-
-
-
-	SELECT COUNT (c.id) As commentCount, DATE(c.date_published) AS date, a.author_id 
-            FROM comments AS c, articles AS a
-            WHERE c.article_id=a.id 
-                AND a.author_id = 1
-                GROUP BY DATE(c.date_published) 
-                ORDER BY date DESC
-		
-		
-		
-		
-		
-		
-		

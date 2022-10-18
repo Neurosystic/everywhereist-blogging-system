@@ -106,6 +106,12 @@ a:hover {
 .delete{
     background-color: rgb(70, 3, 3) !important;
 }
+.container .delete{
+    width: 202px;
+    height: 34px;
+    padding: 10px 30px;
+    text-align: center;
+}
 
 input[type="submit"], button, input[type="reset"], .commands{
     background-color: black;
