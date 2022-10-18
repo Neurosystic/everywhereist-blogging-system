@@ -17,11 +17,8 @@ window.addEventListener("load", function () {
         const followerJson = await response.json();
         return followerJson;
     }
-    
+
     subscriptTrigger.addEventListener("click", async function () {
-
-        console.log("working analytics bar");
-
         main.innerHTML = "";
         const subscriptionList = await fetchFollowingList(userId);
         const subscriptionDiv = document.createElement("div");
@@ -45,9 +42,6 @@ window.addEventListener("load", function () {
     });
 
     followerTrigger.addEventListener("click", async function () {
-
-        console.log("working analytics bar");
-
         main.innerHTML = "";
         const followerList = await fetchFollowerList(userId);
         const subscriptionDiv = document.createElement("div");

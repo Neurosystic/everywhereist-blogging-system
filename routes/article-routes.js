@@ -26,10 +26,12 @@ router.get("/article/:id", async function (req, res) {
     const likeArray = await likeArticleDao.retrieveArticleLikes(articleId);
     res.locals.likeCount = likeArray.length;
     res.locals.commentTree = commentTree;
+    res.locals.title = article.title;
     res.render("articleView");
 });
 
 router.get("/createArticle", verifyAuthenticated, async function (req, res) {
+    res.locals.title = "Create a new article";
     res.render("editor");
 });
 
@@ -75,6 +77,7 @@ router.get("/editArticle/:articleId", verifyAuthenticated, async function (req, 
     }
 
     res.locals.article = article;
+    res.locals.title = `Edit article: ${article.title}`;
     res.render("editor");
 });
 
