@@ -4,6 +4,7 @@
         "user user"
         "details summary"
         "details navbar"
+        "details chart"
         "details main"
         "details articles"
         "details .";
@@ -12,6 +13,10 @@
     grid-gap: 10px 25px;
     padding: 15px 0;
     position: relative;
+}
+
+#chart{
+    grid-area: chart;
 }
 
 .articles{

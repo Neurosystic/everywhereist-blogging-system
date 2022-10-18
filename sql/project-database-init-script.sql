@@ -167,5 +167,12 @@ SELECT a.*, la.article_id, COUNT(la.article_id) AS likeCount FROM liked_articles
 SELECT a.*, c.article_id, COUNT(c.article_id) AS commentCount FROM comments AS c, articles AS a WHERE c.article_id = a.id GROUP BY c.article_id;
 
 
-SELECT a.*, u.username, u.avatar FROM articles AS a, users AS u
-            WHERE a.author_id = u.id AND a.author_id = 1
+
+		
+		
+		
+		
+		
+		
+		
+		

@@ -3,7 +3,6 @@
 window.addEventListener("load", function () {
 
     const main = document.querySelector(".mainContent");
-    const analyticTrigger = document.querySelector("#analytics");
     const subscriptTrigger = document.querySelector("#subscriptions");
     const followerTrigger = document.querySelector("#followers");
 
@@ -18,21 +17,6 @@ window.addEventListener("load", function () {
         const followerJson = await response.json();
         return followerJson;
     }
-
-    analyticTrigger.addEventListener("click", async function () {
-        main.innerHTML = "";
-        const commentNumsEachday = await countCommentsByID(id);
-        const date = await countCommentTenDays();
-        const analyticDiv = document.createElement("div");
-        analyticDiv.innerHTML = `
-        
-        
-        
-        
-        `
-        
-
-    });
 
     subscriptTrigger.addEventListener("click", async function () {
         main.innerHTML = "";
