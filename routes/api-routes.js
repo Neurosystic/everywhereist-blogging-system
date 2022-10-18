@@ -5,6 +5,7 @@ const userDao = require("../modules/users-dao.js");
 const articleDao = require("../modules/articles-dao.js");
 const likeArticleDao = require("../modules/liked-articles-dao.js");
 const subscriptionDao = require("../modules/subscription-dao.js");
+const commentDao = require("../modules/comments-dao.js");
 
 router.get("/api/usernames", async function(req, res){
     const userArray = await userDao.retrieveAllUsers();
@@ -31,7 +32,17 @@ router.get("/api/articles", async function(req, res){
         articleArray = await articleDao.retrieveArticlesBySort(sort, order);  
     } else {
         articleArray = await articleDao.retrieveArticlesByAuthorSort(userId, sort, order);
-    }   
+    }  
+    
+    for(let i = 0; i < articleArray.length; i++){
+        const likeArray =  await likeArticleDao.retrieveArticleLikes(articleArray[i].id);
+        const commentArray = await commentDao.retrieveCommentByArticleId(articleArray[i].id);
+        const popularity = commentArray.length + (2 * likeArray.length);
+        articleArray[i].commentCount = commentArray.length;
+        articleArray[i].likeCount = likeArray.lenght;
+        articleArray[i].popularity = popularity;
+        articleArray[i].likeCount = (popularity - (commentArray.length)) / 2;
+    }
 
     res.json(articleArray);
 });

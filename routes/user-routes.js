@@ -78,7 +78,7 @@ router.post("/editDetails", async function(req, res){
 
 });
 
-router.post("/deleteAccount", async function(req, res){
+router.get("/deleteAccount", verifyAuthenticated, async function(req, res){
     await userDao.deleteUser(res.locals.user.id);
     res.clearCookie("authToken");
     res.locals.user = null;

@@ -39,7 +39,8 @@
                             <div class="notifyContent">
                                 <p>{{this.username}} {{this.description}}</p>
                                 <p class="notifyDate">{{this.date_published}}</p>
-                                <form class="readForm" method="POST" action="../readNotification">
+                                
+                                <form class="readForm" method="POST" action="../readNotification/{{this.id}}/{{this.evoker_id}}/{{this.receiver_id}}">
                                     <input name="redirect" 
                                     {{#if this.comment_id}}
                                         value="/article/{{this.article_id}} #comment{{this.comment_id}}" 
@@ -51,9 +52,9 @@
                                             {{/if}} 
                                         {{/if}} 
                                         style="display: none">
-                                    <input type="text" name="notificationId" value="{{this.id}}" style="display: none">
+                                    {{!-- <input type="text" name="notificationId" value="{{this.id}}" style="display: none">
                                     <input type="text" name="receiverId" value="{{this.receiver_id}}" style="display: none">
-                                    <input type="text" name="evokerId" value="{{this.evoker_id}}" style="display: none">
+                                    <input type="text" name="evokerId" value="{{this.evoker_id}}" style="display: none"> --}}
                                 </form>
                             </div>
                         </div>
