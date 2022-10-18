@@ -1,4 +1,5 @@
 window.addEventListener("load", async function () {
+
   async function fetchArticleByAuthor(id) {
     const response = await fetch(`../api/articles?author=${id}`);
     const articleJson = await response.json();

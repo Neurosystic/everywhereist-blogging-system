@@ -17,7 +17,7 @@ window.addEventListener("load", function () {
         const followerJson = await response.json();
         return followerJson;
     }
-    
+
     subscriptTrigger.addEventListener("click", async function () {
         main.innerHTML = "";
         const subscriptionList = await fetchFollowingList(userId);
