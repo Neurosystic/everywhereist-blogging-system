@@ -4,8 +4,8 @@
         "user user"
         "details summary"
         "details navbar"
-        "details chart"
         "details main"
+        "details chart"
         "details articles"
         "details .";
     grid-template-columns: 1fr 3fr;
