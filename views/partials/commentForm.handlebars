@@ -14,13 +14,11 @@
         </div>
     </div>
 
-    <div class="deleteLink delete{{this.commenter_id}}" style="display: none">
-        <a href="../deleteComment/{{this.article_id}}{{article.id}}/{{this.id}}">Delete Comment</a>
-        {{!-- <form class="delete" method="POST" action="../deleteComment">
+    <div class="deleteForm delete{{this.commenter_id}}" style="display: none">
+        <form class="delete" method="POST" action="../deleteComment">
             <input type="text" name="commentId" value="{{this.id}}" style="display: none">
-            <input type="text" name="articleId" value="" style="display: none">
             <input type="submit" value="Delete comment">
-        </form> --}}
+        </form>
     </div>
 
 </div>

@@ -11,15 +11,15 @@ const { getCurrentTime } = require("../modules/format-functions.js");
 const { verifyAuthenticated } = require("../middleware/auth-middleware.js");
 router.use(verifyAuthenticated);
 
-router.post("/likeArticle", async function(req, res){
-    const articleId = req.body.articleId;
+router.get("/likeArticle/:articleId", async function(req, res){
+    const articleId = req.params.articleId;
     const userId = res.locals.user.id;
     await likeArticleDao.registerArticleLiked(articleId, userId, getCurrentTime());
     res.redirect("back");
 });
 
-router.post("/unlikeArticle", async function(req, res){
-    const articleId = req.body.articleId;
+router.get("/unlikeArticle/:articleId", async function(req, res){
+    const articleId = req.params.articleId;
     const userId = res.locals.user.id;
     await likeArticleDao.removeArticleLiked(articleId, userId);
     res.redirect("back");
