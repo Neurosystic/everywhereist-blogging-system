@@ -57,14 +57,14 @@ router.post("/postComment", async function(req, res){
     res.redirect("back");
 });
 
-router.post("/deleteComment", async function(req, res){
-    const commentId = req.body.commentId;
+router.get("/deleteComment/:commentId", async function(req, res){
+    const commentId = req.params.commentId;
     await commentDao.deleteComment(commentId);
     res.redirect("back");
 });
 
-router.post("/subscribe", async function(req, res){
-    const authorId = req.body.authorId;
+router.get("/subscribe/:authorId", async function(req, res){
+    const authorId = req.params.authorId;
     const subscriberId = res.locals.user.id;
     const date_published = getCurrentTime();
     await subscriptionDao.registerSubscription(subscriberId, authorId, date_published);
@@ -83,25 +83,25 @@ router.post("/subscribe", async function(req, res){
     res.redirect("back");
 });
 
-router.post("/unsubscribe", async function(req, res){
-    const authorId = req.body.authorId;
+router.get("/unsubscribe/:authorId", async function(req, res){
+    const authorId = req.params.authorId;
     const subscriberId = res.locals.user.id;
     await subscriptionDao.removeSubscription(subscriberId, authorId);
     res.redirect("back");
 });
 
-router.post("/removeFollower", async function(req, res){
-    const followerId = req.body.followerId;
+router.get("/removeFollower/:followerId", async function(req, res){
+    const followerId = req.params.followerId;
     const authorId = res.locals.user.id;
     await subscriptionDao.removeSubscription(followerId, authorId);
     res.redirect("back");
 });
 
-router.post("/readNotification", async function(req, res){
+router.post("/readNotification/:notificationId/:evokerId/:receiverId", async function(req, res){
     const obj = {
-        notification_id : req.body.notificationId,
-        receiver_id : req.body.receiverId,
-        evoker_id : req.body.evokerId
+        notification_id : req.params.notificationId,
+        receiver_id : req.params.receiverId,
+        evoker_id : req.params.evokerId
     }
     await notificationDao.updateNotificationReadStatus(obj);
 

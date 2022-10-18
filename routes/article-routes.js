@@ -61,8 +61,8 @@ router.post("/createArticle", upload.single("imageFile"), async function (req, r
     res.redirect(`/article/${article.id}`);
 });
 
-router.get("/editArticle", verifyAuthenticated, async function (req, res) {
-    const articleId = req.query.articleId;
+router.get("/editArticle/:articleId", verifyAuthenticated, async function (req, res) {
+    const articleId = req.params.articleId;
     const article = await articleDao.retrieveArticleById(articleId);
 
     if (!article) {
@@ -112,8 +112,10 @@ router.post("/editArticle", upload.single("imageFile"), async function (req, res
     res.redirect(`/article/${updatedArticle.id}`);
 });
 
-router.post("/deleteArticle", async function (req, res) {
-    const articleId = req.body.articleId;
+
+//Improvement later....
+router.get("/deleteArticle/:articleId", async function (req, res) {
+    const articleId = req.params.articleId;
     await articleDao.deleteArticle(articleId);
     res.setToastMessage("Successfully deleted article!");
     res.redirect("/");

@@ -47,7 +47,7 @@ window.addEventListener("load", function () {
                         <img src="../avatar/${item.avatar}" alt="Author avatar">
                     </a> 
                 </div>
-                <a href="../unsubscribe/${item.id}">Unsubscribe</a>
+                <a class="commands" href="../unsubscribe/${item.id}">Unsubscribe</a>
             `;
         });
 
@@ -70,7 +70,7 @@ window.addEventListener("load", function () {
                         <img src="../avatar/${item.avatar}" alt="Author avatar">
                     </a> 
                 </div>
-                <a href="../removeFollower/${item.id}">Remove</a>             
+                <a class="commands" href="../removeFollower/${item.id}">Remove</a>             
             `;
         });
 
