@@ -5,6 +5,7 @@
         "details summary"
         "details navbar"
         "details main"
+        "details chart"
         "details articles"
         "details .";
     grid-template-columns: 1fr 3fr;
@@ -12,6 +13,10 @@
     grid-gap: 10px 25px;
     padding: 15px 0;
     position: relative;
+}
+
+#chart{
+    grid-area: chart;
 }
 
 .articles{

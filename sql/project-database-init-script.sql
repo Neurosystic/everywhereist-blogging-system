@@ -149,8 +149,4 @@ FROM notifications AS n, subscription AS s WHERE n.evoker_id = s.author_id AND (
 INSERT INTO notify SELECT n.id, u.id, n.evoker_id, NULL 
 FROM notifications AS n, users AS u WHERE n.subscribed_to = u.id AND (n.type = 'follow');
 
--- testing code 
-SELECT * FROM notify;
-
-SELECT COUNT (c.id) As commentCount, DATE(c.date_published) AS date, a.author_id FROM comments AS c, articles AS a
-        WHERE c.article_id=a.id AND a.author_id =1 GROUP BY DATE(c.date_published) ORDER BY date DESC;
+-- testing code

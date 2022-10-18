@@ -78,7 +78,7 @@ async function retrieveCommentPerDayByAuthorId(id){
     
     const db = await dbPromise;
     
-    const result = await db.get(SQL`
+    const result = await db.all(SQL`
         SELECT COUNT (c.id) As commentCount, DATE(c.date_published) AS date, a.author_id 
             FROM comments AS c, articles AS a
             WHERE c.article_id=a.id 
