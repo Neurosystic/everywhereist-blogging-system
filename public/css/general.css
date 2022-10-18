@@ -149,3 +149,4 @@ input[type="submit"], button, input[type="reset"], .commands{
 }
 
 /*remember to put in the responsiveness*/
+@import url(./responsiveness.css);

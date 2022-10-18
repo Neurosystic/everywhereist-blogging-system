@@ -57,19 +57,6 @@
                    </a>
                </div> 
                
-                {{!-- <form method="POST" action="../likeArticle" id="likeForm">
-                    <input type="text" name="articleId" value="{{article.id}}" style="display: none">
-                    <button type="submit" id="likeBtn">
-                        <i id="heartIcon" class="fa-regular fa-heart"></i>
-                    </button>
-                </form>
-
-                <form method="POST" action="../unlikeArticle" id="unlikeForm">
-                    <input type="text" name="articleId" value="{{article.id}}" style="display: none">
-                    <button type="submit" id="unlikeBtn">
-                        <i id="heartIcon" class="fa-solid fa-heart"></i>
-                    </button>
-                </form> --}}
                 {{else}}
                     <i id="heartIcon" class="fa-regular fa-heart"></i>
                 
@@ -80,14 +67,7 @@
             <div class="subscriptionCmd">
                  <a class="commands" href="../subscribe/{{article.author_id}}" id="subscribeLink">Subscribe</a>
         <a class="commands" href="../unsubscribe/{{article.author_id}}" id="unsubscribeLink">Unsubscribe</a>
-                {{!-- <form method="POST" action="../subscribe" id="subscribeForm">
-                    <input type="text" name="authorId" value="{{article.author_id}}" style="display: none">
-                    <input type="submit" value="Subscribe">
-                </form>
-                <form method="POST" action="../unsubscribe" id="unsubscribeForm">
-                    <input type="text" name="authorId" value="{{article.author_id}}" style="display: none">
-                    <input type="submit" value="UnSubscribe">
-                </form> --}}
+               
             </div>
             {{/if}}
             {{!-- this will be the location where an edit, delete article button can be placed --}}
