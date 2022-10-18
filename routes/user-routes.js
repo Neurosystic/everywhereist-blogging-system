@@ -21,7 +21,7 @@ router.get("/profile", verifyAuthenticated, async function(req, res){
     res.locals.followerCount = followersArray.length;
     res.locals.likeCount = likeArray.length;
     res.locals.commentCount = commentArray.length;
-    res.locals.title = `${res.locals.user.username} page`;
+    res.locals.title = `${res.locals.user.username} Profile Page`;
     res.render("userAdmin");
 });
 
@@ -47,7 +47,7 @@ router.get("/user/:id", async function(req, res){
     if(res.locals.user.id == viewingUser.id){
         return res.redirect("/profile");
     }
-    res.locals.title = `${viewingUser.username} page`;
+    res.locals.title = `${viewingUser.username} Profile Page`;
     res.render("userProfile");
 });
 
