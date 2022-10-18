@@ -21,6 +21,7 @@ window.addEventListener("load", async function () {
         if (usernameArray.includes(username.value)) {
             username.style.border = "solid red";
             usernameWarning.innerText = `This username already exist, please choose another username`;
+            submitBtn.disabled = true;
         } else {
             username.style.border = null;
             usernameWarning.innerText = "";
@@ -42,7 +43,6 @@ window.addEventListener("load", async function () {
             }
         });
     }
-
 
 });
 

@@ -22,6 +22,9 @@ router.get("/profile", verifyAuthenticated, async function(req, res){
     res.locals.likeCount = likeArray.length;
     res.locals.commentCount = commentArray.length;
     res.locals.title = `${res.locals.user.username} Profile Page`;
+    const analyticData = await commentDao.retrieveCommentPerDayByAuthorId(viewingId);
+    res.locals.data = analyticData.splice(0, 15)
+    console.log(res.locals.data)
     res.render("userAdmin");
 });
 
@@ -37,7 +40,7 @@ router.get("/user/:id", async function(req, res){
     const followersArray = await subscriptionDao.retrieveUserFollowerList(viewingId);
     const likeArray = await likeArticleDao.retrieveUserTotalLikesReceived(viewingId);
     const commentArray = await commentDao.retrieveUserTotalCommentReceived(viewingId);
-    
+    res.locals.data = await commentDao.retrieveCommentPerDayByAuthorId(viewingId);
     res.locals.followerCount = followersArray.length;
     res.locals.likeCount = likeArray.length;
     res.locals.commentCount = commentArray.length;

@@ -31,7 +31,7 @@
 
     <div>
 
-</div>
+    </div>
 
 </div>
 
@@ -48,12 +48,12 @@
         <i class="fa-solid fa-comment"></i>
         <p>Total comments: <span>{{commentCount}}</span></p>
     </div>
-    
+
 </div>
 
 <div class="articles">
     <h2>Top 3 Popular Articles </h2>
-    <div class="popularDiv"> 
+    <div class="popularDiv">
         <ol class="threePopular"></ol>
     </div>
     <h2>Published Articles</h2>
@@ -62,53 +62,51 @@
 
 <div class="mainContent">
 
-</div>
-<div id = "chart">
-        <canvas id = "histogram" width="500" height="500" ></canvas>
-    
-    </div>
 
-        <script>
-            const data = {{dateDisplay}}
-            console.log(data);
-        const ctx = document.getElementById("histogram");
-        const chart = new Chart(ctx,{
-            type:"bar",
-            data:{
-            
-            labels:[1, 2, 3, 4, 5],
-            
-            datasets:[
-                {
-                    label:"analystic",
-                    data:[1, 2, 3, 4, 5],
-                backgroundcolor:[
-                    "rgba(255, 99, 132, 0.2)",
-                    "rgba(54, 162, 235, 0.2)",
-                    "rgba(255, 206, 86, 0.2)",
-                    "rgba(75, 192, 192, 0.2)",
-                    "rgba(153, 102, 255, 0.2)",
-                    "rgba(255, 159, 64, 0.2)",
-                    "rgba(255, 130, 96, 0.2)",
-                    "rgba(90, 255, 160, 0.2)",
-                    "rgba(50, 182, 75, 0.2)",
-                    "rgba(170, 160, 150, 0.2)"
-                ],
-                bordercolor:[
-                    "rgba(255, 99, 132, 1)",
-                    "rgba(54, 162, 235, 1)",
-                    "rgba(255, 206, 86, 1)",
-                    "rgba(75, 192, 192, 1)",
-                    "rgba(153, 102, 255, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 130, 96, 1)",
-                    "rgba(90, 255, 160, 1)",
-                    "rgba(50, 182, 75, 1)",
-                    "rgba(170, 160, 150, 1)"
-                ],
-                borderWidth: 1
+</div>
+
+    <div class="graph">
+        <canvas id="histogram" width="500" height="350"></canvas>
+    </div>
+<script>
+    const xArray = [];
+    const yArray = [];
+    {{#each data}}
+        xArray.push(`{{this.date}}`);
+        yArray.push({{this.commentCount}});
+    {{/each}}
+
+    console.log(xArray, yArray)
+    const ctx = document.querySelector("#histogram").getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: xArray,
+                datasets: [{
+                    label: 'Comments Received Per Day ',
+                    data: yArray,
+                    backgroundColor: 'rgb(247, 242, 238, 1)',
+                    borderWidth: 1,
+                    barPercentage: 1,
+
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Comments Received Per Day'
+                        },
+                        beginAtZero: false
+                    }],
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Date'
+                        }
+                    }]
+                }
             }
-        ]
-    }
-});
+        });
 </script>
