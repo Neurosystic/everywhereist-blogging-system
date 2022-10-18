@@ -78,10 +78,7 @@ window.addEventListener("load", function () {
                         <img src="../avatar/${item.avatar}" alt="Author avatar">
                     </a> 
                 </div>
-                <form method="POST" action="../unsubscribe">
-                    <input type="text" name="authorId" value="${item.id}" style="display: none">
-                    <input type="submit" value="Unsubscribe">
-                </form>
+                <a class="commands" href="../unsubscribe/${item.id}">Unsubscribe</a>
             `;
         });
 
@@ -107,10 +104,7 @@ window.addEventListener("load", function () {
                         <img src="../avatar/${item.avatar}" alt="Author avatar">
                     </a> 
                 </div>
-                <form method="POST" action="../removeFollower">
-                    <input type="text" name="followerId" value="${item.id}" style="display: none">
-                    <input type="submit" value="Remove">
-                </form>
+                <a class="commands" href="../removeFollower/${item.id}">Remove</a>             
             `;
         });
 

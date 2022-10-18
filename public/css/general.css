@@ -103,11 +103,11 @@ a:hover {
     line-height: 1.5em;
 }
 
-.delete input[type="submit"]{
-    background-color: rgb(70, 3, 3);
+.delete{
+    background-color: rgb(70, 3, 3) !important;
 }
 
-input[type="submit"], button, input[type="reset"]{
+input[type="submit"], button, input[type="reset"], .commands{
     background-color: black;
     color: #ffff;
     border: none;

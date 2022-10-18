@@ -46,7 +46,18 @@
 
                 <p><span id="likeCount">{{likeCount}}</span> likes</p>
                 {{#if user}}
-                <form method="POST" action="../likeArticle" id="likeForm">
+               <div id="likeLink">
+                   <a href="../likeArticle/{{article.id}}" id="likeBtn"> 
+                   <i id="heartIcon" class="fa-regular fa-heart"></i>
+                   </a>
+               </div>
+               <div id="unlikeLink">
+                   <a href="../unLikeArticle/{{article.id}}" id="unlikeBtn"> 
+                   <i id="heartIcon" class="fa-solid fa-heart"></i>
+                   </a>
+               </div> 
+               
+                {{!-- <form method="POST" action="../likeArticle" id="likeForm">
                     <input type="text" name="articleId" value="{{article.id}}" style="display: none">
                     <button type="submit" id="likeBtn">
                         <i id="heartIcon" class="fa-regular fa-heart"></i>
@@ -58,24 +69,25 @@
                     <button type="submit" id="unlikeBtn">
                         <i id="heartIcon" class="fa-solid fa-heart"></i>
                     </button>
-                </form>
+                </form> --}}
                 {{else}}
-                <button type="button" id="likeBtn" disabled="true">
                     <i id="heartIcon" class="fa-regular fa-heart"></i>
-                </button>
+                
                 {{/if}}
             </div>
 
             {{#if user}}
             <div class="subscriptionCmd">
-                <form method="POST" action="../subscribe" id="subscribeForm">
+                 <a class="commands" href="../subscribe/{{article.author_id}}" id="subscribeLink">Subscribe</a>
+        <a class="commands" href="../unsubscribe/{{article.author_id}}" id="unsubscribeLink">Unsubscribe</a>
+                {{!-- <form method="POST" action="../subscribe" id="subscribeForm">
                     <input type="text" name="authorId" value="{{article.author_id}}" style="display: none">
                     <input type="submit" value="Subscribe">
                 </form>
                 <form method="POST" action="../unsubscribe" id="unsubscribeForm">
                     <input type="text" name="authorId" value="{{article.author_id}}" style="display: none">
                     <input type="submit" value="UnSubscribe">
-                </form>
+                </form> --}}
             </div>
             {{/if}}
             {{!-- this will be the location where an edit, delete article button can be placed --}}

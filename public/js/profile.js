@@ -1,5 +1,4 @@
 window.addEventListener("load", async function () {
-
   async function fetchArticleByAuthor(id) {
     const response = await fetch(`../api/articles?author=${id}`);
     const articleJson = await response.json();
@@ -7,7 +6,9 @@ window.addEventListener("load", async function () {
   }
 
   async function fetchUserArticleSort(id, condition, order) {
-    const response = await fetch(`../api/articles?author=${id}&sort=${condition}&order=${order}`);
+    const response = await fetch(
+      `../api/articles?author=${id}&sort=${condition}&order=${order}`
+    );
     const articleJson = await response.json();
     return articleJson;
   }
@@ -77,33 +78,30 @@ window.addEventListener("load", async function () {
       if (!item.date_edited) {
         editedDate.style.display = "none";
       }
-
     });
   }
 
-  const subscribeForm = document.querySelector("#subscribeForm");
-  const unsubscribeForm = document.querySelector("#unsubscribeForm");
+  const subscribeLink = document.querySelector("#subscribeLink");
+  const unsubscribeLink = document.querySelector("#unsubscribeLink");
   const userFollowingList = [];
 
-  if (subscribeForm && unsubscribeForm) {
+  if (subscribeLink && unsubscribeLink) {
     const followingJson = await fetchFollowingList(userId);
     followingJson.forEach(function (item) {
       userFollowingList.push(item.author_id);
     });
 
     if (userFollowingList.includes(parseInt(viewingUserId))) {
-      unsubscribeForm.style.display = "initial";
-      subscribeForm.style.display = "none";
+      unsubscribeLink.style.display = "initial";
+      subscribeLink.style.display = "none";
     } else {
-      subscribeForm.style.display = "initial";
-      unsubscribeForm.style.display = "none";
+      subscribeLink.style.display = "initial";
+      unsubscribeLink.style.display = "none";
     }
   }
 
-
-
-  function compare(a, b) { 
-    console.log("sorted")
+  function compare(a, b) {
+    console.log("sorted");
     if (a.popularity > b.popularity) {
       return -1;
     } else if (a.popularity < b.popularity) {
@@ -111,17 +109,16 @@ window.addEventListener("load", async function () {
     } else {
       return 0;
     }
-   
   }
-  
+
   function createTopThreeArticleCard(array) {
     const popularDiv = document.querySelector(".threePopular");
-    for(let i = 0; i < 3; i++){
-      if(array[i]){
-        let image = 'gerneral.jpg';
-          if (array[i].image) {
-            image = array[i].image;
-          }
+    for (let i = 0; i < 3; i++) {
+      if (array[i]) {
+        let image = "gerneral.jpg";
+        if (array[i].image) {
+          image = array[i].image;
+        }
         popularDiv.innerHTML += `
           <li><div class="cardIntro">
               <a href="../article/${array[i].id}">
@@ -147,5 +144,4 @@ window.addEventListener("load", async function () {
       }
     }
   }
-
 });
