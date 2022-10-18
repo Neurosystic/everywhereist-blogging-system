@@ -2,15 +2,14 @@ window.addEventListener("load", async function () {
     // JS implementation of like button when clicked - toggle class??
     const likeBtn = document.querySelector("#likeBtn");
 
-    const likeForm = document.querySelector("#likeForm");
-    const unlikeForm = document.querySelector("#unlikeForm");
+    const likeLink = document.querySelector("#likeLink");
+    const unlikeLink = document.querySelector("#unlikeLink");
 
-    const subscribeForm = document.querySelector("#subscribeForm");
-    const unsubscribeForm = document.querySelector("#unsubscribeForm");
+    const subscribeLink = document.querySelector("#subscribeLink");
+    const unsubscribeLink = document.querySelector("#unsubscribeLink");
     const userFollowingList = [];
 
     if (userId) {
-        likeBtn.disabled = false;
         const followingJson = await fetchFollowingList(userId);
         followingJson.forEach(function (item) {
             userFollowingList.push(item.author_id);
@@ -21,34 +20,31 @@ window.addEventListener("load", async function () {
     const likeArray = await fetchArticleLikeCounts(articleId);
     likeArray.forEach(function (element) {
         if (element.user_id == userId) {
-            likeForm.style.display = "none";
+            likeLink.style.display = "none";
         } else {
             unmatchCount++;
         }
     });
 
-    if (unmatchCount >= likeArray.length && unlikeForm) {
-        unlikeForm.style.display = "none";
+    if (unmatchCount >= likeArray.length && unlikeLink) {
+        unlikeLink.style.display = "none";
     }
 
     if (authorId == userId) {
         const otherCommandDiv = document.querySelector(".otherCommands");
         otherCommandDiv.innerHTML += `
             <div class="adminCmd">
-                <form action="../editArticle" method="GET">
-                    <input type="text" name="articleId" value="${articleId}" style="display:none">
-                    <input type="submit" value="Edit Article">
-                </form>
+            <a href="../editArticle/${articleId}">Edit Article</a>
             </div>
         `;
         document.querySelector(".subscriptionCmd").style.display = "none";
     } else if (userId) {
         if (userFollowingList.includes(parseInt(authorId))) {
-            unsubscribeForm.style.display = "initial";
-            subscribeForm.style.display = "none";
+            unsubscribeLink.style.display = "initial";
+            subscribeLink.style.display = "none";
         } else {
-            subscribeForm.style.display = "initial";
-            unsubscribeForm.style.display = "none";
+            subscribeLink.style.display = "initial";
+            unsubscribeLink.style.display = "none";
         }
     }
 
