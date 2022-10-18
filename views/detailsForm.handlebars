@@ -13,17 +13,17 @@
 
         <div class="userDetail">
             <label for="fname">First name: </label>
-            <input type="text" name="fname" id="fname" required value="{{user.fname}}">
+            <input type="text" name="fname" placeholder="Enter first name" id="fname" required value="{{user.fname}}">
         </div>
 
         <div class="userDetail">
             <label for="lname">Last name: </label>
-            <input type="text" name="lname" id="lname" required value="{{user.lname}}">
+            <input type="text" name="lname" placeholder="Enter last name" id="lname" required value="{{user.lname}}">
         </div>
 
         <div class="userDetail">
             <label for="username">Username: </label>
-            <input type="text" name="username" id="username" required value="{{user.username}}">
+            <input type="text" name="username" placeholder="Enter a unique username" id="username" required value="{{user.username}}">
             <div class="message">
                 <span id="usernameWarning"></span>
             </div>
@@ -33,12 +33,12 @@
         {{else}}
             <div class="userDetail">
                 <label for="password">Password: </label>
-                <input type="password" name="password" id="password" required>
+                <input type="password" name="password" placeholder="Enter a secure password" id="password" required>
             </div>
 
             <div class="userDetail">
                 <label for="verify">Re-enter password: </label>
-                <input type="password" id="verify" required>
+                <input type="password" id="verify" placeholder="Re-enter your password" required>
                 <div class="message">
                     <span id="passwordWarning"></span>
                 </div>
@@ -52,12 +52,12 @@
 
        <div class="userDetail">
             <label for="email">E-mail: </label>
-            <input type="text" id="email" name="email" required value="{{user.email}}">
+            <input type="text" id="email" name="email" placeholder="Enter your email" required value="{{user.email}}">
         </div>
 
         <div class="userDetail description">
             <label for="description">About me description: <br><br></label>
-            <textarea rows="4" id="description" name="description">{{user.description}}</textarea>
+            <textarea rows="4" id="description" placeholder="Write bio about yourself which will be displayed on your user profile page" name="description">{{user.description}}</textarea>
         </div>
 
         <div class="userDetail avatar">

@@ -6,7 +6,7 @@ const hashSalt = require("../modules/hash-salt.js");
 const userDao = require("../modules/users-dao.js");
 
 router.get("/login", function(req, res){
-
+    res.locals.title = "Login Page"
     res.render("login");
 });
 
@@ -37,6 +37,7 @@ router.post("/login", async function(req, res){
 });
 
 router.get("/signUp", function(req, res){
+    res.locals.title = "Signup Form"
     res.render("detailsForm");
 });
 
