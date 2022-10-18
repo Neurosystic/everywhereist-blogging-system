@@ -34,7 +34,7 @@ window.addEventListener("load", async function () {
         const otherCommandDiv = document.querySelector(".otherCommands");
         otherCommandDiv.innerHTML += `
             <div class="adminCmd">
-            <a href="../editArticle/${articleId}">Edit Article</a>
+            <a class="commands" href="../editArticle/${articleId}">Edit Article</a>
             </div>
         `;
         document.querySelector(".subscriptionCmd").style.display = "none";

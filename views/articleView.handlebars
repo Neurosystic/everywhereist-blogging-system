@@ -78,8 +78,8 @@
 
             {{#if user}}
             <div class="subscriptionCmd">
-                 <a href="../subcribe/{{article.author_id}}" id="subscribeLink">Subscribe</a>
-        <a href="../unsubcribe/{{article.author_id}}" id="unsubscribeLink">Unsubscribe</a>
+                 <a class="commands" href="../subscribe/{{article.author_id}}" id="subscribeLink">Subscribe</a>
+        <a class="commands" href="../unsubscribe/{{article.author_id}}" id="unsubscribeLink">Unsubscribe</a>
                 {{!-- <form method="POST" action="../subscribe" id="subscribeForm">
                     <input type="text" name="authorId" value="{{article.author_id}}" style="display: none">
                     <input type="submit" value="Subscribe">
