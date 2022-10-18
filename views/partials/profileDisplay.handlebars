@@ -69,8 +69,10 @@
     </div>
 
         <script>
-        var ctx = document.getElementById("histogram");
-        var chart = new Chart(ctx,{
+            const data = {{dateDisplay}}
+            console.log(data);
+        const ctx = document.getElementById("histogram");
+        const chart = new Chart(ctx,{
             type:"bar",
             data:{
             

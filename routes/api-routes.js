@@ -65,4 +65,11 @@ router.get("/api/followers", async function(req, res){
     res.json(followingArray);
 });
 
+router.get("/api/commentPerDayForUser", async function(req, res){
+    const userId = req.query.userId;
+    const data = await commentDao.retrieveCommentPerDayByAuthorId(userId);
+    res.json(data);
+
+});
+
 module.exports = router;

@@ -17,12 +17,10 @@ router.get("/profile", verifyAuthenticated, async function(req, res){
     const followersArray = await subscriptionDao.retrieveUserFollowerList(viewingId);
     const likeArray = await likeArticleDao.retrieveUserTotalLikesReceived(viewingId);
     const commentArray = await commentDao.retrieveUserTotalCommentReceived(viewingId);
-    const analyticTenDayArray = await commentDao.countCommentTenDays(viewingId);
     
     res.locals.followerCount = followersArray.length;
     res.locals.likeCount = likeArray.length;
     res.locals.commentCount = commentArray.length;
-    res.locals.dateDisplay = analyticTenDayArray;
     res.render("userAdmin");
 });
 
