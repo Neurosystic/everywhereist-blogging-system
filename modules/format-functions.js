@@ -60,15 +60,8 @@ async function formatImage(fileInfo){
     }
 }
 
-function compare(a, b){
-    if(a.popularity < b.popularity) return -1;
-    else if (a.popularity > b.popularity) return 1;
-    else return 0
-}
-
 module.exports = {
     getCurrentTime,
     convertCommentsToTree,
     formatImage,
-    compare
 }

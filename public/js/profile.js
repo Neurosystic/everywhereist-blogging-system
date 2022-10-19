@@ -53,32 +53,19 @@ window.addEventListener("load", async function () {
       }
 
       itemDiv.innerHTML += `
-              <div class="cardAuthor">
-                  <a href="../user/${item.author_id}">
-                      <img src="../avatar/${item.avatar}" alt="Author avatar">
-                  </a>
-                  <div>
-                      <a href="../user/${item.author_id}">
-                          <h4>${item.username}</h4>
-                      </a>
-                      <p>Published: ${item.date_published}</p>
-                      <p id="edited">Last edited: ${item.date_edited}</p>
-                  </div> 
-              </div>
+          <div class="articleDisplay">
               <div class="cardIntro">
                   <a href="../article/${item.id}">
                       <h4 class="articleTitle">${item.title}</h4>
+                      <p>Published: ${item.date_published}</p>
                       <div class="articlePreview">
                           <p>${item.content}</p>
                       </div>
                   </a>
               </div>
+            </div>
           `;
 
-      const editedDate = document.querySelector("#edited");
-      if (!item.date_edited) {
-        editedDate.style.display = "none";
-      }
     });
   }
 

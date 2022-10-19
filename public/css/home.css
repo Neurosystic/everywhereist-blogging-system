@@ -1,5 +1,29 @@
+/* .articlePanel {
+    padding: 20px 20px;
+    text-align: right;
+} */
+
+.introDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-image: url("../images/street.jpeg");
+    background-size: cover;
+    height: 800px;
+    background-repeat: no-repeat;
+    
+
+}
+
+.headerSort{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 0;
+}
 .articlePanel {
-    padding: 5px 20px;
+    padding-right: 40px;
 }
 
 .articlePanel > *{
@@ -55,4 +79,17 @@
     width: 90%;
     margin: auto;
 }
+.introDiv h1{
+    font-size: 50px !important;
+    color: #000000;
+}
+.introDiv p{
+    font-size: 25px;
+}
 
+.articlePreview{
+    overflow-y: hidden;
+    width: 90%;
+    margin: auto;
+    height: 145px;
+}

@@ -69,3 +69,7 @@
 .grandchildComment {
     margin-left: 120px;
 }
+
+.commenterCard .delete, .reply{
+    margin: 5px 0;
+}

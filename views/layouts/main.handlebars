@@ -40,7 +40,7 @@
                                 <p>{{this.username}} {{this.description}}</p>
                                 <p class="notifyDate">{{this.date_published}}</p>
                                 
-                                <form class="readForm" method="POST" action="../readNotification/{{this.id}}/{{this.evoker_id}}/{{this.receiver_id}}">
+                                <form class="readForm" method="POST" action="../readNotification/{{this.id}}/{{this.evoker_id}}/{{this.receiver_id}}" style="display: none">
                                     <input name="redirect" 
                                     {{#if this.comment_id}}
                                         value="/article/{{this.article_id}} #comment{{this.comment_id}}" 
