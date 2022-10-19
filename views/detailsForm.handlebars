@@ -101,7 +101,7 @@
 
         {{#if user}}
             <input type="submit" value="Confirm changes" id="submit">
-            <a href="../profile"><button type="button">Cancel changes</button></a>
+            <a  href="../profile"><button id="cancelBtn" type="button">Cancel changes</button></a>
         {{else}}
             <input type="submit" value="Create Account" id="submit">
             <input type="reset" value="Reset">
@@ -109,7 +109,7 @@
         </form>
 
         {{#if user}}
-        <a class="commands delete" href="../deleteAccount" class="userDeleteLink">Delete Account</a>
+        <a class="commands delete userDeleteLink" id="accountDelete" href="../deleteAccount">Delete Account</a>
         {{/if}}
 
     </fieldset>

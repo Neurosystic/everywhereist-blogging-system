@@ -38,6 +38,7 @@ window.addEventListener("load", function () {
                 <a class="commands" href="../unsubscribe/${item.id}">Unsubscribe</a>
             `;
         });
+        
 
     });
 

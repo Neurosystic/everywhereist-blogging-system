@@ -29,10 +29,6 @@
         <p>{{viewingUser.description}}</p>
     </div>
 
-    <div>
-
-    </div>
-
 </div>
 
 <div class="summaryStats">
@@ -66,7 +62,8 @@
 </div>
 
     <div class="graph">
-        <canvas id="histogram" width="500" height="350"></canvas>
+        <h2>Comments Received Per Day</h2>
+        <canvas id="histogram" ></canvas>
     </div>
 <script>
     const xArray = [];
@@ -81,13 +78,14 @@
         const chart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: xArray,
+                labels: xArray.reverse(),
                 datasets: [{
-                    label: 'Comments Received Per Day ',
-                    data: yArray,
+                    label: 'Comments Received',
+                    data: yArray.reverse(),
                     backgroundColor: 'rgb(247, 242, 238, 1)',
                     borderWidth: 1,
                     barPercentage: 1,
+                    categoryPercentage: 1
 
                 }]
             },
