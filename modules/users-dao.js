@@ -89,5 +89,5 @@ module.exports = {
   retrieveAllUsers,
   updateUser,
   deleteUser,
-  retrieveUserByUsername,
+  retrieveUserByUsername
 };

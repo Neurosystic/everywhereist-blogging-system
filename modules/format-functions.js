@@ -71,5 +71,5 @@ async function formatImage(fileInfo) {
 module.exports = {
   getCurrentTime,
   convertCommentsToTree,
-  formatImage,
+  formatImage
 };

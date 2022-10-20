@@ -45,5 +45,5 @@ module.exports = {
   registerSubscription,
   removeSubscription,
   retrieveUserFollowerList,
-  retrieveUserFollowingList,
+  retrieveUserFollowingList
 };

@@ -1,6 +1,8 @@
 <link rel="stylesheet" type="text/css" href="../css/user.css">
 <!-- Chart.js v2.9.3 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment"></script>
 <script>
     const userId = {{#if user}}{{user.id}}{{else}}null{{/if}};
     const viewingUserId = {{viewingUser.id}};
@@ -73,7 +75,6 @@
         yArray.push({{this.commentCount}});
     {{/each}}
 
-    console.log(xArray, yArray)
     const ctx = document.querySelector("#histogram").getContext('2d');
         const chart = new Chart(ctx, {
             type: 'bar',
@@ -104,9 +105,15 @@
                         scaleLabel: {
                             display: true,
                             labelString: 'Date'
+                        },
+                        offset: true,
+                        type: 'time',
+                        time: {
+                            unit: 'day'
                         }
                     }]
                 }
             }
+
         });
 </script>

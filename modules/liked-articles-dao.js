@@ -54,5 +54,5 @@ module.exports = {
   removeArticleLiked,
   retrieveArticleLikes,
   retrieveAllArticleLikeCount,
-  retrieveUserTotalLikesReceived,
+  retrieveUserTotalLikesReceived
 };
