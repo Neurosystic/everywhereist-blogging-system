@@ -40,11 +40,15 @@ window.addEventListener("load", function () {
       itemDiv.append(imgDiv);
       if (item.image) {
         imgDiv.innerHTML = `
+                      <a href="../article/${item.id}">
                         <img src="../images/thumbnails/${item.image}" alt="Article cover image">
+                      </a>
                     `;
       } else {
         imgDiv.innerHTML = `
+                      <a href="../article/${item.id}">
                         <img src="../images/thumbnails/general.jpg" alt="Article cover image"> 
+                      </a>
                     `;
       }
 

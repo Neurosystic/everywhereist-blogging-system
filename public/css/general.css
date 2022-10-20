@@ -156,7 +156,9 @@ input[type="submit"], button, input[type="reset"], .commands{
     width:100%;
 }
 
-
+.message *{
+    color: red;
+}
 
 /*remember to put in the responsiveness*/
 @media screen and (max-width: 1260px){
