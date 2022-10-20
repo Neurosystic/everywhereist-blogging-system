@@ -12,6 +12,11 @@ a {
     text-decoration: none;
 } 
 
+.header{
+    position: sticky !important;
+    top: 0;
+}
+
 .header, .footer{
     background-color: #f7f2ee;
     padding: 20px 50px;
