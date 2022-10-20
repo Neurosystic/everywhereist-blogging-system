@@ -1,5 +1,4 @@
 window.addEventListener("load", async function () {
-
   async function fetchArticleByAuthor(id) {
     const response = await fetch(`../api/articles?author=${id}`);
     const articleJson = await response.json();
@@ -46,7 +45,6 @@ window.addEventListener("load", async function () {
                   <img src="../images/thumbnails/${item.image}" alt="Article cover image">
               `;
       } else {
-        //set src of conver image to something that is default if author does not submit an image
         imgDiv.innerHTML = `
                   <img src="../images/thumbnails/general.jpg" alt="Article cover image"> 
               `;
@@ -65,7 +63,6 @@ window.addEventListener("load", async function () {
               </div>
             </div>
           `;
-
     });
   }
 
