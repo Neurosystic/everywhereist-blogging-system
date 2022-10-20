@@ -29,7 +29,7 @@ router.get("/profile", verifyAuthenticated, async function (req, res) {
     viewingId
   );
   res.locals.data = analyticData.splice(0, 15);
-  console.log(res.locals.data);
+
   res.render("userAdmin");
 });
 
@@ -81,8 +81,8 @@ router.post("/editDetails", async function (req, res) {
     email: req.body.email,
     description: req.body.description,
     avatar: req.body.avatar,
-    authToken: req.cookies.authToken,
-  };
+    authToken: req.cookies.authToken
+  }
 
   await userDao.updateUser(user);
 

@@ -86,7 +86,6 @@ window.addEventListener("load", async function () {
   }
 
   function compare(a, b) {
-    console.log("sorted");
     if (a.popularity > b.popularity) {
       return -1;
     } else if (a.popularity < b.popularity) {
@@ -100,7 +99,7 @@ window.addEventListener("load", async function () {
     const popularDiv = document.querySelector(".threePopular");
     for (let i = 0; i < 3; i++) {
       if (array[i]) {
-        let image = "gerneral.jpg";
+        let image = "general.jpg";
         if (array[i].image) {
           image = array[i].image;
         }

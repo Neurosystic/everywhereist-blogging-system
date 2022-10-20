@@ -42,8 +42,8 @@ router.post("/postComment", async function (req, res) {
     date_published: getCurrentTime(),
     parent_comment_id: parent_comment_id,
     article_id: req.body.articleId,
-    commenter_id: res.locals.user.id,
-  };
+    commenter_id: res.locals.user.id
+  }
   await commentDao.createComment(comment);
 
   const article = await articleDao.retrieveArticleById(req.body.articleId);
@@ -55,8 +55,8 @@ router.post("/postComment", async function (req, res) {
     date_published: article.date_published,
     comment_id: comment.id,
     article_id: article.id,
-    subscribed_to: null,
-  };
+    subscribed_to: null
+  }
 
   await notificationDao.registerNotification(notificationObj);
   res.redirect("back");
@@ -94,8 +94,8 @@ router.get("/subscribe/:authorId", async function (req, res) {
     date_published: date_published,
     comment_id: null,
     article_id: null,
-    subscribed_to: authorId,
-  };
+    subscribed_to: authorId
+  }
 
   await notificationDao.registerNotification(notificationObj);
   res.redirect("back");
@@ -121,8 +121,8 @@ router.post(
     const obj = {
       notification_id: req.params.notificationId,
       receiver_id: req.params.receiverId,
-      evoker_id: req.params.evokerId,
-    };
+      evoker_id: req.params.evokerId
+    }
     await notificationDao.updateNotificationReadStatus(obj);
 
     res.redirect(req.body.redirect);

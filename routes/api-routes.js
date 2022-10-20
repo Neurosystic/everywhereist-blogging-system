@@ -101,6 +101,8 @@ router.post("/api/login", bodyParser.json(), async function (req, res) {
     const authToken = uuid();
     user.authToken = authToken;
     await userDao.updateUser(user);
+    res.cookie("authToken", authToken);
+    res.locals.user = user;
     res.status(204).send(authToken);
   } else {
     res.status(401).send("Unauthorized");
@@ -108,13 +110,13 @@ router.post("/api/login", bodyParser.json(), async function (req, res) {
 });
 
 router.get("/api/logout", function (req, res) {
-  authToken = null;
+  res.clearCookie("authToken");
+  res.locals.user = null;
   res.status(204).send("Logged out");
 });
 
 router.get("/api/users", async function (req, res) {
-  const userId = req.query.userId;
-  const user = await userDao.retrieveUserById(userId);
+  const user = await userDao.retrieveUserById(res.locals.user.id);
   if (user.is_admin == 1) {
     const userArray = await userDao.retrieveAllUsers();
     for (let i = 0; i < userArray.length; i++) {
@@ -122,13 +124,23 @@ router.get("/api/users", async function (req, res) {
         userArray[i].id
       );
     }
-    console.log(userArray);
     res.json(userArray);
   } else {
     res.status(401).send("Not an admin");
   }
 });
 
-router.delete("/api/users/:id", function (req, res) {});
+router.delete("/api/users/:id", async function (req, res) {
+    if(!res.locals.user){
+        return res.status(401).send("Unauthenticated!");
+    }
+    const user = await userDao.retrieveUserById(res.locals.user.id);
+  if (user.is_admin == 1) {
+      await userDao.deleteUser(req.params.id);
+      res.status(204).send("User Deleted!");
+  }else{
+      res.status(401).send("Not an admin!")
+  }
+});
 
 module.exports = router;

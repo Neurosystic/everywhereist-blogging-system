@@ -58,8 +58,8 @@ router.post("/signUp", async function (req, res) {
     email: req.body.email,
     description: req.body.description,
     avatar: req.body.avatar,
-    authToken: authToken,
-  };
+    authToken: authToken
+  }
   await userDao.createUser(user);
   res.locals.user = user;
 
