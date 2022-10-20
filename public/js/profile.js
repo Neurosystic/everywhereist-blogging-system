@@ -106,8 +106,9 @@ window.addEventListener("load", async function () {
         popularDiv.innerHTML += `
           <li><div class="cardIntro">
           <div>
-              
+          <a href="../article/${array[i].id}">
               <img src="../images/thumbnails/${image}" alt="Article cover image">
+            </a>
           </div>
               <div >
               <a href="../article/${array[i].id}">

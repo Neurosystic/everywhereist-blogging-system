@@ -28,6 +28,7 @@ router.get("/profile", verifyAuthenticated, async function (req, res) {
   const analyticData = await commentDao.retrieveCommentPerDayByAuthorId(
     viewingId
   );
+  console.log(analyticData)
   res.locals.data = analyticData.splice(0, 15);
 
   res.render("userAdmin");

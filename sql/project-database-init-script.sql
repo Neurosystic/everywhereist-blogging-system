@@ -143,17 +143,17 @@ INSERT INTO subscription VALUES
 	
 INSERT INTO comments (content, date_published, parent_comment_id, article_id, commenter_id) VALUES
 	('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam est erat, pulvinar eget nibh ac, varius consequat orci. Duis eros.', '2022-10-09 01:00:00', NULL, 1, 2),
-	('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut consequat justo ac dolor consectetur sollicitudin. Ut vulputate consectetur lectus in aliquet. Cras mollis sit amet felis vitae lacinia. Fusce quis.', '2022-10-10 13:00:00', 1, 1, 1),
-	('Lorem ipsum dolor sit amet, consectetur adipiscing.', '2022-10-01 16:00:00', NULL, 1, 3),
-	('Lorem ipsum dolor sit.', '2022-10-11 21:00:00', NULL, 2, 5),
+	('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut consequat justo ac dolor consectetur sollicitudin. Ut vulputate consectetur lectus in aliquet. Cras mollis sit amet felis vitae lacinia. Fusce quis.', '2022-10-15 13:00:00', 1, 1, 1),
+	('Lorem ipsum dolor sit amet, consectetur adipiscing.', '2022-10-01 16:00:00', NULL, 4, 3),
+	('Lorem ipsum dolor sit.', '2022-10-11 21:00:00', NULL, 6, 5),
 	('Lorem ipsum.', '2022-10-12 13:00:00', 4, 2, 2),
 	('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tincidunt.', '2022-10-13 16:00:00', 5, 2, 1),
-	('Lorem ipsum dolor sit amet.', '2022-10-14 01:00:00', NULL, 9, 1),
-	('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', '2022-10-15 13:00:00', NULL, 11, 4),
-	('Lorem ipsum dolor sit amet.', '2022-10-13 16:00:00', NULL, 6, 5),
-	('Lorem ipsum dolor sit.', '2022-10-15 01:00:00', NULL, 5, 4),
+	('Lorem ipsum dolor sit amet.', '2022-10-14 01:00:00', NULL, 1, 1),
+	('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', '2022-10-15 13:00:00', NULL, 1, 4),
+	('Lorem ipsum dolor sit amet.', '2022-10-14 16:00:00', NULL, 4, 5),
+	('Lorem ipsum dolor sit.', '2022-10-15 01:00:00', NULL, 6, 4),
 	('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', '2022-10-10 14:00:00', NULL, 10, 3),
-	('Lorem ipsum dolor sit.', '2022-10-09 16:00:00', NULL, 7, 2);
+	('Lorem ipsum dolor sit.', '2022-10-09 16:00:00', NULL, 6, 2);
 
 INSERT INTO liked_articles VALUES
 	(1, 2, '2022-10-09 01:00:00'),
