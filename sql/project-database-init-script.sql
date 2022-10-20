@@ -186,18 +186,18 @@ INSERT INTO notifications (evoker_id, type, description, date_published, comment
 	(4, 'follow', 'started following you', '2022-10-11 12:00:00', NULL, NULL, 2),
 	(1, 'follow', 'started following you', '2022-10-11 04:00:00', NULL, NULL, 3),
 	(1, 'follow', 'started following you', '2022-10-12 06:00:00', NULL, NULL, 5),
-	(2, 'comment', 'posted a comment on: ', '2022-10-10 13:00:00', 1, 1, NULL),
-	(1, 'comment', 'posted a comment on', '2022-10-09 01:00:00', 2, 1, NULL),
-	(3, 'comment', 'posted a comment on', '2022-10-09 01:00:00', 3, 1, NULL),
-	(5, 'comment', 'posted a comment on', '2022-10-09 01:00:00', 4, 2, NULL),
-	(2, 'comment', 'posted a comment on', '2022-10-09 01:00:00', 5, 2, NULL),
-	(1, 'comment', 'posted a comment on', '2022-10-09 01:00:00', 6, 2, NULL),
-	(1, 'comment', 'posted a comment on', '2022-10-09 01:00:00', 7, 9, NULL),
-	(4, 'comment', 'posted a comment on', '2022-10-09 01:00:00', 8, 11, NULL),
-	(5, 'comment', 'posted a comment on', '2022-10-09 01:00:00', 9, 6, NULL),
-	(4, 'comment', 'posted a comment on', '2022-10-09 01:00:00', 10, 5, NULL),
-	(3, 'comment', 'posted a comment on', '2022-10-09 01:00:00', 11, 10, NULL),
-	(2, 'comment', 'posted a comment on', '2022-10-09 01:00:00', 12, 7, NULL);
+	(2, 'comment', 'posted a comment on: Nature and life', '2022-10-10 13:00:00', 1, 1, NULL),
+	(1, 'comment', 'posted a comment on: Nature and life', '2022-10-09 01:00:00', 2, 1, NULL),
+	(3, 'comment', 'posted a comment on: Nature and life', '2022-10-09 01:00:00', 3, 1, NULL),
+	(5, 'comment', 'posted a comment on: Where am I now?', '2022-10-09 01:00:00', 4, 2, NULL),
+	(2, 'comment', 'posted a comment on: Where am I now?', '2022-10-09 01:00:00', 5, 2, NULL),
+	(1, 'comment', 'posted a comment on : Where am I now?', '2022-10-09 01:00:00', 6, 2, NULL),
+	(1, 'comment', 'posted a comment on: Top walkway', '2022-10-09 01:00:00', 7, 9, NULL),
+	(4, 'comment', 'posted a comment on: A morning in europe', '2022-10-09 01:00:00', 8, 11, NULL),
+	(5, 'comment', 'posted a comment on: Tramping through ups and downs', '2022-10-09 01:00:00', 9, 6, NULL),
+	(4, 'comment', 'posted a comment on: The beauty of nature', '2022-10-09 01:00:00', 10, 5, NULL),
+	(3, 'comment', 'posted a comment on: Trip to europe', '2022-10-09 01:00:00', 11, 10, NULL),
+	(2, 'comment', 'posted a comment on: Places you must visit', '2022-10-09 01:00:00', 12, 7, NULL);
 
 -- inserting article or comment related notifications 
 INSERT INTO notify SELECT n.id, s.subscriber_id, s.author_id, NULL 
