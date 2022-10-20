@@ -17,11 +17,16 @@ a {
     padding: 20px 50px;
 }
 
-.header *, .introDiv h1{
+.header *, .articleTitle, input[type="submit"], button, input[type="reset"], .commands, .toastMessage *, #topNav{
     font-family: Montserrat, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
     font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 0.1em;
+}
+
+.articleTitle{
+    font-size: 15px;
+    font-weight: bolder;
 }
 
 .nav{
@@ -69,6 +74,11 @@ a:hover {
     src: url('../font/Lora-Regular.ttf');
 }
 
+@font-face {
+    font-family: 'Dancing Script';
+    src: url('../font/DancingScript-Regular.ttf');
+}
+
 #imgNav{
     padding: 1px;
     width: 20px;
@@ -76,17 +86,18 @@ a:hover {
     vertical-align: baseline;
 }
 
-.authDiv span{
+.authDiv span, .toastMessage *{
     color: #f7775e;
     font-weight: bold;
 }
 
-.articleTitle{
-    font-family: Montserrat, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
-    text-transform: uppercase;
-    font-size: 15px;
-    letter-spacing: 0.1em;
-    font-weight: bolder;
+.toastMessage{
+    border: 1px solid #f7775e;
+    padding: 20px;
+}
+
+.toastMessage *{
+    text-align: center;
 }
 
 .articleContent, .cardIntro p{
@@ -110,13 +121,27 @@ input[type="submit"], button, input[type="reset"], .commands{
     color: #ffff;
     border: none;
     border-radius: 0;
-    font-family: Montserrat, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
     font-size: 12px;
     padding: 10px 30px;
-    /* width: 200px;
-    margin-left: 20px; */
+}
+
+#topNav{
+    text-transform: initial;
+    border-radius: 50%;
+    padding: 15px;
+    position: sticky;
+    bottom: 30px;
+    left: calc(100% - 80px);
+    font-family: Dancing Script !important;
+    font-style: italic;
+    background-color: white;
+    color: black;
+}
+
+#topNav:hover{
+    background-color: black;
+    color: white;
+    opacity: 1;
 }
 
 .articlePreview * {
@@ -131,9 +156,7 @@ input[type="submit"], button, input[type="reset"], .commands{
     width:100%;
 }
 
-.notifyContent{
-    cursor: pointer;
-}
+
 
 /*remember to put in the responsiveness*/
 @media screen and (max-width: 1260px){

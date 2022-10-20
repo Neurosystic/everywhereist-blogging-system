@@ -10,7 +10,7 @@
     text-align: center;
     background-image: url("../images/street.jpeg");
     background-size: cover;
-    height: 800px;
+    height: 500px;
     background-repeat: no-repeat;
     
 
@@ -47,8 +47,6 @@
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    max-height: 700px;
-    overflow-y: auto;
     gap: 20px;
     padding-bottom: 30px;
 }
@@ -80,7 +78,8 @@
     margin: auto;
 }
 .introDiv h1{
-    font-size: 50px !important;
+    font-family: Dancing Script;
+    font-size: 50px;
     color: #000000;
 }
 .introDiv p{

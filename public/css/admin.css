@@ -69,3 +69,6 @@ input[type="submit"], button, input[type="reset"], .commands {
     width: 400px;
 }
 
+#subscriptions, #followers{
+    cursor: pointer;
+}
