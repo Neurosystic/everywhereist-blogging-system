@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
+const bodyParser = require("body-parser");
+const { v4: uuid } = require("uuid");
 
+const hashSalt = require("../modules/hash-salt.js");
 const userDao = require("../modules/users-dao.js");
 const articleDao = require("../modules/articles-dao.js");
 const likeArticleDao = require("../modules/liked-articles-dao.js");
@@ -84,65 +87,50 @@ router.get("/api/commentPerDayForUser", async function (req, res) {
   const data = await commentDao.retrieveCommentPerDayByAuthorId(userId);
   res.json(data);
 });
-//test...
-router.get("/api", async function (req, res) {
-    res.status(200).send('this is the 200 request page for API');
-});
-//API for log in
-router.post("/api/login", async function (req, res) {
-  const username = req.body.username;
-  const password = req.body.password;
-  console.log(username)
-  const passwordIsMatch = await passwordIsMatch(input, password);
-  if (passwordIsMatch) {
-    const user = await userDao.retrieveUserByUsername(username);
-    const authToken = uuid();
-    user.authToken = authToken;
-    await userDao.updateUser(user);
 
-    res.cookie("authToken", authToken);
-    res.status(204).send();
-  } else {
-    res.status(401).send();
-  }
-});
-//API logout
+//The below route handler functions are for API requirement section of the group project
+router.post("/api/login", bodyParser.json(), async function(req, res){
+    const json = req.body;
 
-router.get("/api/logout", verifyAuthenticated, async function (req, res) {
-  const user = res.locals.user;
-  user.authToken = "";
-  await userDao.updateUser(user);
-  res.status(204).send();
-});
-
-//API users
-router.get("/api/users", verifyAuthenticated, async function (req, res) {
-  const user = res.locals.user;
-  console.log(user);
-  const administrator = user.administrator;
-  if (administrator >= 2) {
-    const userReport = await userDao.userReport();
-    res.json(userReport);
-  } else {
-    res.status(401).send("Error, users could not be retrieved");
-  }
-});
-
-//API userID
-router.delete("/api/users/:userID",verifyAuthenticated,async function (req, res) {
-    const user = res.locals.user;
-    const targetUser = req.params.userID;
-    console.log("TarfetUser received is : " + req.params.userID);
-    if (user.userID != parseInt(targetUser)) {
-      const administrator = user.administrator;
-      if (administrator >= 2) {
-        await commentDao.updateComment(targetUser);
-        await articleDao.updateArticle(targetUser);
-        await userDao.deleteUser(targetUser);
-
-        res.status(204).send("user deleted");
-      }
+    const user = await userDao.retrieveUserByUsername(json.username);
+    if(!user){
+        return res.status(401).send("Unauthorized");
     }
-  }
-);
+    const passwordIsMatch = await hashSalt.passwordIsMatch(json.password, user.hash_password);
+
+    if(passwordIsMatch){
+        const authToken = uuid();
+        user.authToken = authToken;
+        await userDao.updateUser(user);
+        res.status(204).send(authToken);
+    } else {
+        res.status(401).send("Unauthorized");
+    }
+});
+
+router.get("/api/logout", function(req, res){
+    authToken = null;
+    res.status(204).send("Logged out");
+});
+
+router.get("/api/users", async function(req, res){
+    const userId = req.query.userId;
+    const user = await userDao.retrieveUserById(userId);
+    if(user.is_admin == 1){
+        const userArray = await userDao.retrieveAllUsers();
+        for(let i = 0; i < userArray.length; i++){
+            userArray[i].articles = await articleDao.retrieveArticlesByAuthorId(userArray[i].id);
+        }
+        console.log(userArray);
+        res.json(userArray);
+    } else {
+        res.status(401).send("Not an admin");
+    }
+});
+
+router.delete("/api/users/:id", function(req, res){
+    
+});
+
 module.exports = router;
+
