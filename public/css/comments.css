@@ -73,3 +73,6 @@
 .commenterCard .delete, .reply{
     margin: 5px 0;
 }
+.replyForm  form {
+    margin: 10px 0;
+}

@@ -163,8 +163,7 @@ INSERT INTO liked_articles VALUES
 	(6, 4, '2022-10-13 04:00:00'),
 	(9, 4,'2022-10-13 15:12:00'),
 	(11, 5, '2022-10-12 07:00:00'),
-	(5, 3,'2022-10-12 14:12:00'),
-	(1, 3, '2022-10-11 11:00:00');
+	(5, 3,'2022-10-12 14:12:00');
 	
 INSERT INTO notifications (evoker_id, type, description, date_published, comment_id, article_id, subscribed_to) VALUES 
 	(1, 'article', 'posted a new article: Nature and Life', '2022-10-09 00:00:00', NULL, 1, NULL),
