@@ -13,17 +13,17 @@
 
         <div class="userDetail">
             <label for="fname">First name: </label>
-            <input type="text" name="fname" placeholder="Enter first name" id="fname" required value="{{user.fname}}">
+            <input type="text" name="fname" placeholder="Enter first name (maximum character: 100)" maxlength="100" id="fname" required value="{{user.fname}}">
         </div>
 
         <div class="userDetail">
             <label for="lname">Last name: </label>
-            <input type="text" name="lname" placeholder="Enter last name" id="lname" required value="{{user.lname}}">
+            <input type="text" name="lname" placeholder="Enter last name (maximum character: 100)" maxlength="100" id="lname" required value="{{user.lname}}">
         </div>
 
         <div class="userDetail">
             <label for="username">Username: </label>
-            <input type="text" name="username" placeholder="Enter a unique username" id="username" required value="{{user.username}}">
+            <input type="text" name="username" placeholder="Enter a unique username (maximum character: 100)" maxlength="100" id="username" required value="{{user.username}}">
             <div class="message">
                 <span id="usernameWarning"></span>
             </div>
@@ -52,7 +52,10 @@
 
        <div class="userDetail">
             <label for="email">E-mail: </label>
-            <input type="text" id="email" name="email" placeholder="Enter your email" required value="{{user.email}}">
+            <input type="text" id="email" name="email" placeholder="Enter your email" maxlength="100" required value="{{user.email}}">
+            <div class="message">
+                <span id="emailWarning"></span>
+            </div>
         </div>
 
         <div class="userDetail description">

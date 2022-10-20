@@ -146,7 +146,7 @@ INSERT INTO comments (content, date_published, parent_comment_id, article_id, co
 	('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut consequat justo ac dolor consectetur sollicitudin. Ut vulputate consectetur lectus in aliquet. Cras mollis sit amet felis vitae lacinia. Fusce quis.', '2022-10-15 13:00:00', 1, 1, 1),
 	('Lorem ipsum dolor sit amet, consectetur adipiscing.', '2022-10-01 16:00:00', NULL, 4, 3),
 	('Lorem ipsum dolor sit.', '2022-10-11 21:00:00', NULL, 6, 5),
-	('Lorem ipsum.', '2022-10-12 13:00:00', 4, 2, 2),
+	('Lorem ipsum.', '2022-10-12 13:00:00', NULL, 2, 2),
 	('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tincidunt.', '2022-10-13 16:00:00', 5, 2, 1),
 	('Lorem ipsum dolor sit amet.', '2022-10-14 01:00:00', NULL, 1, 1),
 	('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', '2022-10-15 13:00:00', NULL, 1, 4),

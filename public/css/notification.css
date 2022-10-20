@@ -17,7 +17,7 @@ i.fa-solid.fa-bell{
     position: absolute;
     padding: 15px;
     width: 250px;
-    max-height: 500px;
+    max-height: 350px;
     overflow-y: auto;
     z-index: 2;
     top: 45px;
