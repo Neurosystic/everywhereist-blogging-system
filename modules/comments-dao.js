@@ -89,6 +89,12 @@ async function retrieveCommentPerDayByAuthorId(id){
     return result;
 }
 
+async function retrieveCommentById(id){
+    const db = await dbPromise;
+    const result = await db.get(SQL`
+        SELECT * FROM comments WHERE id = ${id}`);
+    return result;
+}
 
 module.exports = {
     createComment,
@@ -98,5 +104,6 @@ module.exports = {
     updateComment,
     deleteComment,
     retrieveUserTotalCommentReceived,
-    retrieveCommentPerDayByAuthorId
+    retrieveCommentPerDayByAuthorId,
+    retrieveCommentById
 }

@@ -9,6 +9,7 @@ const notificationDao = require("../modules/notification-dao.js");
 
 const { getCurrentTime } = require("../modules/format-functions.js");
 const { verifyAuthenticated } = require("../middleware/auth-middleware.js");
+const e = require("express");
 router.use(verifyAuthenticated);
 
 router.get("/likeArticle/:articleId", async function(req, res){
@@ -59,7 +60,13 @@ router.post("/postComment", async function(req, res){
 
 router.get("/deleteComment/:commentId", async function(req, res){
     const commentId = req.params.commentId;
-    await commentDao.deleteComment(commentId);
+    const comment = await commentDao.retrieveCommentById(commentId);
+    const article = await articleDao.retrieveArticleById(comment.article_id);
+    if(res.locals.user.id == comment.commenter_id || res.locals.user.id == article.author_id){
+         await commentDao.deleteComment(commentId);
+    } else {
+        res.setToastMessage("You do not have permission to delete the comment");
+    }
     res.redirect("back");
 });
 

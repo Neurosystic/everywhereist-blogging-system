@@ -119,9 +119,15 @@ router.post("/editArticle", upload.single("imageFile"), async function (req, res
 //Improvement later....
 router.get("/deleteArticle/:articleId", async function (req, res) {
     const articleId = req.params.articleId;
-    await articleDao.deleteArticle(articleId);
-    res.setToastMessage("Successfully deleted article!");
-    res.redirect("/");
+    const article = await articleDao.retrieveArticleById(articleId);
+    if(res.locals.user.id != article.author_id){
+        res.setToastMessage("You do not have rights to edit the article");
+        return res.redirect("/");
+    }else{
+        await articleDao.deleteArticle(articleId);
+        res.setToastMessage("Successfully deleted article!");
+        res.redirect("/");
+    }
 });
 
 module.exports = router;

@@ -52,3 +52,7 @@ i.fa-solid.fa-bell{
 .notify.readStatus1{
     background-color: #dddada;
 }
+
+.notifyContent, .notificationPanel{
+    cursor: pointer;
+}
