@@ -67,6 +67,7 @@ input[type="submit"], button, input[type="reset"], .commands {
 
 .graph {
     width: 400px;
+    display: initial !important;
 }
 
 #subscriptions, #followers{

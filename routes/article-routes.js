@@ -46,8 +46,8 @@ router.post(
       content: req.body.content,
       image: imageFile,
       date_published: getCurrentTime(),
-      author_id: res.locals.user.id,
-    };
+      author_id: res.locals.user.id
+    }
     await articleDao.createArticle(article);
 
     const notificationObj = {
@@ -57,8 +57,8 @@ router.post(
       date_published: article.date_published,
       comment_id: null,
       article_id: article.id,
-      subscribed_to: null,
-    };
+      subscribed_to: null
+    }
 
     await notificationDao.registerNotification(notificationObj);
 
@@ -105,8 +105,8 @@ router.post(
       image: imageFile,
       date_published: oldArticle.date_published,
       date_edited: getCurrentTime(),
-      author_id: res.locals.user.id,
-    };
+      author_id: res.locals.user.id
+    }
 
     await articleDao.updateArticle(updatedArticle);
     res.locals.article = updatedArticle;
@@ -118,8 +118,8 @@ router.post(
       date_published: updatedArticle.date_published,
       comment_id: null,
       article_id: updatedArticle.id,
-      subscribed_to: null,
-    };
+      subscribed_to: null
+    }
 
     await notificationDao.registerNotification(notificationObj);
     res.redirect(`/article/${updatedArticle.id}`);

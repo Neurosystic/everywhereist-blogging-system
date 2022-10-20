@@ -5,6 +5,7 @@
     padding: 5px;
     border: 1px solid #edebeb;
     margin: 10px 0;
+    word-break: break-word;
 }
 
 .commenterCard > * {

@@ -141,6 +141,10 @@
     padding: 5px 10px;
 }
 
+.articles .cardIntro{
+    word-break: break-word;
+}
+
 .articles .cardIntro, .articleContents .card{
     display: flex;
     justify-content: space-between;
@@ -169,6 +173,7 @@
 .graph{
     width: 100%;
     padding: 10px 0;
+    display: none;
 }
 
 #cancelBtn{
