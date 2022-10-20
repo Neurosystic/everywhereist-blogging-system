@@ -1,13 +1,12 @@
 function toaster(req, res, next) {
+  res.locals.toastMessage = req.cookies.toastMessage;
+  res.clearCookie("toastMessage");
 
-    res.locals.toastMessage = req.cookies.toastMessage;
-    res.clearCookie("toastMessage");
+  res.setToastMessage = function (message) {
+    res.cookie("toastMessage", message);
+  };
 
-    res.setToastMessage = function (message) {
-        res.cookie("toastMessage", message);
-    }
-
-    next();
+  next();
 }
 
 module.exports = toaster;
