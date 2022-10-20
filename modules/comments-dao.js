@@ -104,5 +104,5 @@ module.exports = {
   deleteComment,
   retrieveUserTotalCommentReceived,
   retrieveCommentPerDayByAuthorId,
-  retrieveCommentById,
+  retrieveCommentById
 };

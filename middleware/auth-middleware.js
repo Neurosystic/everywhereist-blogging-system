@@ -31,5 +31,5 @@ async function verifyAuthenticated(req, res, next) {
 
 module.exports = {
   addUserToLocals,
-  verifyAuthenticated,
+  verifyAuthenticated
 };

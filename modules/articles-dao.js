@@ -88,5 +88,5 @@ module.exports = {
   retrieveArticlesByAuthorSort,
   retrieveArticlesByAuthorId,
   updateArticle,
-  deleteArticle,
+  deleteArticle
 };

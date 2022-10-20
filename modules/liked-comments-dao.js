@@ -39,5 +39,5 @@ module.exports = {
   registerCommentLiked,
   removeCommentLiked,
   retrieveAllCommentLikeCount,
-  retrieveCommentLikeCounts,
+  retrieveCommentLikeCounts
 };

@@ -11,5 +11,5 @@ async function passwordIsMatch(input, hash) {
 
 module.exports = {
   generateHash,
-  passwordIsMatch,
+  passwordIsMatch
 };

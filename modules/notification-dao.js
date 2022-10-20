@@ -47,5 +47,5 @@ async function retrieveUserNotifications(id) {
 module.exports = {
   registerNotification,
   updateNotificationReadStatus,
-  retrieveUserNotifications,
+  retrieveUserNotifications
 };

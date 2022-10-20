@@ -25,10 +25,12 @@ router.get("/profile", verifyAuthenticated, async function (req, res) {
   res.locals.likeCount = likeArray.length;
   res.locals.commentCount = commentArray.length;
   res.locals.title = `${res.locals.user.username} Profile Page`;
+
+  //Retrieving data for comments received per day and manipulating data to desired format
   const analyticData = await commentDao.retrieveCommentPerDayByAuthorId(
     viewingId
   );
-  console.log(analyticData)
+
   res.locals.data = analyticData.splice(0, 15);
 
   res.render("userAdmin");
