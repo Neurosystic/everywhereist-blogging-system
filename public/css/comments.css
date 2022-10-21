@@ -33,6 +33,10 @@
     font-weight: normal;
 }
 
+.commentDiv h3{
+    padding-top: 10px;
+}
+
 .commenterPanel p{
     font-size: 13px;
 }

@@ -1,4 +1,4 @@
-Final project &ndash; A personal blogging system &ndash; Starter project
+Everywhereist Personal Blogging System &ndash 
 ==========
 This repository contains a starting point for your team's final project.
 
