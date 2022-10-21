@@ -5,9 +5,7 @@ async function addUserToLocals(req, res, next) {
   const user = await userDao.retrieveUserWithAuthToken(req.cookies.authToken);
   res.locals.user = user;
   if (user) {
-    const notifications = await notificationDao.retrieveUserNotifications(
-      user.id
-    );
+    const notifications = await notificationDao.retrieveUserNotifications(user.id);
     res.locals.notificationArray = notifications;
     let unreadNotifications = 0;
     notifications.forEach(function (item) {

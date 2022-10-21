@@ -20,7 +20,6 @@
     gap: 10px;
     flex-wrap: wrap;
     justify-content: space-between; 
-    /* Which one looks better: space evenly or space between */
 }
 
 .subDiv > div {

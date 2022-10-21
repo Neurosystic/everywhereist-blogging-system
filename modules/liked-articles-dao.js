@@ -23,7 +23,7 @@ async function retrieveArticleLikes(article_id) {
 
   const result = await db.all(SQL`
         SELECT * FROM liked_articles
-            WHERE article_id = ${article_id}`); //unsure of how to read the data
+            WHERE article_id = ${article_id}`);
   return result;
 }
 
