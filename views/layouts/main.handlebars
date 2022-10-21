@@ -44,7 +44,7 @@
                                 <form class="readForm" method="POST" action="../readNotification/{{this.id}}/{{this.evoker_id}}/{{this.receiver_id}}" style="display: none">
                                     <input name="redirect" 
                                     {{#if this.comment_id}}
-                                        value="/article/{{this.article_id}} #comment{{this.comment_id}}" 
+                                        value="/article/{{this.article_id}}" 
                                         {{else}} 
                                             {{#if this.article_id}}
                                             value="/article/{{this.article_id}}" 

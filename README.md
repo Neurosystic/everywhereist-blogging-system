@@ -1,5 +1,12 @@
-Final project &ndash; A personal blogging system &ndash; Starter project
+Everywhereist Personal Blogging System 
 ==========
-This repository contains a starting point for your team's final project.
+Group 3
+Team: 1819 Wohoo Team
+Group members: Chien-Hao Huang, Ellie Liu, Sai Yekula, & Sophie Chen
+**__Please use the commit with the commit message: offical final commit for testing and marking__**
 
-Your team should update this README to include the information required, as presented in the project handout available on Canvas.
+Account username and password can be viewed from the database, however, the account that would be ideal for testing is:
+```
+username: user1
+password: 123
+```

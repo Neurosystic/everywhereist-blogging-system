@@ -23,8 +23,6 @@ window.addEventListener("load", async function () {
 
   loadUserArticles(viewingUserId);
 
-  //Implemment statements to allow user to sort article when browsering to author page
-
   async function loadUserArticles(id) {
     const articleArray = await fetchArticleByAuthor(id);
     createArticleCard(articleArray);

@@ -30,7 +30,6 @@
         <h4>About me</h4>
         <p>{{viewingUser.description}}</p>
     </div>
-
 </div>
 
 <div class="summaryStats">
@@ -46,7 +45,6 @@
         <i class="fa-solid fa-comment"></i>
         <p>Total comments: <span>{{commentCount}}</span></p>
     </div>
-
 </div>
 
 <div class="articles">
@@ -58,15 +56,13 @@
     <div class="articleContents"></div>
 </div>
 
-<div class="mainContent">
+<div class="mainContent"></div>
 
-
+<div class="graph">
+    <h2>Comments Received Per Day</h2>
+    <canvas id="histogram" ></canvas>
 </div>
 
-    <div class="graph">
-        <h2>Comments Received Per Day</h2>
-        <canvas id="histogram" ></canvas>
-    </div>
 <script>
     const xArray = [];
     const yArray = [];
